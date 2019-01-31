@@ -601,7 +601,6 @@
     <!-- Flot -->
     <script src="<?php echo e(asset('hAdmin/js/plugins/flot/jquery.flot.js')); ?>"></script>
     <script src="<?php echo e(asset('hAdmin/js/plugins/flot/jquery.flot.tooltip.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('hAdmin/css/font-awesome.min.css?v=4.4.0')); ?>"></script>
     <script src="<?php echo e(asset('hAdmin/js/plugins/flot/jquery.flot.pie.js')); ?>"></script>
     <!-- 自定义js -->
     <script src="<?php echo e(asset('hAdmin/js/content.js')); ?>"></script>
