@@ -98,7 +98,7 @@
             color: #616161;
             text-decoration: none;
         }
-        .menu-item.current a.menu-link{
+        .menu-item.select-item a.menu-link{
             border: 1px solid #44b549;
             line-height: 48px;
             background-color: #fff;
@@ -127,7 +127,7 @@
             position:relative;
             padding:0 0.5em;
         }
-        .sub-menu-item.current a{
+        .sub-menu-item.select-item a{
             border: 1px solid #44b549;
             background-color: #fff;
             color: #44b549;
@@ -137,7 +137,7 @@
         .sub-menu-list li a:hover{
             background:#f1f1f1;
         }
-        .menu-item.current .menu-link{
+        .menu-item.select-item .menu-link{
             border: 1px solid #44b549;
             line-height: 48px;
             background-color: #fff;
@@ -189,9 +189,6 @@
             border-bottom-width: 0;
             border-top-color: #d0d0d0;
             border-top-style: solid;
-        }
-        .sub-menu-item.current{
-
         }
         .sub-menu-inner-add{
             display: block;
@@ -258,17 +255,6 @@
             line-height: 24px;
             padding: 8px 0;
         }
-
-        #menu-content{
-            background-color: #fff;
-            padding: 16px 20px;
-            border: 1px solid #e7e7eb;
-        }
-        .menu-content-tips{
-            color: #8d8d8d;
-            padding-bottom: 10px;
-        }
-
         .form-item dl{
             position:relative;
             margin:10px 0;
@@ -338,16 +324,6 @@
         .create-click a strong{
             display:block;
         }
-
-        .keytitle {
-            position:absolute;
-            width:100%;
-            text-align:center;
-            top:0px;
-            height:35px;
-            line-height:35px;
-            background:#f4f5f9;
-        }
         dl.is-item dd>label {margin-left:5px;}
 
         input,.form-control, .single-line{
@@ -359,6 +335,9 @@
         }
         .my-box{
             width: 600px;min-height: 100px;background: #f4f4f4;padding: 20px;border-radius: 5px;display: none;
+        }
+        #fr-menu-resources:active i{
+            font-size: 28px !important;
         }
     </style>
 </head>
@@ -397,16 +376,16 @@
                             <div class="ibox" style="border-radius: 0;">
                                 <div class="ibox-content" style="padding: 15px;min-height: 400px;">
                                     <h3 style="font-weight: 500;border-bottom: 1px solid #e7eaec;padding-bottom: 20px;">微信菜单编辑区域</h3>
-                                    <form method="get" class="form-horizontal">
+                                    <form class="form-horizontal" onsubmit="return false;">
                                         <div class="form-group">
-                                            <label class="col-sm-1 control-label">菜单标题</label>
+                                            <label class="col-sm-1 control-label" >标题</label>
                                             <div class="col-sm-11">
                                                 <input type="text" class="form-control" style="width: 200px;" id="fr-menu-name">
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
                                         <div class="cus-menu-box form-group hidden">
-                                            <label class="col-sm-1 control-label">菜单内容</label>
+                                            <label class="col-sm-1 control-label">事件</label>
                                             <div class="col-sm-11">
                                                 <label class="checkbox-inline"><input type="radio" value="click" name="type"> 发送消息</label>
                                                 <label class="checkbox-inline"><input type="radio" value="view" name="type"> 跳转网页</label>
@@ -428,20 +407,20 @@
                                                     <div class="ibox-content" style="padding-bottom: 0px;">
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <form role="form">
+
                                                                     <div class="form-group">
                                                                         <label>小程序ID:</label>
-                                                                        <input type="text" placeholder="在小程序后台获取" class="form-control">
+                                                                        <input type="text" placeholder="在小程序后台获取" class="form-control" id="fr-menu-appid">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>小程序页面路径:</label>
-                                                                        <input type="text" placeholder="小程序页面路径" class="form-control">
+                                                                        <input type="text" placeholder="小程序页面路径" class="form-control" id="fr-menu-pagepath">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>页面地址:</label>
-                                                                        <input type="text" placeholder="页面地址，当不支持小程序时会跳转此页面" class="form-control">
+                                                                        <input type="text" placeholder="页面地址，当不支持小程序时会跳转此页面" class="form-control" id="fr-menu-url2">
                                                                     </div>
-                                                                </form>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -452,12 +431,12 @@
                                                     <div class="ibox-content" style="padding-bottom: 0px;">
                                                         <div class="row">
                                                             <div class="col-sm-12">
-                                                                <form role="form">
+
                                                                     <div class="form-group">
                                                                         <label>页面地址:</label>
                                                                         <input type="text"  class="form-control" id="fr-menu-url">
                                                                     </div>
-                                                                </form>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -466,7 +445,7 @@
                                                 <div class="my-box-type3 my-box">
                                                     <h5 style="color: #d2cbcb">点击编辑资源信息</h5>
                                                     <div style="width: 292px;height: 137px;background:white;margin: 0 auto;border: 1px dashed #f1e1e1;">
-                                                        <p style="margin: 0;height: 30px;line-height: 30px;background: #ebe7e7;text-align: center">资源名:关于我们</p>
+                                                        <p style="margin: 0;height: 30px;line-height: 30px;background: #ebe7e7;text-align: center">资源名: <span id="resources-name">- -</span></p>
                                                         <div style="width: 100%;cursor: pointer" id="fr-menu-resources">
                                                             <p><i class="glyphicon glyphicon-plus" style="font-size: 26px;color: #91cdeb;margin-left: 136px;margin-top: 20px;"></i></p>
                                                             <p style="text-align: center;color: #91cdeb">选择现有资源</p>
@@ -480,6 +459,7 @@
                                             <div class="col-sm-offset-1 col-sm-11" style="padding-left: 3px;">
                                                 <button class="btn btn-info" id="fr-submit">保存并发布</span></button>
                                                 <button class="btn btn-danger" id="fr-remove"> 移除菜单</button>
+                                                <button class="btn btn-danger" onclick="menuObj.getSelectionData()"> 获取选中</button>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -495,242 +475,10 @@
 
     <!-- 全局js -->
     <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/wechat-menu.js?v=2.1.4"></script>
     <script type="text/javascript">
-
-        /**
-         * 微信菜单操作对象
-         * @constructor
-         */
-        function Menu(menuJsonStr){
-            this.menuJsonStr = JSON.parse(menuJsonStr);
-
-            this.currentEdit = null;
-
-            /**
-             * 初始化设置菜单
-             */
-            this.init = function(){
-                var _this = this;
-                if(this.menuJsonStr.button && Array.isArray(this.menuJsonStr.button)){
-                    $.each(this.menuJsonStr.button,function(key,val){
-                        $('#menu-list .menu-item').find('.sub-menu-box').hide();
-                        $('#add-item').before(_this.getItemHtml(val));
-                        if(val.sub_button.length > 0){
-                            $.each(val.sub_button,function(key2,val2){
-                                $('#menu-list .menu-item').eq(key).find('.add-sub-item').before(_this.getSubItemHtml(val2));
-                            });
-                        }
-                    });
-
-                    $('#menu-list').find('.current').removeClass('current');
-                }
-            };
-
-            /**
-             *  包装一级菜单
-             */
-            this.getItemHtml = function (ops){
-                var ops = ops || {type: "click",name: "添加菜单",key: "key|"};
-
-                return `<li class="menu-item current" data-type="${ops.type}" data-action="${ops.key}" data-name="${ops.name}" data-url="${ops.url}"><a href="javascript:;" class="menu-link"><i class="icon-menu-dot"></i><i class="weixin-icon sort-gray"></i><span class="title">${ops.name}</span></a><div class="sub-menu-box" style="display: block;"><ul class="sub-menu-list"><li class="add-sub-item"><a href="javascript:;" title="添加子菜单"><span class=""><i class="weixin-icon add-gray"></i></span></a></li></ul><i class="arrow arrow-out"></i><i class="arrow arrow-in"></i></div></li>`;
-            };
-
-            /**
-             * 包装二级子菜单
-             */
-            this.getSubItemHtml = function (ops){
-                var ops = ops || {type: "click",name: "添加子菜单",key: "key|"};
-
-                return `<li class="sub-menu-item current" data-type="${ops.type}" data-action="${ops.key}" data-name="${ops.name}" data-url="${ops.url}"><a href="javascript:;"><span class=""><i class="weixin-icon sort-gray"></i><span class="sub-title">${ops.name}</span></span></a></li>`;
-            };
-
-            /**
-             * 设置编辑区域
-             */
-            this.setEditArea = function (type,data,el){
-                this.currentEdit = {type,data};
-                if(type == 'sub-menu-item'){
-                    $("input[type=radio][name=type][value='" + el.data('type') + "']").prop("checked", "checked").trigger('click');
-                    $('.cus-menu-box').removeClass('hidden');
-                }else{
-                    if(data.subMenuNum > 0){
-                        $('.cus-menu-box').addClass('hidden');
-                    }
-                }
-
-                $('#fr-menu-name').val(this.getVal(el.data('name')));
-                $('#fr-menu-url').val(this.getVal(el.data('url')));
-            };
-
-            this.getVal = function(value){
-                if(value == 'undefined'){
-                    return '';
-                }
-                return value;
-            };
-
-            /**
-             * 保存并发布菜单
-             */
-            this.saveRelease = function(){
-                var _this = this,menuJson = {button:[]};
-
-                $('.menu-item').each(function(index){
-                    var currentMenuItem  =  $('.menu-item').eq(index),
-                        subMenuItem =  $('.menu-item').eq(index).find('.sub-menu-item');
-
-                    if(subMenuItem.length > 0){
-                        var  subMenuItemArr = [];
-                        subMenuItem.each(function(index2){
-                            subMenuItemArr.push(_this.getItemJson(subMenuItem.eq(index2)));
-                        });
-                        menuJson.button.push({name: currentMenuItem.data('name'),sub_button:subMenuItemArr});
-                    }else{
-                        //没有子菜单的时候
-                        menuJson.button.push(_this.getItemJson(currentMenuItem));
-                    }
-                });
-
-                console.log(menuJson);
-
-                console.log(JSON.stringify(menuJson));
-            };
-
-            this.getItemJson = function(obj){
-                let type = obj.data('type'),url = obj.data('url'),action = obj.data('action'),name = obj.data('name');
-                var json = {};
-                if(type == 'click'){
-                    json =  {type: "click",name: name,key: action,sub_button: []};
-                }else if(type == 'view'){
-                    // console.log(this.isUrl(url)+'===>'+url);
-                    // if(!this.isUrl(url)){
-                    //     alert(name +':url地址格式不正确'+url);
-                    // }
-                    json =  {type: "view",name: name,url: url,sub_button: []};
-                }
-
-                return json;
-            };
-
-            /**
-             * 验证url
-             * @returns {boolean}
-             */
-            this.isUrl = function (url){
-                var strRegex = "";
-                var re=new RegExp(strRegex);
-                if (re.test(url)){
-                    return true;
-                }else{
-                    return false;
-                }
-            };
-
-            this.init();
-        }
-
-        var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]}]}]}';
+        var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]},{"type":"miniprogram","name":"跳转小程序","url":"http://47.105.180.123/admin","appid":"AKASDAS1A1S5FA1531DA","pagepath":"http://47.105.180.123","sub_button":[]},{"type":"view","name":"添加子菜单","url":"发送到","sub_button":[]}]}]}';
         let menuObj =  new Menu(menuJson);
-
-        //添加一级菜单
-        $(document).on('click','#add-item',function(event){
-            $('#menu-list .menu-item').removeClass('current').find('.sub-menu-box').hide();
-
-            $('.cus-menu-box').removeClass('hidden');
-            $('#add-item').before(menuObj.getItemHtml());
-            $('.current').trigger('click');
-
-            event.stopPropagation();
-        });
-
-        //添加二级菜单
-        $(document).on('click','.add-sub-item',function(event){
-            if($(this).parent().find('.sub-menu-item').length < 5){
-                $(this).parent().find('.sub-menu-item').removeClass('current');
-                $(this).before(menuObj.getSubItemHtml());
-            }else{
-                alert('最多只能添加5个子菜单');
-            }
-
-            $('#menu-list .menu-item').removeClass('current');
-
-            $('.current').trigger('click');
-            event.stopPropagation();
-        });
-
-        //一级菜单点击
-        $(document).on('click','.menu-item',function(){
-            $('.sub-menu-item').removeClass('current');
-            $(this).addClass('current').find('.sub-menu-box').show();
-            $(this).siblings().removeClass('current').find('.sub-menu-box').hide();
-
-            let o = {
-                menuIndex:$(this).index(),
-                subMenuIndex:undefined,
-                subMenuNum:$(this).addClass('current').find('.sub-menu-item').length
-            };
-
-            console.log($(this).data('name'));
-
-            menuObj.setEditArea('menu-item',o,$(this));
-            event.stopPropagation();    //  阻止事件冒泡
-        });
-
-        //二级子菜单点击
-        $(document).on('click','.sub-menu-item',function(event){
-            $(this).addClass('current').siblings().removeClass('current');
-            let o = {
-                menuIndex:$(this).parent().parent().parent().index(),
-                subMenuIndex:$(this).index(),
-                subMenuNum:0
-            };
-
-            menuObj.setEditArea('sub-menu-item',o,$(this));
-            $('#menu-list .menu-item').removeClass('current');
-            event.stopPropagation();    //  阻止事件冒泡
-        });
-
-        $('#fr-submit').on('click',function(){
-            menuObj.saveRelease();
-        });
-
-        $('#fr-remove').on('click',function(){
-            $('.current').remove();
-
-            $('.my-box').hide();
-            $('.form-horizontal').find('.form-control').val('');
-        });
-
-        $("input[name='type']:radio").bind('change click',function(){
-            var type = $(this).val();
-            $('.my-box').hide();
-            if(type == 'view'){
-                $('.my-box-type2').show();
-            }else if(type == 'miniprogram'){
-                $('.my-box-type1').show();
-            }else{
-                $('.my-box-type3').show();
-            }
-
-            $('.current').data('type',type);
-        });
-
-        $('#fr-menu-name').on('input',function(){
-            let name = $.trim($(this).val());
-            if($('.current').hasClass('menu-item')){
-                $('.current').data('name',name).find('.title').text(name);
-            }else{
-                $('.current').data('name',name).find('.sub-title').text(name);
-            }
-        });
-
-        $('#fr-menu-url').bind('change input',function(){
-            $('.current').data('url',$(this).val());
-        });
-
-        $('#fr-menu-resources').on('click',function(){
-            alert('此功能暂未开放');
-        });
     </script>
 </body>
 </html>
