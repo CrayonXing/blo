@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
 
 
@@ -23,14 +23,21 @@ class UserController extends Controller
     }
 
 
-    public function editPassword(){
+    public function editPassword(Request $request){
     	$oldpwd     = $request->input('oldpwd','');
         $newpwd    = $request->input('newpwd','');
         $newpwd2   = $request->input('newpwd2','');
-        
 
-    	list($isOk,$msg,$code) = User::chnagePwd(20,$oldpwd,$newpwd);
+        if(empty($oldpwd) || empty($newpwd) || empty($newpwd2)){
+			return $this->returnAjax([],'参数不符合规范',301);
+        }else if(!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/',$newpwd)){
+        	return $this->returnAjax([],'新密码格式错误',301);
+        }else if($newpwd !== $newpwd2){
+			return $this->returnAjax([],'确认密码填写错误',301);
+        }
 
-    	return response()->json(['code'=>$code,'msg'=>$msg,'data'=>[]]);
+    	list($isOk,$msg,$code) = User::chnagePwd($this->uInfo('id'),$oldpwd,$newpwd);
+
+    	return $this->returnAjax([],$msg,$code);
     }
 }
