@@ -62,7 +62,7 @@
 	  				oldpwd:$('#fr-changepwd-oldpwd').val(),
 	  				newpwd:$('#fr-changepwd-newpwd').val(),
 	  				newpwd2:$('#fr-changepwd-newpwd2').val()
-	  			}
+	  			};
 
 	  			if(functions.isEmptyStr(data.oldpwd)){
 	  				this.showError('旧密码不能为空');
@@ -88,12 +88,12 @@
 				  				$('#fr-changepwd-newpwd2').val('')
 	                        }
 
-	                        this.showError(res.msg);
+                            changPwdObj.showError(res.msg);
 	                        changPwdObj.loading = false;
 	                    },
 	                    error:function(){
-	                    	this.showError('网络繁忙，请稍后再试...');
-	                    	changPwdObj.loading = false;
+	                        changPwdObj.showError('网络繁忙，请稍后再试...');
+							 changPwdObj.loading = false;
 	                    }
 	                });
 	  			}

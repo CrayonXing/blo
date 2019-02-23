@@ -10,8 +10,6 @@ class IndexController extends BaseController
 {
 
 	public function index(){
-
-	    // dd($this->uInfo()->toArray());
 		return view('web.index.index');
 	}
 }

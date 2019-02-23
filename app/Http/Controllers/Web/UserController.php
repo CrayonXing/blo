@@ -22,7 +22,11 @@ class UserController extends BaseController
     	return view('web.user.chenge-pwd');
     }
 
-
+    /**
+     * 修改面提交处理接口
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function editPassword(Request $request){
     	$oldpwd     = $request->input('oldpwd','');
         $newpwd    = $request->input('newpwd','');
