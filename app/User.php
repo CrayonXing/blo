@@ -65,11 +65,11 @@ class User extends Authenticatable implements JWTSubject
             return [false,'用户不存在',302];
         }
 
-        if (!\Hash::check($old_pwd, $admin_info->password)) {
+        if (!\Hash::check($old_pwd, $info->password)) {
             return [false,'原始密码输入错误',303];
         }
 
-        $res = self::where('id', $admin_id)->update(['password'=>bcrypt($new_pwd)]);
+        $res = self::where('id', $uid)->update(['password'=>bcrypt($new_pwd)]);
 
         if($res){
             return [true,'密码修改成功',200];
