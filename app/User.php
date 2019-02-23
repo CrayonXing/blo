@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'mobile', 'password','created_at'
     ];
 
     /**
@@ -29,6 +29,12 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+        /**
+     * 表明模型是否应该被打上时间戳
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -48,6 +54,28 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()    // 这个
     {
         return [];
+    }
+
+    /**
+     * 修改用密码
+     */
+    public static function chnagePwd($uid,$old_pwd,$new_pwd){
+        $info = self::find($uid);
+        if(!$info){
+            return [false,'用户不存在',302];
+        }
+
+        if (!\Hash::check($old_pwd, $admin_info->password)) {
+            return [false,'原始密码输入错误',303];
+        }
+
+        $res = self::where('id', $admin_id)->update(['password'=>bcrypt($new_pwd)]);
+
+        if($res){
+            return [true,'密码修改成功',200];
+        }
+
+        return [false,'密码修改失败...',305];
     }
 }
 

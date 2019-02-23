@@ -11,10 +11,34 @@
 |
 */
 
-Route::get('/index', 'Admin\\MainController@index');
 
-Route::get('/index2', 'Admin\\MainController@index2');
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::group(['namespace'=>'Web'],function (){
+    Route::get('/','IndexController@index');
+
+
+    Route::get('/article/category/{type}','ArticleController@category');
+    Route::get('/article/details/aid/{aid}','ArticleController@details');
+
+
+    Route::post('/article/create','ArticleController@create');
+    Route::get('/article/edit','ArticleController@edit');
+    Route::post('/article/uploadFile','ArticleController@uploadFile');
+    Route::get('/article/search','ArticleController@getArticleList');
+
+
+
+
+    Route::post('/user-login','AuthController@login');
+    Route::post('/user-register','AuthController@register');
+	Route::get('/user-logout','AuthController@logout');
+
+
+    //user  控制器
+    Route::get('/user-main','UserController@index');
+    Route::get('/user-article','UserController@article');
+    Route::get('/user-pwd','UserController@password');
+    Route::post('/user-edit-pwd','UserController@editPassword');
 });
