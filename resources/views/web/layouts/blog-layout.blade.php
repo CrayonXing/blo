@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>New博客</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="keywords" content="New博客" />
+<meta name="keywords" content="New博客,PHP博客" />
 <meta name="description" content="New博客" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
@@ -14,41 +14,9 @@
 <link href="//at.alicdn.com/t/font_1038155_tajfhfyfkuq.css" rel="stylesheet">
 <link href="{{asset('plugin/animate.min.css')}}" rel="stylesheet">
 <link href="{{asset('web/css/login.css')}}" rel="stylesheet">
-<style type="text/css">
-	
-</style>
 </head>
 <body>
 	@section('header')
-        {{--<header id="blog-header" class="blog-header-fixed" >--}}
-		  {{--<div class="tophead">--}}
-		    {{--<div class="logo"><a href="/">New博客</a></div>--}}
-		    {{--<nav class="topnav" id="topnav" style="width: 850px;float: left;">--}}
-		      {{--<ul >--}}
-		        {{--<li><a href="/"  @if(request()->path() == '/') id="topnav_current" @endif >首页</a></li>--}}
-		        {{--<li><a href="/article/category/php" @if(request()->fullUrl() == url('/article/category/php')) id="topnav_current" @endif>PHP</a></li>--}}
-		        {{--<li><a href="/article/category/swoole"  @if(request()->fullUrl() == url('/article/category/swoole')) id="topnav_current" @endif>Swoole</a></li>--}}
-		        {{--<li><a href="/article/category/redis"  @if(request()->fullUrl() == url('/article/category/redis')) id="topnav_current" @endif>Redis</a></li>--}}
-		        {{--<li><a href="/article/category/vue"  @if(request()->fullUrl() == url('/article/category/vue')) id="topnav_current" @endif>Vue</a></li>--}}
-		        {{--<li><a href="/article/category/web"  @if(request()->fullUrl() == url('/article/category/web')) id="topnav_current" @endif>Web</a></li>--}}
-		        {{--<li><a href="/article/category/问答"  @if(request()->fullUrl() == url('/article/category/问答')) id="topnav_current" @endif>问答</a></li>--}}
-		        {{--<li><a href="/article/category/IT趣事"  @if(request()->fullUrl() == url('/article/category/IT趣事')) id="topnav_current" @endif>IT趣事</a></li>--}}
-		      {{--</ul>--}}
-		    {{--</nav>--}}
-		    {{--<div class="blog-header-login-nav">--}}
-		    	{{--<ul >--}}
-		    	{{--@if(!auth('web')->check())--}}
-					{{--<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>--}}
-			        {{--<li style="color: #FC9D9A" onclick="userLogin.showBox('register')">注册</li>--}}
-			    {{--@else--}}
-					{{--<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>--}}
-					{{--<li  > <a href="/user-logout" style="color: #FC9D9A;">&nbsp;&nbsp;退出登录</a></li>--}}
-		    	{{--@endif--}}
-		        {{--</ul>--}}
-		    {{--</div>--}}
-		  {{--</div>--}}
-		{{--</header>--}}
-
 		<header id="blog-header" >
 			<div class="blog-header-main" >
 				<div class="blog-header-main-left" >
@@ -57,7 +25,7 @@
 				<div class="blog-header-main-right" >
 					<div class="blog-header-nav">
 						<ul >
-							<li ><a href="/"  @if(request()->path() == '/')  @endif >首页</a></li>
+							<li @if(request()->path() == '/') class="blog-header-nav-current" @endif><a href="/"   >首页</a></li>
 							<li @if(request()->fullUrl() == url('/article/category/php')) class="blog-header-nav-current" @endif><a href="/article/category/php" >PHP</a></li>
 							<li @if(request()->fullUrl() == url('/article/category/swoole')) class="blog-header-nav-current" @endif ><a href="/article/category/swoole"  >Swoole</a></li>
 							<li @if(request()->fullUrl() == url('/article/category/redis'))  class="blog-header-nav-current" @endif><a href="/article/category/redis"  >Redis</a></li>
@@ -69,15 +37,15 @@
 					</div>
 					<div class="blog-header-loginbox" style="width: 200px;height: 100%;float: left">
 						<div class="blog-header-login-nav">
-						<ul >
-						@if(!auth('web')->check())
-						<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
-						<li style="color: #FC9D9A" onclick="userLogin.showBox('register')">注册</li>
-						@else
-						<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
-						<li  > <a href="/user-logout" style="color: #FC9D9A;">&nbsp;&nbsp;退出登录</a></li>
-						@endif
-						</ul>
+                            <ul >
+                                @if(!auth('web')->check())
+                                    <li style="background: #FC9D9A;border-radius: 5px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
+                                    <li style="background: #fdf5f5;color: #a9a8a8;margin-left: 3px;" onclick="userLogin.showBox('register')">注册</li>
+                                @else
+                                    <li style="background: #FC9D9A;border-radius: 5px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
+                                    <li style="background: #fdf5f5;color: #746b6b;margin-left: 3px;"> <a href="/user-logout" style="color: #a9a8a8;">退出登录</a></li>
+                                @endif
+                            </ul>
 						</div>
 					</div>
 				</div>
@@ -173,8 +141,6 @@
 	<script src="{{asset('web/js/jquery-2.1.1.min.js')}}"></script>
 	<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 	<script src="{{asset('plugin/functions.js')}}"></script>
-	
-
 	<script type="text/javascript">
 		$.ajaxSetup({
 		    headers: {
@@ -192,11 +158,10 @@
 	    });
 
 	    $("#web-to-top").click(function(){
-			$('html,body').animate({scrollTop: '0px'},300);
+			$('html,body').animate({scrollTop: 0},300);
 	    });
 	</script>
 	<script src="{{asset('web/js/login-box.js')}}"></script>
-
 	@stack('scripts')
 </body>
 </html>

@@ -436,7 +436,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
     }
 
     .blog-header-nav{
-        width: 800px;height: 100%;float: left
+        width: 800px;height: 100%;float: left;overflow: hidden;
     }
 
     .blog-header-nav ul{
@@ -448,7 +448,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
         float: left;
         padding-left: 20px;
         padding-right: 20px;
-        line-height: 65px;
+        line-height: 64px;
         cursor: pointer;
     }
 
@@ -465,7 +465,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
     }
 
     #blog-header .blog-header-login-nav{
-        float: left;width: 223px;height: 65px;
+        float: left;width: 200px;height: 65px;
     }
 
     #blog-header .blog-header-login-nav li{
