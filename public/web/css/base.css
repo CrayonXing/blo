@@ -14,25 +14,6 @@ a { text-decoration: none; color: #555 }
 .mt20 { margin-top: 20px }
 header { width: 100%; background: rgba(255,255,255,1); }
 
-.tophead { width: 1200px; margin: 0 auto 10px; overflow: hidden; }
-
-/* nav */
-.logo { float: left; overflow: hidden; font-size: 30px; margin-top: 10px; margin-left: 10px }
-.logo a { color: #ae8a8a }
-.logo img { float: left }
-.topnav { overflow: hidden; margin: 10px 0; }
-
-.topnav ul li a{color: #726e6e;
-    font-weight: 100;}
-
-
-nav { color: #999; line-height: 32px; }
-nav ul { text-align: right; }
-nav ul li { display: inline; font-size: 16px; padding: 10px 20px; height: 46px; line-height: 46px; }
-
-/*导航当前页*/
-#topnav_current {color: #fbc3c3; border-bottom: #fbc3c3 2px solid; padding-bottom: 10px; }
-
 
 
 footer { width: 100%; background: #333; color: #a5a4a4; text-align: center; padding: 20px 0; }
@@ -78,7 +59,8 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .dtime { background: url(../images/newsbg02.png) no-repeat left center }
 .viewnum { background: url(../images/newsbg04.png) no-repeat left center }
 .pingl { background: url(../images/newsbg03.png) no-repeat left center }
-.blogpic img { width: 100% }
+.blogpic img { width: 100%;height: 100px;}
+
 .bloginfo p { color: #888; line-height: 24px }
 .more { font-size: 14px; }
 
@@ -88,7 +70,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
     width: 100%;height: 50px;background: #fff;margin-bottom: 20px;line-height: 50px;text-align: center;font-size: 16px;cursor: pointer;color: #FC9D9A;display: block;
 }
 
-.add-article:hover{
+.add-article:hover,.add-article:active,.add-article:link{
     color: #FC9D9A !important;
 }
 
@@ -108,8 +90,8 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 /*tags*/
 .cloud { width: 100%; clear: both; overflow: hidden; background: #fff; margin-bottom: 20px }
 
+.cloud ul { padding: 0 20px 20px 20px; overflow: hidden; }
 .cloud ul li{list-style: none;}
-.cloud ul { padding: 20px; overflow: hidden; }
 .cloud ul a { line-height: 18px; height: 24px; display: block; background: #999; float: left; padding: 3px 11px; margin: 10px 10px 0 0; border-radius: 8px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; color: #FFF }
 .cloud ul a:nth-child(8n-7) { background: #8A9B0F }
 .cloud ul a:nth-child(8n-6) { background: #EB6841 }
@@ -122,22 +104,14 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .cloud ul a:first-child { background: #036564 }
 .cloud ul a:last-child { background: #3299BB }
 .cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
-.hometitle { padding: 0 10px; line-height: 50px; height: 50px; font-size: 16px; border-bottom: 1px solid #e5e5e5; color: #908787; position: relative }
+.hometitle { padding: 0 10px; line-height: 50px; height: 50px; font-size: 16px; border-bottom: 1px solid #e5e5e5; color: #cbcbcb; position: relative }
 .hometitle:after { content: ''; position: absolute; height: 2px; width: 0; right: inherit; top: inherit; left: 0; bottom: -1px; background: #FC9D9A; transition: 2s ease all; }
 .hometitle:hover:after { width: 100%; transition: 2s ease all; }
 
 
 .paihang { background: #FFF; overflow: hidden; margin-bottom: 20px }
 .paihang ul { padding: 10px; }
-.paihang ul li { border-bottom: solid 1px #EAEAEA; font-size: 14px; margin: 0 0 10px 0; padding: 0 0 10px 0; overflow: hidden;list-style: none; }
-.paihang ul li b { height: 30px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
-.paihang ul li p { line-height: 24px; color: #888 }
-.paihang ul li a:hover { color: #000; }
-.paihang ul li:hover p { color: #000; }
-.paihang ul li:hover b a { color: #000; }
-.paihang li i { width: 100px; height: 90px; overflow: hidden; display: block; border: #efefef 1px solid; float: left; margin-right: 10px }
-.paihang li img { height: 100%; margin: auto; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; transition: all .5s ease; }
-.paihang ul li:hover i img { transform: scale(1.1) }
+.paihang ul li { border-bottom: solid 1px #EAEAEA; font-size: 14px; margin: 0 0 10px 0; padding: 0 0 10px 0; overflow: hidden;text-overflow:ellipsis;white-space: nowrap; height: 30px;}
 
 /*links*/
 .links { width: 100%; background: #FFF; overflow: hidden;margin-bottom: 20px;}
@@ -362,11 +336,10 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 	color: #c4bbbb;
 }
 
-.web-main-article-category-current{
+.web-main-article-category-current,.web-main-article-category > span:hover{
 	background: #fc9d9a !important;
 	color: #fff !important;
 }
-
 
 .web-main-article-list{
 	width: 100%;min-height: 0px;background: #fff;padding: 15px 10px 15px 10px;margin-bottom: 10px;border: 10px solid #f7f7f7;
@@ -404,6 +377,25 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 	color: #096;margin-right: 5px;
 }
 
+
+.web-main-article-list-status {
+	width: 80px;
+	height: 25px;
+	position: absolute;
+	right: -23px;
+	top: -4px;
+	transform: rotate(20deg);
+	-ms-transform: rotate(20deg);
+	-moz-transform: rotate(20deg);
+	-webkit-transform: rotate(20deg);
+	-o-transform: rotate(20deg);
+	text-align: center;
+	line-height: 25px;
+	font-size: 18px;
+	color: #cee7ce;
+}
+
+
 /*用户中心文章列表结束*/
 
 
@@ -411,28 +403,84 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 
 
 
-/*主页*/
-#blog-list-paging{
-	width: 100%;height: 50px;background: #fff;text-align: center;padding-top: 15px;cursor: pointer;font-weight: 400;
-}
+    /*主页*/
+    #blog-list-paging{
+        width: 100%;height: 50px;background: #fff;text-align: center;padding-top: 15px;cursor: pointer;font-weight: 400;
+    }
 
+    #blog-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 99999999;
+        height: 65.600px;
+        box-shadow: 5px 5px 5px #f5dcdc;
+    }
 
+    .blog-header-main{
+        width:1200px;height: 100%;margin: 0 auto;
+    }
 
-/*自定义*/
-.logo a {
-    	color: #FC9D9A;
-    	font-family:"Times New Roman",Georgia,Serif;
-	}
+    .blog-header-main-left{
+        float: left;width: 200px;height: 100%;line-height: 65px;padding-left: 20px;
+    }
 
-	.blog-header-fixed{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 99999999;
-		height: 65.600px;
-		box-shadow: 5px 5px 5px #f5dcdc;
-	}
+    .blog-header-main-left a{
+        color: #FC9D9A !important;
+        font-family:"Times New Roman",Georgia,Serif;
+        font-size: 30px;
+    }
+    .blog-header-main-right{
+        float: right;width: 1000px;height: 100%;
+    }
+
+    .blog-header-nav{
+        width: 800px;height: 100%;float: left
+    }
+
+    .blog-header-nav ul{
+        list-style: none;
+        padding: 0;margin: 0;
+    }
+
+    .blog-header-nav ul li{
+        float: left;
+        padding-left: 20px;
+        padding-right: 20px;
+        line-height: 65px;
+        cursor: pointer;
+    }
+
+    .blog-header-nav ul li:hover,.blog-header-nav-current{
+         border-bottom: 3px solid #fc9d9a;
+    }
+
+    .blog-header-nav ul li a{
+        display: inline-block;height: 100%;
+    }
+
+    .blog-header-nav ul li:hover a,.blog-header-nav-current a{
+        color: #fc9d9a !important;
+    }
+
+    #blog-header .blog-header-login-nav{
+        float: left;width: 223px;height: 65px;
+    }
+
+    #blog-header .blog-header-login-nav li{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        float: left;
+        width: 80px;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 17px;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+    }
 
 	.blogpic {
       width: 20% !important;
@@ -445,8 +493,6 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
     #web-toolbar{
     	position: fixed;right: 20px;bottom: 20px;width: 60px;min-height: 60px;padding: 0;
     }
-
-    
 
     #web-toolbar .web-toolbar-item{
     	padding: 0;
@@ -465,23 +511,4 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
     	font-size:48px;color: #fb6f6f;
     	display: block;
     	margin-top: 2px !important;
-    }
-
-
-    #blog-header .blog-header-login-nav{
-    	float: left;width: 223px;height: 65px;
-    }
-
-    #blog-header .blog-header-login-nav li{
-    	list-style-type: none;
-    	padding: 0;
-    	margin: 0;
-    	float: left;
-    	width: 80px;
-    	font-size: 16px;
-    	text-align: center;
-    	margin-top: 17px;
-    	height: 30px;
-    	line-height: 30px;
-    	cursor: pointer;
     }

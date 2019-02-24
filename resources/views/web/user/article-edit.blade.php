@@ -47,7 +47,7 @@
 
         #upload-container-left{
             width: 600px;height: 400px;position: fixed;right: 0;left: 0;margin: 0 auto;top: 25%;background: #fff;z-index: 99999999999;
-        }   
+        }
 
         .upload-container-title{
             height: 40px;background: #f7b8b6;line-height: 40px;font-size: 18px;color: #fff;padding-left: 10px;
@@ -95,7 +95,7 @@
         .fr-img-box-list-remove{
             position: absolute;top: 0;left: 0;background: rgb(49,49,49,0.5);color: #fff;z-index: 2;width: 100%;height: 100%;line-height: 77px;text-align: center;cursor: pointer;display: none
         }
-        
+
         .fr-img-box{
             position: relative;float: left;margin-right: 10px;
         }
@@ -124,133 +124,133 @@
             display: none;float: left;line-height: 33px;padding-left: 10px;color: #ed9696;font-size: 16px;
         }
     </style>
-
     <article>
-        <h1 class="t_nav"><span style="float: left;">您现在的位置是：首页 > 个人中心 > 编辑文章</span></h1>
-        <div class="infos">
-            <div class="newsview">
-                <div class="news_about"><strong>简介</strong>
-                    New博客，用来做什么？
-                    我刚开始就把它当做一个我自我学习的地方，
-                    写上一些写一些在工作中遇到的问题及相应的解决方案，
-                    也会放上自我的学习的心得体会。
-                </div>
-                <div class="news_infos" style="min-height: 800px;padding-bottom: 100px;">
-                    <form class="am-form">
-                        <fieldset style="position: relative;">
-                            <legend style="color: #d8c5c5">编辑文章</legend>
-                            <div class="am-form-group">
-                                <input type="text" class="" placeholder="文章标题" id="fr-blog-title" maxlength="60">
-                            </div>
+        @include('web.layouts.web-main-left')
 
-                            <div class="am-form-group">
-                                <textarea class="" rows="1" placeholder="文章摘要" id="fr-blog-abstract" style="resize: none" maxlength="200"></textarea>
-                            </div>
-
-                            <div class="am-form-group">
-                                <div id="wang-editor"></div>
-                            </div>
-
-                            <div class="am-form-group">
-                                
-                                <span style="padding-right: 15px;">文章类型</span>
-                                <select id="fr-blog-category" data-am-selected>
-                                    <option value="PHP">PHP</option>
-                                    <option value="Swoole">Swoole</option>
-                                    <option value="Redis">Redis</option>
-                                    <option value="Vue">Vue</option>
-                                    <option value="Web">Web</option>
-                                    <option value="问答">问答</option>
-                                    <option value="IT趣事">IT趣事</option>
-                                </select>
-                                <span class="am-form-caret"></span>
-                            </div>
-
-                            <div class="am-form-group">
-                                <label style="font-weight: 300; ">标签</label>
-                                <input id="fr-blog-tags" type="text" value="">
-                            </div>
-
-                            <div class="am-form-group">
-                              <label class="am-radio-inline" style="padding-left: 0;">
-                                是否公开
-                              </label>
-                              <label class="am-radio-inline">
-                                <input type="radio" name="fr-blog-power" value="1" data-am-ucheck checked=""> 公开
-                              </label>
-                              <label class="am-radio-inline">
-                                <input type="radio" name="fr-blog-power" value="2" data-am-ucheck> 私有
-                              </label>
-                            </div>
-
-                            
-
-                            <div class="am-form-group">
-                               <label class="am-checkbox-inline">
-                                <input type="checkbox"  name="fr-original" value="" data-am-ucheck checked="" id="fr-original" > 原创作品<span style="color: #ccc;">(注:若不是原创作品请勿勾选)</span>
-                              </label>
-                            </div>
-
-                            <div class="am-form-group fr-url-box" style="display: none">
-                                <input type="url" class="" placeholder="原创链接地址" id="fr-blog-link">
-                            </div>
-
-
-                            <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed"/>
-
-                            <div class="am-form-group">
-                                <div id="fr-imgs-box">
-                                    <div onclick="obj.showUploadImgBox()" style="float: left;" >
-                                        <img src="/web/images/webuploader.png" style="border: 1px dashed #ccc;cursor: pointer;" >
-                                    </div>
-
-                                    <div  class="fr-img-box-list">
-                                        
-                                    </div>
-                                    <div style="clear: both;"></div>
+        <div class="web-main-right">
+            <div class="web-main-breadcrumb">
+                <p><a>会员中心</a> <span>/</span> <a>添加(编辑文章)</a></p>
+            </div>
+            <div class="web-main-content">
+                <div class="newsview">
+                    <div class="news_about" style="margin-left: 8px;margin-right: 10px;"><strong>简介</strong>
+                        New博客，用来做什么？
+                        我刚开始就把它当做一个我自我学习的地方，
+                        写上一些写一些在工作中遇到的问题及相应的解决方案，
+                        也会放上自我的学习的心得体会。
+                    </div>
+                    <div class="news_infos" style="min-height: 800px;padding-bottom: 100px;">
+                        <form class="am-form">
+                            <fieldset style="position: relative;">
+                                <legend style="color: #d8c5c5">编辑文章</legend>
+                                <div class="am-form-group">
+                                    <input type="hidden" id="fr-blog-id"  value="{{$info['id']}}" >
+                                    <input type="text" placeholder="文章标题(必填)" id="fr-blog-title" maxlength="60" value="{{$info['title']}}" >
                                 </div>
-                                <div style="clear: both;"> </div>
-                                <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed"/>
-                            </div>
 
-                            <p>
-                               <span style="float: left;"> 
+                                <div class="am-form-group">
+                                    <textarea placeholder="文章摘要(选填)" id="fr-blog-abstract" maxlength="200" >{{$info['describe']}}</textarea>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div id="wang-editor"><?php echo htmlspecialchars_decode($info['content']);?></div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <span style="padding-right: 15px;">文章类型</span>
+                                    <select id="fr-blog-category" data-am-selected>
+                                        <option value="PHP" @if($info['category_id'] == 'PHP') selected  @endif >PHP</option>
+                                        <option value="Swoole"  @if($info['category_id'] == 'Swoole') selected  @endif>Swoole</option>
+                                        <option value="Redis" @if($info['category_id'] == 'Redis') selected  @endif>Redis</option>
+                                        <option value="Vue" @if($info['category_id'] == 'Vue') selected  @endif>Vue</option>
+                                        <option value="Web" @if($info['category_id'] == 'Web') selected  @endif>Web</option>
+                                        <option value="问答" @if($info['category_id'] == '问答') selected  @endif>问答</option>
+                                        <option value="IT趣事" @if($info['category_id'] == 'IT趣事') selected  @endif>IT趣事</option>
+                                    </select>
+                                    <span class="am-form-caret"></span>
+                                </div>
+
+                                <div class="am-form-group">
+                                    {{--<label style="font-weight: 300; ">标签</label>--}}
+                                    <input id="fr-blog-tags" type="text" value="{{$info['tag']}}">
+                                    <p class="am-form-help">注: 文章标签添加不能大于3个</p>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-radio-inline" style="padding-left: 0;">
+                                        是否公开
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="fr-blog-power" value="true" data-am-ucheck checked > 公开
+                                    </label>
+                                    <label class="am-radio-inline">
+                                        <input type="radio" name="fr-blog-power" value="false" data-am-ucheck @if($info['is_overt'] == 2) checked @endif> 私有
+                                    </label>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-checkbox-inline">
+                                        <input type="checkbox"  name="fr-original" value="" data-am-ucheck  @if(empty($info['reprint_url'])) checked @endif   id="fr-original" > 原创作品<span style="color: #ccc;">(注:若不是原创作品请勿勾选)</span>
+                                    </label>
+                                </div>
+
+                                <div class="am-form-group fr-url-box" @if(empty($info['reprint_url'])) style="display: none" @endif >
+                                    <input type="url" class="" placeholder="原创链接地址" id="fr-blog-link" value="{{$info['reprint_url']}}" >
+                                </div>
+
+                                <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed"/>
+
+                                <div class="am-form-group">
+                                    <div id="fr-imgs-box">
+                                        <div onclick="obj.showUploadImgBox()" style="float: left;" >
+                                            <img src="/web/images/webuploader.png" style="border: 1px dashed #ccc;cursor: pointer;" >
+                                        </div>
+
+                                        <div  class="fr-img-box-list">
+                                            @if($info && !empty($info['imgs']))
+                                                @foreach(json_decode($info['imgs'],true) as $img)
+                                                    <div class="fr-img-box"><img src="{{$img}}">
+                                                        <div class="fr-img-box-list-remove" style="display: none;">删除图片</div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+
+
+                                        </div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+                                    <div style="clear: both;"> </div>
+                                    <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed"/>
+                                </div>
+
+                                <p>
+                               <span style="float: left;">
                                 <span style="color: #c6c1c1;">自定义上传封面 (宽高不能小于300)</span>
                                </span>
 
-                                <span style="float: right;">
+                                    <span style="float: right;">
                                   <span style="position: relative;cursor: pointer;" class="preview-container-show">
                                     <i class="icon iconfont icon-yanjing preview-container-show" style="position: absolute;top: 0px;font-size: 20px;color: #c6c1c1;"></i>
                                     <span style="display: inline-block;padding-left: 23px;color: #c6c1c1;">在线预览</span>
                                   </span>
 
-                                  <label class="am-checkbox" style="display: inline-block;margin-left:20px;color: #c6c1c1;cursor: pointer;">
+                                  <label class="am-checkbox" style="@if($info['status'] == 1 || $info['status'] == 2) display:none; @else display: inline-block;  @endif margin-left:20px;color: #c6c1c1;cursor: pointer;" >
                                     <input type="checkbox" value="1" data-am-ucheck id="fr-blog-draft" >保存草稿
                                   </label>
 
                                   <button type="button" class="am-btn am-btn-secondary am-radius" style="margin-left: 20px;" onclick="obj.submit()">保存发布</button>
                                 </span>
-                            </p>
+                                </p>
 
-                            <div class="pet_sixin_form_r_nr" >
-                                <div class="pet_sixin_form_r_nr_sj"></div>
-                                <span class="pet-error-text"></span>
-                            </div>
-                        </fieldset>
-                    </form>
+                                <div class="pet_sixin_form_r_nr" >
+                                    <div class="pet_sixin_form_r_nr_sj"></div>
+                                    <span class="pet-error-text"></span>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="sidebar" style="margin-top: 20px;padding-bottom: 20px;">
-            <div class="about" style="margin-bottom: 20px;">
-                <div class="avatar"><img src="/web/images/avatar.jpg" alt=""></div>
-                <p class="abname">YuanDong | 3年</p>
-                <p class="abposition">PHP开发工程师</p>
-                <div class="abtext"> 生活需要梦想、需要坚持。只有不断提高自我，才会得到想要的生活...</div>
-            </div>
-        </div>
-
         </div>
     </article>
 
@@ -281,7 +281,6 @@
         </div>
     </div>
 
-
     <div id="upload-container">
         <div id="upload-container-left" style="position: relative;">
             <div class="upload-container-title" >
@@ -292,9 +291,9 @@
                 <div style="height: 110px;text-align: center;">
                     <div class="upload-container-fr-div" >
                         <i class="icon iconfont icon-shangchuan1" ></i>
-                         <form id="form-upload-file" enctype="multipart/form-data">
+                        <form id="form-upload-file" enctype="multipart/form-data">
                             <input type="file"  name="file"  id="upload-container-uploadfile"  />
-                        </form> 
+                        </form>
                     </div>
                     <p style="margin-top: 30px;color: #6490c8">点击此处上传图片(最多只能上传三张)</p>
                 </div>
@@ -302,7 +301,7 @@
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed"/>
 
                 <div id="upload-container-img-box">
-                    
+
                 </div>
             </div>
             <div class="upload-container-footer" >
@@ -317,13 +316,10 @@
         </div>
     </div>
 @endsection
-
 @push('scripts')
     <script type="text/javascript" src="/plugin/wangEditor/release/wangEditor.min.js"></script>
     <script type="text/javascript" src="/plugin/tagsInput/jquery.tagsinput-revisited.js"></script>
-<script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
-
-
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
     <script type="text/javascript">
 
         var E = window.wangEditor;
@@ -343,22 +339,12 @@
             if (key.toString() == "13") {
                 return false;
             }
+        }).each(function () {
+            this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
         }).on('input', function () {
+            this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         });
-
-
-        $('#fr-blog-tags').tagsInput({
-            'onAddTag': function (input, value) {
-                console.log('tag added', input, value);
-            },
-            'onRemoveTag': function (input, value) {
-                console.log('tag removed', input, value);
-            },
-            'onChange': function (input, value) {
-                console.log('change triggered', input, value);
-            }
-        }).attr('placeholder', '添加标签');
 
 
         $("#preview-container").click(function (event) {
@@ -372,7 +358,7 @@
             $("#preview-container").fadeOut();
         });
 
-        
+
         $('.preview-container-show').on('click',function () {
             $('#preview-container-title').text($('#fr-blog-title').val());
             $('#preview-container-abstract').text($('#fr-blog-abstract').val());
@@ -408,6 +394,18 @@
                 $('.fr-url-box').hide();
             }
         });
+
+        $('#fr-blog-tags').tagsInput({
+            'onAddTag': function (input, value) {
+                console.log('tag added', input, value);
+            },
+            'onRemoveTag': function (input, value) {
+                console.log('tag removed', input, value);
+            },
+            'onChange': function (input, value) {
+                console.log('change triggered', input, value);
+            }
+        }).attr('placeholder', '添加标签');
 
 
         $('#upload-container-uploadfile').on('change',function(){
@@ -473,16 +471,17 @@
                 var imgs = [];
                 $('.fr-img-box img').each(function(){imgs.push(this.src);});
                 return {
+                    id:$('#fr-blog-id').val(),
                     title:$.trim($('#fr-blog-title').val()),
                     describe:$.trim($('#fr-blog-abstract').val()),
                     category:$('#fr-blog-category').val(),
                     tag:$('#fr-blog-tags').val(),
                     imgs:imgs,
                     content:editor.txt.html(),
+                    url:$('#fr-blog-link').val(),
                     isDraft:$('#fr-blog-draft').is(":checked"),
                     isOriginal:$('#fr-original').is(":checked"),
-                    url:$('#fr-blog-link').val(),
-                    power:$('input[name="fr-blog-power"]:checked').val()
+                    isOvert:$('input[name="fr-blog-power"]:checked').val()
                 };
             },
             submit(){
@@ -507,6 +506,9 @@
                     success: function (res) {
                         if(res.code == 200){
                             obj.clearFrom();
+                            setTimeout(function(){
+                                window.location.href = '/user-article';
+                            },2000);
                         }
 
                         _this.showErorBox(res.msg);

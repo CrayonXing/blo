@@ -43,7 +43,7 @@ class Kernel extends HttpKernel
 
         'backend' => [
            \App\Http\Middleware\EncryptCookies::class,
-           // \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\StartSession::class,
         ],
     ];
 
@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
 
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+
+        'checkLogin' => \App\Http\Middleware\CheckLogin::class,
     ];
 
     /**

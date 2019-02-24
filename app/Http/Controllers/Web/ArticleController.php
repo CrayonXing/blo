@@ -1,54 +1,15 @@
 <?php
-
 namespace App\Http\Controllers\Web;
-use Validator;
+
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Article;
-use Illuminate\Support\Facades\Auth;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
-    /**
-     * 获取分页总数
-     * @param $total
-     * @param $page_size
-     * @return int
-     */
-    function getPageTotal(int $total,int $page_size){
-        if($total === 0){
-            return 0;
-        }
-
-        return (int)ceil((int)$total/(int)$page_size);
-    }
-
-
-    /**
-     * 包装分页数据
-     * @param array $rows        列表数据
-     * @param int $total         数据总记录数
-     * @param int $page          当前分页
-     * @param int $page_size     分页大小
-     * @param array $params      额外参数
-     * @return array
-     */
-    public function packData(array $rows,int $total,int $page,int $page_size,array $params=[])
-    {
-        return array_merge([
-            'rows'          =>$rows,
-            'page'          =>$page,
-            'page_total'    =>($page_size == 0?1:$this->getPageTotal($total,$page_size)),
-            'total'         =>$total,
-        ],$params);
-    }
-
-
     public function category($type){
         return view('web.article.list',['type'=>$type]);
     }
-
 
     public function details(int $aid,Request $request){
         $info = Article::where('id',$aid)->first();
@@ -60,20 +21,16 @@ class ArticleController extends Controller
         return view('web.article.detail',['info'=>$info]);
     }
 
-
-    public function getArticleList(Request $request){
+    /**
+     * 获取列表数据
+     * @param Request $request
+     * @param Article $article
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getArticleList(Request $request,Article $article){
         $page       = (int)$request->get('page', 1);
         $page_size  = (int)$request->get('page_size', 15);
-
-        $list = Article::select('id','title','tag','describe','imgs','visits','created_time')->orderBy('created_time','desc')->offset((($page-1)*$page_size) )->limit($page_size)->get()->toArray();
-        if($list){
-            foreach($list as $k=>$row){
-                $list[$k]['imgs'] = json_decode($row['imgs']);
-                $list[$k]['tag']  = explode(',',$row['tag']);
-            }
-        }
-
-        return response()->json(['code'=>200,'msg'=>'','data'=>$this->packData($list,7,$page,$page_size)]);
+        return $this->returnAjax($article->getArticle($page,$page_size));
     }
 
     public function create(Request $request){
@@ -82,31 +39,43 @@ class ArticleController extends Controller
     	$category 	= $request->input('category', '');
     	$tag 		= $request->input('tag', '');
     	$imgs 		= $request->input('imgs', []);
-    	$content 	= $request->input('content', []);
+    	$content 	= $request->input('content', '');
+        $url 	    = $request->input('url', '');
 
-        $model = new Article();
-        list($isTrue,$msg,$data) = $model->saveArticle([
+        $isOriginal = $request->input('isOriginal');
+        $isOvert 	 = $request->input('isOvert');
+        $isDraft    =$request->input('isDraft');
+
+        if(empty($title) || empty($category) || empty($content)){
+            return $this->returnAjax([],'参数不符合规范',301);
+        }else if($isOriginal == 'false' && empty($url)){
+            return $this->returnAjax([],'文章转载原文链接不能为空',302);
+        }
+
+        list($isTrue,$msg,$data) = (new Article())->saveArticle([
             'category_id'       =>$category,
-            'uid'               =>0,
+            'uid'               =>$this->uInfo('id'),
             'title'             =>htmlspecialchars($title),
             'tag'               =>htmlspecialchars($tag),
             'describe'          =>htmlspecialchars($describe),
             'imgs'              =>$imgs,
             'content'           =>htmlspecialchars($content),
-        ],(boolean)$request->input('isDraft', 'false'),(int)$request->input('id', 0));
-
+            'is_overt'          =>($isOvert == 'true') ? 1 : 2,
+            'reprint_url'       =>($isOriginal == 'true') ? '':$url,
+        ],$isDraft == 'false'? false : true,(int)$request->input('id', 0));
 
         if($isTrue){
-            return response()->json(['code'=>200,'msg'=>$msg,'data'=>[]]);
+            return $this->returnAjax([],$msg,200);
         }else{
-            return response()->json(['code'=>305,'msg'=>$msg,'data'=>[]]);
+            return $this->returnAjax([],$msg,305);
         }
     }
 
-    public function edit(Request $request){
-        return view('web.article.edit-blog');
-    }
-
+    /**
+     * 文章图片上传接口
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function uploadFile(Request $request){
         if ($request->isMethod('post')) {
             $file = $request->file();

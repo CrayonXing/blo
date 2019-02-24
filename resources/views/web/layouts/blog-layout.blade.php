@@ -20,33 +20,68 @@
 </head>
 <body>
 	@section('header')
-        <header id="blog-header" class="blog-header-fixed" >
-		  <div class="tophead">
-		    <div class="logo"><a href="/">New博客</a></div>
-		    <nav class="topnav" id="topnav" style="width: 850px;float: left;">
-		      <ul >
-		        <li><a href="/"  @if(request()->path() == '/') id="topnav_current" @endif >首页</a></li>
-		        <li><a href="/article/category/php" @if(request()->fullUrl() == url('/article/category/php')) id="topnav_current" @endif>PHP</a></li>
-		        <li><a href="/article/category/swoole"  @if(request()->fullUrl() == url('/article/category/swoole')) id="topnav_current" @endif>Swoole</a></li>
-		        <li><a href="/article/category/redis"  @if(request()->fullUrl() == url('/article/category/redis')) id="topnav_current" @endif>Redis</a></li>
-		        <li><a href="/article/category/vue"  @if(request()->fullUrl() == url('/article/category/vue')) id="topnav_current" @endif>Vue</a></li>
-		        <li><a href="/article/category/web"  @if(request()->fullUrl() == url('/article/category/web')) id="topnav_current" @endif>Web</a></li>
-		        <li><a href="/article/category/问答"  @if(request()->fullUrl() == url('/article/category/问答')) id="topnav_current" @endif>问答</a></li>
-		        <li><a href="/article/category/IT趣事"  @if(request()->fullUrl() == url('/article/category/IT趣事')) id="topnav_current" @endif>IT趣事</a></li>
-		      </ul>
-		    </nav>
-		    <div class="blog-header-login-nav">
-		    	<ul >
-		    	@if(!auth('web')->check())
-					<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
-			        <li style="color: #FC9D9A" onclick="userLogin.showBox('register')">注册</li>
-			    @else
-					<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
-					<li  > <a href="/user-logout" style="color: #FC9D9A;">&nbsp;&nbsp;退出登录</a></li>
-		    	@endif
-		        </ul>
-		    </div>
-		  </div>
+        {{--<header id="blog-header" class="blog-header-fixed" >--}}
+		  {{--<div class="tophead">--}}
+		    {{--<div class="logo"><a href="/">New博客</a></div>--}}
+		    {{--<nav class="topnav" id="topnav" style="width: 850px;float: left;">--}}
+		      {{--<ul >--}}
+		        {{--<li><a href="/"  @if(request()->path() == '/') id="topnav_current" @endif >首页</a></li>--}}
+		        {{--<li><a href="/article/category/php" @if(request()->fullUrl() == url('/article/category/php')) id="topnav_current" @endif>PHP</a></li>--}}
+		        {{--<li><a href="/article/category/swoole"  @if(request()->fullUrl() == url('/article/category/swoole')) id="topnav_current" @endif>Swoole</a></li>--}}
+		        {{--<li><a href="/article/category/redis"  @if(request()->fullUrl() == url('/article/category/redis')) id="topnav_current" @endif>Redis</a></li>--}}
+		        {{--<li><a href="/article/category/vue"  @if(request()->fullUrl() == url('/article/category/vue')) id="topnav_current" @endif>Vue</a></li>--}}
+		        {{--<li><a href="/article/category/web"  @if(request()->fullUrl() == url('/article/category/web')) id="topnav_current" @endif>Web</a></li>--}}
+		        {{--<li><a href="/article/category/问答"  @if(request()->fullUrl() == url('/article/category/问答')) id="topnav_current" @endif>问答</a></li>--}}
+		        {{--<li><a href="/article/category/IT趣事"  @if(request()->fullUrl() == url('/article/category/IT趣事')) id="topnav_current" @endif>IT趣事</a></li>--}}
+		      {{--</ul>--}}
+		    {{--</nav>--}}
+		    {{--<div class="blog-header-login-nav">--}}
+		    	{{--<ul >--}}
+		    	{{--@if(!auth('web')->check())--}}
+					{{--<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>--}}
+			        {{--<li style="color: #FC9D9A" onclick="userLogin.showBox('register')">注册</li>--}}
+			    {{--@else--}}
+					{{--<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>--}}
+					{{--<li  > <a href="/user-logout" style="color: #FC9D9A;">&nbsp;&nbsp;退出登录</a></li>--}}
+		    	{{--@endif--}}
+		        {{--</ul>--}}
+		    {{--</div>--}}
+		  {{--</div>--}}
+		{{--</header>--}}
+
+		<header id="blog-header" >
+			<div class="blog-header-main" >
+				<div class="blog-header-main-left" >
+					<a href="/" class="logo-href">New博客</a>
+				</div>
+				<div class="blog-header-main-right" >
+					<div class="blog-header-nav">
+						<ul >
+							<li ><a href="/"  @if(request()->path() == '/')  @endif >首页</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/php')) class="blog-header-nav-current" @endif><a href="/article/category/php" >PHP</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/swoole')) class="blog-header-nav-current" @endif ><a href="/article/category/swoole"  >Swoole</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/redis'))  class="blog-header-nav-current" @endif><a href="/article/category/redis"  >Redis</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/vue'))  class="blog-header-nav-current" @endif><a href="/article/category/vue"  >Vue</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/web'))  class="blog-header-nav-current" @endif><a href="/article/category/web"  >Web</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/问答'))  class="blog-header-nav-current" @endif><a href="/article/category/问答"  >问答</a></li>
+							<li @if(request()->fullUrl() == url('/article/category/IT趣事'))  class="blog-header-nav-current" @endif><a href="/article/category/IT趣事"  >IT趣事</a></li>
+						</ul>
+					</div>
+					<div class="blog-header-loginbox" style="width: 200px;height: 100%;float: left">
+						<div class="blog-header-login-nav">
+						<ul >
+						@if(!auth('web')->check())
+						<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
+						<li style="color: #FC9D9A" onclick="userLogin.showBox('register')">注册</li>
+						@else
+						<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
+						<li  > <a href="/user-logout" style="color: #FC9D9A;">&nbsp;&nbsp;退出登录</a></li>
+						@endif
+						</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</header>
 		<div style="width: 100%;height: 80px;clear: both;"></div>
     @show
