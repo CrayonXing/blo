@@ -4,7 +4,7 @@
   
 <article>
   <h1 class="t_nav">
-    <span style="float: left;">您现在的位置是：首页 > 分类列表 > {{ $type }} </span>
+    <span style="float: left;">您现在的位置是：首页 > 分类列表 > {{ $category }} </span>
     <span style="float: right;">不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span>
   </h1>
 
@@ -23,13 +23,13 @@
 
 @endsection
 
-
-
 @push('scripts')
-  <script src="/plugin/template-web.js"></script>
-  @include('web.template.tpl-blog-list')
+<script src="/plugin/template-web.js"></script>
+
+@include('web.template.tpl-blog-list')
 
 <script type="text/javascript">
+    const  category = {{$cid}};
     var o = {
         pagingShow:function(type){
             if(type == 0){
@@ -49,7 +49,7 @@
               $.ajax({
                   url: "/article/search",
                   type: 'get',
-                  data: {page:o.page,page_size:o.page_size},
+                  data: {page:o.page,page_size:o.page_size,cid:category},
                   dataType: 'json',
                   beforeSend: function () {
                       o.pagingShow(1);
@@ -57,13 +57,17 @@
                   },
                   success: function (res) {
                       o.loading = false;
-                      if(res.code == 200 && res.data.rows.length > 0){
-                          $('#blog-list-container').append(template("tpl-blog-list",{rows:res.data.rows}));
-                          if(res.data.page == res.data.page_total){
-                              o.pagingShow(2);
-                              o.loading = true;
+                      if(res.code == 200){
+                          if(res.data.rows.length > 0){
+                              $('#blog-list-container').append(template("tpl-blog-list",{rows:res.data.rows}));
+                              if(res.data.page == res.data.page_total){
+                                  o.pagingShow(2);
+                                  o.loading = true;
+                              }else{
+                                  o.pagingShow(0);
+                              }
                           }else{
-                            o.pagingShow(0);
+                              o.pagingShow(2);
                           }
                       };
                   },
@@ -76,9 +80,7 @@
         }
     };
 
-    setTimeout(function(){
-      o.loadListData();
-    },1000);
+    o.loadListData();
 
     $('#blog-list-paging').on('click',function(){
         o.loadListData();

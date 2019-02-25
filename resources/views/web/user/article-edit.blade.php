@@ -157,21 +157,19 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <span style="padding-right: 15px;">文章类型</span>
+                                    <span style="padding-right: 15px;">文章分类</span>
                                     <select id="fr-blog-category" data-am-selected>
-                                        <option value="PHP" @if($info['category_id'] == 'PHP') selected  @endif >PHP</option>
-                                        <option value="Swoole"  @if($info['category_id'] == 'Swoole') selected  @endif>Swoole</option>
-                                        <option value="Redis" @if($info['category_id'] == 'Redis') selected  @endif>Redis</option>
-                                        <option value="Vue" @if($info['category_id'] == 'Vue') selected  @endif>Vue</option>
-                                        <option value="Web" @if($info['category_id'] == 'Web') selected  @endif>Web</option>
-                                        <option value="问答" @if($info['category_id'] == '问答') selected  @endif>问答</option>
-                                        <option value="IT趣事" @if($info['category_id'] == 'IT趣事') selected  @endif>IT趣事</option>
+                                        @if($category_tree)
+                                            @foreach($category_tree as $tree)
+                                                <option value="{{$tree['id']}}" @if($info['category_id'] == $tree['id']) selected  @endif ><?php echo $tree['name'];?></option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                     <span class="am-form-caret"></span>
                                 </div>
 
                                 <div class="am-form-group">
-                                    {{--<label style="font-weight: 300; ">标签</label>--}}
+                                    <label style="font-weight: 300; ">标签</label>
                                     <input id="fr-blog-tags" type="text" value="{{$info['tag']}}">
                                     <p class="am-form-help">注: 文章标签添加不能大于3个</p>
                                 </div>

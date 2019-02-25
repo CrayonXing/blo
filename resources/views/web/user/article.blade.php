@@ -13,15 +13,17 @@
             <div class="web-main-content" style="padding: 10px 10px 100px 10px;">
                   <div class="web-main-article">
                       <div class="web-main-article-category">
-                          文章分类
-                          <span class="web-main-article-category-current" data-category="all">全部</span>
-                          <span data-category="PHP">PHP</span>
-                          <span data-category="Swoole">Swoole</span>
-                          <span data-category="Redis">Redis</span>
-                          <span data-category="Vue">Vue</span>
-                          <span data-category="Web">Web</span>
-                          <span data-category="问答">问答</span>
-                          <span data-category="IT趣事">IT趣事</span>
+                          <div class="am-g">
+                              <div class="am-u-sm-1" style="padding: 0;text-align: right">文章分类</div>
+                              <div class="am-u-sm-11" style="padding-left: 0">
+                                  <span class="web-main-article-category-current" data-category="0">全部</span>
+                                  @if($list)
+                                      @foreach($list as $row)
+                                          <span data-category="{{$row['id']}}">{{$row['name']}}</span>
+                                      @endforeach
+                                  @endif
+                              </div>
+                          </div>
                       </div>
                   </div>
                   <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
@@ -139,7 +141,7 @@
       };
 
       o.loadListData();
-      $('.web-main-article-category > span').on('click',function(){
+      $('.web-main-article-category  span').on('click',function(){
           if(!$(this).hasClass('web-main-article-category-current')){
               $(this).addClass('web-main-article-category-current').siblings().removeClass('web-main-article-category-current');
               $('.web-main-article-container-box').html('');

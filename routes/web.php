@@ -10,7 +10,7 @@ Route::group(['namespace'=>'Web'],function (){
     Route::get('/','IndexController@index');
 
 
-    Route::get('/article/category/{type}','ArticleController@category');
+    Route::get('/article/category/{cid}','ArticleController@category');
     Route::get('/article/details/aid/{aid}','ArticleController@details');
 
 

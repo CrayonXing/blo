@@ -329,7 +329,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 	margin-top: 20px;
 }
 
-.web-main-article-category > span{
+.web-main-article-category  span{
 	display: inline-block;
 	background: #fff5f5;
 	height: 25px;
@@ -340,9 +340,10 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 	margin-left: 20px;
 	border-radius: 5px;
 	color: #c4bbbb;
+	margin-bottom: 5px;
 }
 
-.web-main-article-category-current,.web-main-article-category > span:hover{
+.web-main-article-category-current,.web-main-article-category  span:hover{
 	background: #fc9d9a !important;
 	color: #fff !important;
 }

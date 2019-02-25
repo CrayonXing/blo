@@ -57,7 +57,7 @@ class Article extends Model
             'reprint_url'      =>$params['reprint_url']
     	];
 
-        $data['status'] = ($isDraft === true) ? 0 : 1;
+        $data['status'] = ($isDraft === true) ? 0 : 2;//  2:自动审核   1:等待审核
 
     	if($id == 0){
     		$data['created_time'] = date('Y-m-d H:i:s');
@@ -103,9 +103,10 @@ class Article extends Model
         $total = $obj->count('id');
         $rows = $obj2->select(['id','title','tag','describe','imgs','visits','created_time','status'])
             ->orderBy('status', 'asc')->orderBy('created_time', 'desc')
-            ->offset((($page-1)*$page_size))->limit($page_size)->get()->toArray();
+            ->offset((($page-1)*$page_size))->limit($page_size)->get();
 
         if($rows){
+            $rows = $rows->toArray();
             foreach($rows as $k=>$row){
                 $rows[$k]['imgs']    = json_decode($row['imgs']);
                 $rows[$k]['tag']     = explode(',',$row['tag']);
@@ -120,13 +121,24 @@ class Article extends Model
      * 获取站内文章列表
      */
     public function getArticle($page,$page_size,$searchParams=[]){
-        $total = Article::where('status',2)->count('id');
-        $rows = Article::where('status',2)->select(['id','title','tag','describe','imgs','visits','created_time'])
+        $obj  = self::where('status',2);
+        $obj2 = self::where('status',2);
+
+        if(count($searchParams) > 0){
+            if(isset($searchParams['cid']) && !empty($searchParams['cid'])){
+                $obj->where('category_id',$searchParams['cid']);
+                $obj2->where('category_id',$searchParams['cid']);
+            }
+        }
+
+        $total = $obj->count('id');
+        $rows = $obj2->select(['id','title','tag','describe','imgs','visits','created_time'])
             ->orderBy('created_time','desc')
             ->offset((($page-1)*$page_size))->limit($page_size)
-            ->get()->toArray();
+            ->get();
 
         if($rows){
+            $rows = $rows->toArray();
             foreach($rows as $k=>$row){
                 $rows[$k]['imgs'] = json_decode($row['imgs']);
                 $rows[$k]['tag']  = explode(',',$row['tag']);

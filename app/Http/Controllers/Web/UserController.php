@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\Article;
+use App\Model\Category;
 
+use App\Helpers\Tree;
 class UserController extends BaseController
 {
 
@@ -12,8 +14,14 @@ class UserController extends BaseController
     	return view('web.user.main');
     }
 
-    public function article(){
-    	return view('web.user.article');
+    public function article(Category $category){
+        $data = [];
+
+        if($categoryList = $category->select(['id','pid','sort','name'])->orderBy('pid','asc')->orderBy('sort','asc')->get()){
+            $data = $categoryList->toArray();
+        }
+
+    	return view('web.user.article',['list'=>$data]);
     }
 
     public function password(){
@@ -70,12 +78,20 @@ class UserController extends BaseController
      * @param Article $article
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function articleEdit(Request $request,Article $article){
+    public function articleEdit(Request $request,Article $article,Category $category){
         $aid = (int)$request->get('aid',0);
 
         $info = $article->getEditArticle($aid,$this->uInfo('id'));
 
-        return view('web.user.article-edit',['info'=>$info]);
+        $data = [];
+        if($categoryList = $category->select(['id','pid','sort','name'])->orderBy('pid','asc')->orderBy('sort','asc')->get()){
+            $data = $categoryList->toArray();
+        }
+
+        $tree = Tree::instance();
+        $tree->init($data, 'pid');
+
+        return view('web.user.article-edit',['info'=>$info,'category_tree'=>$tree->getTreeList($tree->getTreeArray(0), 'name')]);
     }
 
     /**

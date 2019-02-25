@@ -4,11 +4,18 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Article;
-
+use App\Model\Category;
 class ArticleController extends BaseController
 {
-    public function category($type){
-        return view('web.article.list',['type'=>$type]);
+    public function category($cid,Category $category){
+
+        $category_name = '';
+
+        if($info = Category::where('id',$cid)->select('name')->first()){
+            $category_name = $info->name;
+        }
+
+        return view('web.article.list',['cid'=>$cid,'category'=>$category_name]);
     }
 
     public function details(int $aid,Request $request){
@@ -30,7 +37,8 @@ class ArticleController extends BaseController
     public function getArticleList(Request $request,Article $article){
         $page       = (int)$request->get('page', 1);
         $page_size  = (int)$request->get('page_size', 15);
-        return $this->returnAjax($article->getArticle($page,$page_size));
+        $cid  = (int)$request->get('cid', 0);
+        return $this->returnAjax($article->getArticle($page,$page_size,['cid'=>$cid]));
     }
 
     public function create(Request $request){
