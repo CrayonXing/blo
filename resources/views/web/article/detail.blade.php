@@ -244,7 +244,10 @@
     <div class="newsview">
       <h3 class="news_title">{{$info['title']}}</h3>
       <div class="news_author">
-          <span class="am-badge am-badge-success" style="background-color: #d6b8b7">原创</span>
+          @if(empty($info['describe']))
+              <span class="am-badge am-badge-success" style="background-color: #d6b8b7">原创</span>
+          @endif
+
           <span class="au01"><i class="iconfont icon-yonghu"></i> 嘿！boy</span>
           <span class="au02"><i class="iconfont icon-rili" style="font-size: 12px;"></i> <?php echo date('Y-m-d',strtotime($info['created_time'])) ?></span>
           <span class="au03"><i class="iconfont icon-liulan"></i> 浏览量({{$info['visits']}})</span>
@@ -269,9 +272,11 @@
           <?php echo htmlspecialchars_decode($info['content']);?>
       </div>
 
-      <div class="news_infos-reprint">
-          <p><i class="iconfont icon-wenzhangzhuanzai" ></i> 文章转载自 @link <a href="" >http://47.105.180.123/article/details/aid/14</a></p>
-      </div>
+        @if($info['reprint_url'])
+            <div class="news_infos-reprint">
+                <p><i class="iconfont icon-wenzhangzhuanzai" ></i> 文章转载自 @link <a href="{{$info['reprint_url']}}" target="_blank" >{{$info['reprint_url']}}</a></p>
+            </div>
+        @endif
     </div>
 
     <div class="blog-info-nextpage">
