@@ -10,7 +10,7 @@
 <meta name="applicable-device" content="pc">
 <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
 <link href="{{asset('web/css/base.css')}}" rel="stylesheet">
-<link href="{{asset('web/css/index.css')}}" rel="stylesheet">
+<link href="{{asset('web/css/header-nav.css')}}" rel="stylesheet">
 <link href="//at.alicdn.com/t/font_1038155_tajfhfyfkuq.css" rel="stylesheet">
 <link href="{{asset('plugin/animate.min.css')}}" rel="stylesheet">
 <link href="{{asset('web/css/login.css')}}" rel="stylesheet">
@@ -26,23 +26,32 @@
 					<div class="blog-header-nav">
 						<ul >
 							<li @if(request()->path() == '/') class="blog-header-nav-current" @endif><a href="/"   >首页</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/php')) class="blog-header-nav-current" @endif><a href="/article/category/php" >PHP</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/swoole')) class="blog-header-nav-current" @endif ><a href="/article/category/swoole"  >Swoole</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/redis'))  class="blog-header-nav-current" @endif><a href="/article/category/redis"  >Redis</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/vue'))  class="blog-header-nav-current" @endif><a href="/article/category/vue"  >Vue</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/web'))  class="blog-header-nav-current" @endif><a href="/article/category/web"  >Web</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/问答'))  class="blog-header-nav-current" @endif><a href="/article/category/问答"  >问答</a></li>
-							<li @if(request()->fullUrl() == url('/article/category/IT趣事'))  class="blog-header-nav-current" @endif><a href="/article/category/IT趣事"  >IT趣事</a></li>
+
+                            @if($webNav = app('help')->getNav())
+                                @foreach($webNav as $firstNav)
+                                    <li @if(request()->fullUrl() == url("/article/category/{$firstNav['id']}")) class="blog-header-nav-current" @endif >
+                                        <a href="/article/category/{{$firstNav['id']}}" >{{$firstNav['name']}}</a>
+                                        @if($firstNav['childnode'])
+                                            <ul class="blog-header-sub-nav" >
+                                                {{--<div class="sub-nav-icon"></div>--}}
+                                                @foreach($firstNav['childnode'] as $twoNav)
+                                                    <li><a href="/article/category/{{$twoNav['id']}}">{{$twoNav['name']}}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            @endif
 						</ul>
 					</div>
 					<div class="blog-header-loginbox" style="width: 200px;height: 100%;float: left">
 						<div class="blog-header-login-nav">
                             <ul >
                                 @if(!auth('web')->check())
-                                    <li style="background: #FC9D9A;border-radius: 5px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
+                                    <li style="background: #FC9D9A;border-radius: 3px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
                                     <li style="background: #fdf5f5;color: #a9a8a8;margin-left: 3px;" onclick="userLogin.showBox('register')">注册</li>
                                 @else
-                                    <li style="background: #FC9D9A;border-radius: 5px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
+                                    <li style="background: #FC9D9A;border-radius: 3px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
                                     <li style="background: #fdf5f5;color: #746b6b;margin-left: 3px;"> <a href="/user-logout" style="color: #a9a8a8;">退出登录</a></li>
                                 @endif
                             </ul>

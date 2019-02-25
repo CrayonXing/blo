@@ -7,7 +7,7 @@ class IndexController extends BaseController
 {
 
 	public function index(){
-//	    dd(app('help')->getRankingList());
+//	    dd(app('help')->getNav());
 		return view('web.index.index');
 	}
 }

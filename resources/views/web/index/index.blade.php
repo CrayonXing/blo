@@ -7,9 +7,14 @@
       <div class="blogs">
           <div class="swiper-container"style="margin-top: -15px;margin-bottom: 10px;height: 400px;">
               <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="https://up.enterdesk.com/edpic_source/53/f4/40/53f440313e932a14b768fc3130feb5ea.jpg" style="width: 100%;height: 100%" /></div>
-                  <div class="swiper-slide"><img src="https://up.enterdesk.com/edpic_source/73/01/3b/73013b1c9c41e0648c93ed82aa9c5eb3.jpg" style="width: 100%;height: 100%" /></div>
-                  <div class="swiper-slide"><img src="/web/images/1550999711(1).png" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/a1bf0590d6002d63f4f183e7cff1b24.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/8cbd5322e2ee97ddf8dc6e8fc95206a.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/24d48da79e27b326b6b69d8bf3a70a6.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/848c8bd0b677b9b89cbacbceb86f330.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/61855be530e14b35d7c939c2283f22f.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/a85cd35b138a6d18d58e5d4b2b80dbe.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/afedcb676a157749fc0f8b81e6095f8.jpg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/web/images/background/sdfgldfaa35ds1s35gf51d51a.jpg" style="width: 100%;height: 100%" /></div>
               </div>
               <div class="swiper-pagination"></div>
           </div>
@@ -30,9 +35,12 @@
   <script src="/plugin/template-web.js"></script>
   @include('web.template.tpl-blog-list')
     <script>
-        var swiper = new Swiper('.swiper-container', {
+        new Swiper('.swiper-container', {
             pagination: {
                 el: '.swiper-pagination',
+            },
+            autoplay: {
+                delay: 6000
             },
         });
     </script>

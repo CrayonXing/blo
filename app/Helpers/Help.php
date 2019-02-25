@@ -51,4 +51,11 @@ class Help
     public function getRankingList(){
         return (new \App\Model\Article())->getRankingList();
     }
+
+    /**
+     * 获取导航栏数据
+     */
+    public function getNav(){
+        return (new \App\Model\Category())->getNav();
+    }
 }

@@ -160,6 +160,8 @@ class Article extends Model
             }
         }
 
+        $tmp = array_filter($tmp);
+
         if(count($tmp) == 0){return [];}
 
         $tmp = array_count_values($tmp);

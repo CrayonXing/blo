@@ -1,0 +1,109 @@
+#blog-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999999;
+    height: 65.600px;
+    box-shadow: 5px 5px 5px #f5dcdc;
+}
+
+.blog-header-main{
+    width:1200px;height: 100%;margin: 0 auto;
+}
+
+.blog-header-main-left{
+    float: left;width: 200px;height: 100%;line-height: 65px;padding-left: 20px;
+}
+
+.blog-header-main-left a{
+    color: #FC9D9A !important;
+    font-family:"Times New Roman",Georgia,Serif;
+    font-size: 30px;
+}
+.blog-header-main-right{
+    float: right;width: 1000px;height: 100%;
+}
+
+.blog-header-nav{
+    width: 800px;height: 100%;float: left;
+}
+
+.blog-header-nav  ul{
+    list-style: none;
+    padding: 0;margin: 0;
+}
+
+.blog-header-nav > ul > li{
+    float: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 64px;
+    cursor: pointer;
+    position: relative;
+}
+
+.blog-header-nav ul li a{
+    display: inline-block;height: 100%;
+}
+
+.blog-header-nav ul li:hover > a,.blog-header-nav-current a{
+    color: #fc9d9a !important;
+}
+
+.blog-header-nav > ul > li:hover ul{
+    display: block !important;
+}
+
+.blog-header-sub-nav{
+    position: absolute;top: 64px;left: 0;z-index: 2;box-shadow: 11px 7px 8px -5px #dfdbdb;display: none;padding-top: 3px !important;
+}
+
+.blog-header-sub-nav .sub-nav-icon{
+    position: absolute;
+    background: white;
+    width: 17px;
+    height: 17px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    left: 24px;
+    border-radius: 2px;
+    top: -6px;
+}
+
+.blog-header-sub-nav li{
+    border-bottom: 2px solid #fef1f1;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+}
+
+.blog-header-sub-nav > li:last-child{
+    border-bottom: none;
+}
+
+.blog-header-sub-nav li a{
+    color: #6b6b6b !important;
+}
+
+#blog-header .blog-header-login-nav{
+    float: left;width: 200px;height: 65px;
+}
+
+#blog-header .blog-header-login-nav li{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    float: left;
+    width: 80px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 17px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
