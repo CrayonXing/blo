@@ -8,41 +8,46 @@
 	    <div class="web-main-breadcrumb">
 	         <p><a>会员中心</a> <span>/</span> <a>修改密码</a></p>
 	    </div>
-	    <div class="web-main-content" style="padding: 10px;padding-right: 310px;padding-top: 50px;">
-	        <form class="am-form am-form-horizontal">
-	        	<div class="am-form-group">
-			    <div class="am-u-sm-12" style="text-align: right;">
-			     	<div id="fr-changepwd-error" style="display: none;width: 289px;height: 25px;margin-right: 1px;background-color: #fcebeb;line-height: 25px;text-align: center;color: #c8bab0;float: right;">旧密码不能为空</div>
-			    </div>
-			  </div>
-			  <div class="am-form-group">
-			    <label  class="am-u-sm-6 am-form-label" style="font-weight: initial;color: #ccc;">旧密码</label>
-			    <div class="am-u-sm-6">
-			      <input type="password"  placeholder="旧密码不能为空" id="fr-changepwd-oldpwd" >
-			    </div>
-			  </div>
+	    <div class="web-main-content" style="padding: 50px 10px 20px 10px;">
+			<div class="am-g">
+				<div class="am-u-sm-6">
+	        		<form class="am-form am-form-horizontal">
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<div id="fr-changepwd-error" style="display: none;width: 100%;height: 25px;margin-right: 1px;background-color: #fcebeb;line-height: 25px;text-align: center;color: #c8bab0;float: right;">旧密码不能为空</div>
+							</div>
+						</div>
 
-			  <div class="am-form-group">
-			    <label  class="am-u-sm-6 am-form-label" style="font-weight: initial;color: #ccc;">新密码</label>
-			    <div class="am-u-sm-6">
-			      <input type="password"  placeholder="新密码不能为空" id="fr-changepwd-newpwd" class="am-input-sm">
-			    </div>
-			  </div>
+						<div class="am-form-group">
+							<label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;" >旧密码</label>
+							<div class="am-u-sm-10">
+								<input type="password"  placeholder="旧密码不能为空" id="fr-changepwd-oldpwd" >
+							</div>
+						</div>
 
-			  <div class="am-form-group">
-			    <label  class="am-u-sm-6 am-form-label" style="font-weight: initial;color: #ccc;">确认密码</label>
-			    <div class="am-u-sm-6">
-			      <input type="password"  placeholder="确认密码必须与新密码一致"  id="fr-changepwd-newpwd2" class="am-input-sm">
-			      <p class="am-form-help">注: 密码格式必须为8~16位字母+数字</p>
-			    </div>
-			  </div>
+						<div class="am-form-group">
+							<label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;" >新密码</label>
+							<div class="am-u-sm-10">
+								<input type="password"  placeholder="新密码不能为空" id="fr-changepwd-newpwd" class="am-input-sm">
+							</div>
+						</div>
 
-			  <div class="am-form-group">
-			    <div class="am-u-sm-6 am-u-sm-offset-6">
-			      <span  class="theme-btn" onclick="changPwdObj.submit()" >立即修改</span>
-			    </div>
-			  </div>
-			</form>
+						<div class="am-form-group">
+							<label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;padding-left: 0" >确认密码</label>
+							<div class="am-u-sm-10">
+								<input type="password"  placeholder="确认密码必须与新密码一致"  id="fr-changepwd-newpwd2" class="am-input-sm">
+								<p class="am-form-help">注: 密码格式必须为8~16位字母+数字</p>
+							</div>
+						</div>
+
+						<div class="am-form-group">
+							<div class="am-u-sm-10 am-u-sm-offset-2">
+								<span  class="theme-btn" onclick="changPwdObj.submit()" >立即修改</span>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 	    </div>
 	  </div>
 </article>

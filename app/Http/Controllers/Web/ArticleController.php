@@ -66,7 +66,7 @@ class ArticleController extends BaseController
             'title'             =>htmlspecialchars($title),
             'tag'               =>htmlspecialchars($tag),
             'describe'          =>htmlspecialchars($describe),
-            'imgs'              =>$imgs,
+            'imgs'              =>array_slice(array_unique(array_merge($imgs,app('help')->getTtmlImgs($content))),0,3),
             'content'           =>htmlspecialchars($content),
             'is_overt'          =>($isOvert == 'true') ? 1 : 2,
             'reprint_url'       =>($isOriginal == 'true') ? '':$url,
