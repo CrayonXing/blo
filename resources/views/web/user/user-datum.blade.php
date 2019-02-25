@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/plugin/tagsInput/jquery.tagsinput-revisited.css"/>
     <style type="text/css">
         .tagsinput .tag {
-            position: relative;background: #68c1ec;display: block;max-width: 100%;word-wrap: break-word;
+            position: relative;background: #e7e2e2;display: block;max-width: 100%;word-wrap: break-word;
             color: #fff;padding: 5px 30px 5px 5px;border-radius: 0;margin: 0 5px 5px 0;
         }
 
@@ -33,7 +33,7 @@
                             <div class="am-form-group">
                                 <label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;" >博主昵称</label>
                                 <div class="am-u-sm-10">
-                                    <input type="text"  value="{{$uinfo['nickname']}}"  placeholder="输入你的昵称"  id="fr-userdatum-nickname" />
+                                    <input type="text"  value="{{$uinfo['nickname']}}"  placeholder="输入你的昵称"  id="fr-userdatum-nickname" style="color: #8a8686;" />
                                 </div>
                             </div>
 
@@ -48,7 +48,7 @@
                             <div class="am-form-group">
                                 <label for="doc-ipt-3" class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;" >座 右 铭</label>
                                 <div class="am-u-sm-10">
-                                    <textarea rows="5"  style="resize: none"  id="fr-userdatum-motto">{{$uinfo['motto']}}</textarea>
+                                    <textarea rows="5"  style="resize: none;color: #8a8686;"  id="fr-userdatum-motto">{{$uinfo['motto']}}</textarea>
                                 </div>
                             </div>
 
