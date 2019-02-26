@@ -120,12 +120,13 @@
 
 
   .comment-create-footer{
-    text-align: right;background-color: #f5efef;
+    background-color: #f5efef;
   }
 
   .comment-create-footer > span{
     background-color: #fc9d9a;border: none;color: #fff;
   }
+
 
 
   .comment-list-container{
@@ -152,7 +153,7 @@
 
 
   .comment-list{
-    width: 100%;min-height: 50px;border:1px dashed #d0c3c3;margin-top: 5px;
+    width: 100%;min-height: 50px;border:1px dashed #f7efef;margin-top: 5px;
   }
 
   .comment-list-left{
@@ -236,6 +237,10 @@
     font-size: 20px;
   }
 
+    #comment-create-btn:hover{
+        color: white !important;
+    }
+
 </style>
 
 <article>
@@ -256,7 +261,9 @@
       <div class="tags">
         @if($info['tag'])
           @foreach ($info['tag'] as $tag)
-            <a href="" target="_blank">{{$tag}}</a>
+              @if(!empty($tag))
+                      <a href="" target="_blank">{{$tag}}</a>
+              @endif
           @endforeach
         @endif
       </div>
@@ -324,86 +331,64 @@
                     <span><em>205</em> 条评论 / <em>167</em> 人参与</span>
                   </p>
                   <div class="clear"></div>
-                  <textarea placeholder="文明上网，不传谣言，登录评论！"></textarea>
+                  <textarea placeholder="文明上网，不传谣言，登录评论！" id="fr-comment-content"></textarea>
                   <div class="comment-create-footer" >
-                      <span type="button" class="am-btn am-btn-sm">发布评论</span>
+                      <span style="float: left;height: 30px;line-height: 30px;display: inline-block;cursor: pointer;width: 696px;background: none;color: #fc9d9a;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" id="huifu-ta"></span>
+                      <span  class="am-btn am-btn-sm"  style="width: 84px;"  id="comment-create-btn" onclick="commentObj.submit()">发布评论</span>
                   </div>
             </div>  
 
             <div class="comment-list-container" >
-                <div class="comment-list">
-                    <div class="comment-list-left">
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101404082/ADAC2A0D202D78CEFD0FD2D8EF8CB659/100" >
-                    </div>
-                    <div class="comment-list-right">
-                        <div class="comment-list-header">
-                          <div class="comment-list-name">
-                            <span>嘿！boy</span><span>4小时前</span>
-                          </div>
+                @if($commentList)
+                    @foreach($commentList as $firstList)
+                        <div class="comment-list">
+                            <div class="comment-list-left"><img src="{{$firstList['head']}}" ></div>
+                            <div class="comment-list-right">
+                                <div class="comment-list-header">
+                                    <div class="comment-list-name">
+                                        <span>{{$firstList['nickname']}}</span>
+                                        <span>{{$firstList['date']}}</span>
+                                    </div>
 
-                          <div style="float: right;">
-                            <p class="comment-list-column">
-                                <span><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>
-                                <span><i class="iconfont icon-dianzan21" ></i>点赞(73)</span>
-                                <span><i class="iconfont icon-buoumaotubiao48" ></i>回复(73)</span>
-                            </p>
-                          </div>
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <p class="comment-list-text"> 
-                            新的时代新时期，我们都是追梦人。
-                        </p>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="comment-list">
-                    <div class="comment-list-left">
-                        <img src="https://thirdqq.qlogo.cn/qqapp/101404082/ADAC2A0D202D78CEFD0FD2D8EF8CB659/100" >
-                    </div>
-                    <div class="comment-list-right">
-                        <div class="comment-list-header">
-                          <div class="comment-list-name">
-                            <span>嘿！boy</span> 
-                            <span>4小时前</span>
-                          </div>
-
-                          <div style="float: right;">
-                            <p class="comment-list-column">
-                                <span><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>
-                                <span><i class="iconfont icon-dianzan21" ></i>点赞(73)</span>
-                                <span><i class="iconfont icon-buoumaotubiao48" ></i>回复(73)</span>
-                            </p>
-                          </div>
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <p class="comment-list-text"> 
-                            新的时代新时期，我们都是追梦人。
-                        </p>
-
-                        <div class="sub-comment-container">
-                            <div class="sub-comment-list" >
-                                <div class="sub-comment-list-box" >
-                                    <p class="sub-comment-list-name">
-                                        <span>逆流成河</span><span>4小时前</span>
-                                    </p>
-                                    <p class="sub-comment-list-text">新的时代新时期，我们都是追梦人。坚定信心跟党走，红红火火气象新。</p>
-                                    <p class="sub-comment-list-column" >
-                                        <span><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>
-                                        <span><i class="iconfont icon-dianzan21" ></i> 点赞(73)</span>
-                                        <span><i class="iconfont icon-buoumaotubiao48" ></i> 回复(73)</span>
-                                    </p>
+                                    <div style="float: right;">
+                                        <p class="comment-list-column">
+                                            <span data-commentid="{{$firstList['id']}}" data-name="{{$firstList['nickname']}}"  data-content="{{$firstList['content']}}" class="click-comment" ><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>
+                                            <span><i class="iconfont icon-dianzan21" ></i>点赞({{$firstList['like']}})</span>
+                                            <span   ><i class="iconfont icon-buoumaotubiao48" ></i>回复({{$firstList['answer_num']}})</span>
+                                        </p>
+                                    </div>
                                 </div>
+
                                 <div class="clear"></div>
+
+                                <p class="comment-list-text">{{$firstList['content']}}</p>
+
+                                @if($firstList['children'])
+                                    @foreach($firstList['children'] as $twoList)
+                                        <div class="sub-comment-container">
+                                            <div class="sub-comment-list" >
+                                                <div class="sub-comment-list-box" >
+                                                    <p class="sub-comment-list-name">
+                                                        <span>{{$twoList['nickname']}}</span>
+                                                        <span>{{$twoList['date']}}</span>
+                                                    </p>
+                                                    <p class="sub-comment-list-text">{{$twoList['content']}}</p>
+                                                    <p class="sub-comment-list-column" >
+                                                        <span><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>
+                                                        <span><i class="iconfont icon-dianzan21" ></i>点赞({{$twoList['like']}})</span>
+                                                        <span><i class="iconfont icon-buoumaotubiao48" ></i>回复({{$twoList['answer_num']}})</span>
+                                                    </p>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
+                            <div class="clear"></div>
                         </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -473,5 +458,53 @@ $(function () {
     niceIn($(this));
   });
 });
+</script>
+
+<script type="text/javascript">
+    var commentObj = {
+        comentLock:false,
+        data:{
+            aid:{{$info['id']}},
+            cid:0,
+        },
+        submit(){
+            var data = {content:$.trim($('#fr-comment-content').val()),aid:this.data.aid,cid:this.data.cid};
+            if(data.content == ''){
+
+            }else if(commentObj.comentLock == false){
+                $.ajax({
+                    url: "/article/comment",
+                    type: 'post',
+                    data: data,
+                    dataType: 'json',
+                    beforeSend: function () {
+                        commentObj.comentLock = true;
+                    },
+                    complete: function () {
+                        commentObj.comentLock = false;
+                    },
+                    success: function (res) {
+                        alert(res.msg)
+                    }
+                });
+            }
+        },
+    };
+
+    $(document).on('click','.click-comment',function(){
+        var name = $(this).data('name');
+        var text = $(this).data('content');
+        commentObj.data.cid = $(this).data('commentid');
+        $('#huifu-ta').html(`<a style="color: #aaaaf2;margin-left: 5px;cursor: pointer" class="comment-click-cancel">取消回复Ta</a> @${name} //评论内容// ${text} `);
+
+        $('html,body').animate({scrollTop: $('#fr-comment-content').offset().top - 300},300);
+
+        $('#fr-comment-content').focus();
+    });
+
+    $(document).on('click','.comment-click-cancel',function(){
+        $('#huifu-ta').html('');
+        commentObj.data.cid = 0;
+    });
 </script>
 @endpush

@@ -15,6 +15,8 @@ Route::group(['namespace'=>'Web'],function (){
 
 
     Route::post('/article/create','ArticleController@create')->middleware('checkLogin');
+    Route::post('/article/comment','ArticleController@comment')->middleware('checkLogin');
+
     Route::get('/article/edit','ArticleController@edit')->middleware('checkLogin');
     Route::post('/article/uploadFile','ArticleController@uploadFile');
     Route::get('/article/search','ArticleController@getArticleList');
@@ -40,4 +42,7 @@ Route::group(['namespace'=>'Web'],function (){
 
     Route::get('/user-datum','UserController@datum')->middleware('checkLogin');
     Route::post('/user-edit-datum','UserController@datumEdit')->middleware('checkLogin');
+
+    Route::get('/user-signin','UserController@signin')->middleware('checkLogin');
+
 });

@@ -37,6 +37,16 @@ class UserController extends BaseController
     }
 
     /**
+     * 用户签到页面
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function signin(){
+        return view('web.user.user-signin');
+    }
+
+
+
+    /**
      * 修改面提交处理接口
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

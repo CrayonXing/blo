@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\Comment;
 class ArticleController extends BaseController
 {
     public function category($cid,Category $category){
@@ -18,14 +19,14 @@ class ArticleController extends BaseController
         return view('web.article.list',['cid'=>$cid,'category'=>$category_name]);
     }
 
-    public function details(int $aid,Request $request){
+    public function details(int $aid,Request $request,Comment $comment){
         $info = Article::where('id',$aid)->first();
         if($info){
             $info = $info->toArray();
             $info['tag'] = explode(',',$info['tag']);
         }
 
-        return view('web.article.detail',['info'=>$info]);
+        return view('web.article.detail',['info'=>$info,'commentList'=>$comment->getCommentList($aid)]);
     }
 
     /**
@@ -110,5 +111,23 @@ class ArticleController extends BaseController
                 }
             }
         }
+    }
+
+    public function comment(Request $request,Comment $comment){
+        $aid = $request->input('aid',0);
+        $cid = $request->input('cid',0);
+        $content = $request->input('content','');
+
+        if(empty($aid) || empty($content)){
+            return $this->returnAjax([],'参数不符合规范',301);
+        }
+
+        $isTrue = $comment->addComment($this->uInfo('id'),['aid'=>$aid,'pid'=>$cid,'content'=>$content]);
+
+        if($isTrue){
+            return $this->returnAjax([],'评论成功',200);
+        }
+
+        return $this->returnAjax([],'评论失败',305);
     }
 }

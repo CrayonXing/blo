@@ -219,13 +219,13 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 	padding: 0;margin:0;text-align: center;margin-top: 5px;color: #c4bdbd
 }
 
-.web-main-header-integral > span{
+.web-main-header-integral  a{
 	display: inline-block;width: 35px;height: 16px;background: #FC9D9A;font-size: 10px;color: #fff;line-height: 16px;cursor: pointer;
 }
 .web-main-header-logout{
 	text-align: center;
 }
-.web-main-header-logout > span{
+.web-main-header-logout  a{
 	display: inline-block;width: 70px;height: 25px;background: #FC9D9A;font-size: 12px;color: #fff;line-height: 25px;cursor: pointer;
 }
 
