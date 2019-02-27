@@ -26,7 +26,7 @@ class ArticleController extends BaseController
             $info['tag'] = explode(',',$info['tag']);
         }
 
-        return view('web.article.detail',['info'=>$info,'commentList'=>$comment->getCommentList($aid)]);
+        return view('web.article.detail',['info'=>$info]);
     }
 
     /**
@@ -129,5 +129,15 @@ class ArticleController extends BaseController
         }
 
         return $this->returnAjax([],'评论失败',305);
+    }
+
+    public function getCommentList(Request $request,Comment $comment){
+        $aid = $request->get('aid',0);
+
+        if(empty($aid)){
+            return $this->returnAjax([],'参数不符合规范',301);
+        }
+
+        return $this->returnAjax($comment->getCommentList($aid,1,100000));
     }
 }

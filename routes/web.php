@@ -16,6 +16,8 @@ Route::group(['namespace'=>'Web'],function (){
 
     Route::post('/article/create','ArticleController@create')->middleware('checkLogin');
     Route::post('/article/comment','ArticleController@comment')->middleware('checkLogin');
+    Route::get('/article/get-comment-list','ArticleController@getCommentList')->middleware('checkLogin');
+
 
     Route::get('/article/edit','ArticleController@edit')->middleware('checkLogin');
     Route::post('/article/uploadFile','ArticleController@uploadFile');

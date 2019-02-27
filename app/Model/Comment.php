@@ -41,22 +41,25 @@ class Comment extends Model
     /**
      * 获取PC端文章详情页面的评论列表
      */
-    public function getCommentList($oid){
+    public function getCommentList($oid,$page,$page_size){
         $rows = DB::table('comment')->leftJoin('users', 'users.id', '=', 'comment.uid')
-            ->select(['users.nickname','users.head','comment.content','comment.created_time as date','comment.pid','comment.id'])->where('comment.oid',$oid)
+            ->select(['users.nickname','users.head','comment.content','comment.created_time as date','comment.pid','comment.id','comment.uid'])->where('comment.oid',$oid)
+            ->orderBy('comment.created_time','desc')
             ->get();
         if(!$rows){
-            return [];
+            return app('help')->packData([],0,$page,$page_size,['people_num'=>0,'comment_num'=>0]);
         }
 
         $rows = $rows->toArray();
+
+        $people = [];
         foreach($rows as $k=>$row){
             $rows[$k] = (array)$row;
             $rows[$k]['like'] = 0;
             $rows[$k]['answer_num'] = 0;
+            array_push($people,$row->uid);
         }
-
-        return $this->getTree($rows);
+        return app('help')->packData($this->getTree($rows),count($rows),$page,$page_size,['people_num'=>count(array_unique($people)),'comment_num'=>count($rows)]);
     }
 
     public function getTree($data, $pid=0){

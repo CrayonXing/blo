@@ -14,6 +14,7 @@
 <link href="//at.alicdn.com/t/font_1038155_kg8own05da8.css" rel="stylesheet">
 <link href="{{asset('plugin/animate.min.css')}}" rel="stylesheet">
 <link href="{{asset('web/css/login.css')}}" rel="stylesheet">
+@stack('css')
 </head>
 <body>
 	@section('header')
@@ -67,7 +68,7 @@
 
     @section('footer')
 	    <footer>
-		  <p>© 2018 - 2019 New博客</p>
+		  <p>© 2018 - 2019 New博客属于个人开发实践及维护项目</p>
 		</footer>
 	@show
 
@@ -148,7 +149,6 @@
 	</div>
 
 	<script src="{{asset('web/js/jquery-2.1.1.min.js')}}"></script>
-	<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 	<script src="{{asset('plugin/functions.js')}}"></script>
 	<script type="text/javascript">
 		$.ajaxSetup({

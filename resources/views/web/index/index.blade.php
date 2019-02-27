@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/plugin/Swiper/swiper.min.css">
 
     <article>
-      <div class="blogs">
+      <div class="blogs" style="min-height: 850px;">
           <div class="swiper-container"style="margin-top: -15px;margin-bottom: 10px;height: 400px;">
               <div class="swiper-wrapper">
                   <div class="swiper-slide"><img src="/web/images/background/a1bf0590d6002d63f4f183e7cff1b24.jpg" style="width: 100%;height: 100%" /></div>
@@ -72,14 +72,17 @@
                   },
                   success: function (res) {
                       o.loading = false;
-                      if(res.code == 200 && res.data.rows.length > 0){
-                          $('#blog-list-container').append(template("tpl-blog-list",{rows:res.data.rows}));
-                            if(res.data.page == res.data.page_total){
-                              o.pagingShow(2);
-                              console.log('已加载全部');
-                              o.loading = true;
+                      if(res.code == 200){
+                          if(res.data.rows.length > 0){
+                              $('#blog-list-container').append(template("tpl-blog-list",{rows:res.data.rows}));
+                              if(res.data.page == res.data.page_total){
+                                  o.pagingShow(2);
+                                  o.loading = true;
+                              }else{
+                                  o.pagingShow(0);
+                              }
                           }else{
-                            o.pagingShow(0);
+                              o.pagingShow(2);
                           }
                       };
                   },
