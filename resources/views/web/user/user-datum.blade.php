@@ -31,12 +31,16 @@
         .web-sys-head li i{
             width: 30px;
             height: 10px;
-            display: inline-block;
+            display: none;
             position: absolute;
             top: 37px;
             right: 15px;
             font-size: 18px;
             color: #159d15;
+        }
+
+        .head-img-selectd i{
+            display: inline-block !important;
         }
 
         .web-sys-head::-webkit-scrollbar {/*滚动条整体样式*/
@@ -76,7 +80,7 @@
                                 <label for="doc-ipt-3" class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;">我的头像</label>
                                 <div class="am-u-sm-10" style="padding-bottom: 20px;">
                                     <div class="am-g">
-                                        <div class="am-u-sm-2"><img src="/web/images/touxiao.jpg" style="width:70px;height: 70px;border-radius: 50% 50%;"></div>
+                                        <div class="am-u-sm-2"><img src="{{$uinfo['head']}}" id="fr-userdatum-head"  style="width:70px;height: 70px;border-radius: 50% 50%;"></div>
                                         <div class="am-u-sm-10">
                                             <span style="display: block;color: #9ddbf7;border: 1px solid #9ddbf7;border-radius: 3px;width: 90px;height: 25px;line-height: 21px;padding-left: 5px;cursor: pointer;margin-top: 20px;margin-left: 20px;" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 800, height: 400}"><i class="iconfont icon-editor"></i> 更换头像</span>
                                         </div>
@@ -134,193 +138,16 @@
                     <div class="am-tabs-bd" >
                         <div class="am-tab-panel am-active" style="height: 400px;padding: 0;">
                             <ul class="web-sys-head" style="height: 360px;overflow-y: auto;">
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
-
-                                <li>
-                                    <img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt="">
-                                    <i class="am-icon-check-circle"></i>
-                                </li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""></li>
+                                <li><img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt=""><i class="am-icon-check-circle"></i></li>
+                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""><i class="am-icon-check-circle"></i></li>
+                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""><i class="am-icon-check-circle"></i></li>
+                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""><i class="am-icon-check-circle"></i></li>
+                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""><i class="am-icon-check-circle"></i></li>
+                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""><i class="am-icon-check-circle"></i></li>
                             </ul>
                             <div style="height: 30px;padding: 0;margin-top: 5px;">
-                                <span class="am-btn am-btn-default am-btn-sm" >取消</span>
-                                <span class="am-btn am-btn-secondary am-btn-sm" >确定</span>
+                                <span class="am-btn am-btn-default am-btn-sm" onclick="$('#doc-modal-1').modal('close')" >取消</span>
+                                <span class="am-btn am-btn-secondary am-btn-sm" id="head-btn" >确定</span>
                             </div>
                         </div>
                         <div class="am-tab-panel" style="height: 400px;">
@@ -334,6 +161,7 @@
 @endsection
 
 @push('scripts')
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
     <script type="text/javascript" src="/plugin/tagsInput/jquery.tagsinput-revisited.js"></script>
     <script type="text/javascript">
         $('#fr-userdatum-tags').tagsInput();
@@ -345,6 +173,7 @@
                     nickname:$('#fr-userdatum-nickname').val(),
                     tags:$('#fr-userdatum-tags').val(),
                     motto:$('#fr-userdatum-motto').val(),
+                    head:$('#fr-userdatum-head').attr('src')
                 };
             },
             submit(){
@@ -380,5 +209,14 @@
                 return false;
             }
         };
+
+        $('.web-sys-head li').click(function(){
+            $(this).addClass('head-img-selectd').siblings().removeClass('head-img-selectd');
+        });
+
+        $('#head-btn').click(function(){
+            $('#fr-userdatum-head').attr('src',$('.head-img-selectd img').attr('src'));
+            $('#doc-modal-1').modal('close')
+        });
     </script>
 @endpush

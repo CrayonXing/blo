@@ -113,9 +113,9 @@ class UserController extends BaseController
         $nickname = $request->input('nickname','');
         $motto    = $request->input('motto','');
         $tags     = $request->input('tags','');
+        $head     = $request->input('head','');
 
-
-        $isTrue = User::where('id',$this->uInfo('id'))->update(['nickname'=>$nickname,'motto'=>$motto,'tags'=>$tags]);
+        $isTrue = User::where('id',$this->uInfo('id'))->update(['nickname'=>$nickname,'motto'=>$motto,'tags'=>$tags,'head'=>$head]);
         if($isTrue !== false){
             return $this->returnAjax([],'资料修改成功');
         }
