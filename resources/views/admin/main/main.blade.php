@@ -9,10 +9,10 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico"> 
-    <link href="{{asset('hAdmin/css/bootstrap.min.css?v=3.3.6')}}" rel="stylesheet">
-    <link href="{{asset('hAdmin/css/font-awesome.min.css?v=4.4.0')}}" rel="stylesheet">
-    <link href="{{asset('hAdmin/css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('hAdmin/css/style.css?v=4.1.0')}}" rel="stylesheet">
+    <link href="{{asset('static/hAdmin/css/bootstrap.min.css?v=3.3.6')}}" rel="stylesheet">
+    <link href="{{asset('static/hAdmin/css/font-awesome.min.css?v=4.4.0')}}" rel="stylesheet">
+    <link href="{{asset('static/hAdmin/css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('static/hAdmin/css/style.css?v=4.1.0')}}" rel="stylesheet">
     <style type="text/css">
         .cus-nav > li{
             border-left: 1px solid #f1e9e9;
@@ -120,18 +120,18 @@
     </div>
 
     <!-- 全局js -->
-    <script src="{{asset('hAdmin/js/jquery.min.js?v=2.1.4')}}"></script>
-    <script src="{{asset('hAdmin/js/bootstrap.min.js?v=3.3.6')}}"></script>
-    <script src="{{asset('hAdmin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-    <script src="{{asset('hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
-    <script src="{{asset('hAdmin/js/plugins/layer/layer.min.js')}}"></script>
+    <script src="{{asset('static/hAdmin/js/jquery.min.js?v=2.1.4')}}"></script>
+    <script src="{{asset('static/hAdmin/js/bootstrap.min.js?v=3.3.6')}}"></script>
+    <script src="{{asset('static/hAdmin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{asset('static/hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('static/hAdmin/js/plugins/layer/layer.min.js')}}"></script>
 
     <!-- 自定义js -->
-    <script src="{{asset('hAdmin/js/hAdmin.js?v=4.1.0')}}"></script>
+    <script src="{{asset('static/hAdmin/js/hAdmin.js?v=4.1.0')}}"></script>
     <script type="text/javascript" src="{{asset('hAdmin/js/index.js')}}"></script>
 
     <!-- 第三方插件 -->
-    <script src="{{asset('hAdmin/js/plugins/pace/pace.min.js')}}"></script>
+    <script src="{{asset('static/hAdmin/js/plugins/pace/pace.min.js')}}"></script>
 
 </body>
 
