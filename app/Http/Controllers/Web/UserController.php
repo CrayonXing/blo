@@ -33,7 +33,18 @@ class UserController extends BaseController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function datum(){
-        return view('web.user.user-datum',['uinfo'=>$this->uInfo()]);
+        $resource = opendir($path = public_path('static/sys-head'));
+
+        $imgs = [];
+        while ($file = readdir($resource)){
+            if($file == '.' || $file == '..'){
+                continue;
+            }
+
+            $imgs[] = asset("static/sys-head/{$file}");
+        }
+        
+        return view('web.user.user-datum',['uinfo'=>$this->uInfo(),'imgs'=>$imgs]);
     }
 
     /**

@@ -51,8 +51,15 @@
         </div>
 
         <div class="blog-info-nextpage">
-            <p><span>上一篇 </span> &nbsp; <a href="" class="detail-href-hover">Apache配置PHP相关配置</a></p>
-            <p><span>下一篇 </span> &nbsp; <a href="" class="detail-href-hover">[ Laravel 5.7 文档 ] 前端开发 —— Blade 模板引擎</a></p>
+
+            @if($piece['previous'])
+                <p><span>上一篇 </span> &nbsp; <a href="/article/details/aid/{{$piece['previous']['id']}}" class="detail-href-hover">{{$piece['previous']['title']}}</a></p>
+            @endif
+
+            @if($piece['next'])
+                <p><span>下一篇 </span> &nbsp; <a href="/article/details/aid/{{$piece['next']['id']}}" class="detail-href-hover">{{$piece['next']['title']}}</a></p>
+            @endif
+
         </div>
 
         <div class="blog-info-fabulous">
@@ -67,21 +74,25 @@
 
         <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
 
-        <div class="blog-info-relevant">
-            <p class="blog-info-relevant-title">
-              <i class="iconfont icon-aipinpaiwenzhangshixiao" ></i>
-              <b>推荐文章</b>
-              <em style="">4</em>
-            </p>
-            <div class="blog-info-relevant-content">
-                <ul>
-                    <li> <a href="" class="detail-href-hover">[ Laravel 5.7 文档 ] 基础组件 —— 中间件</a></li>
-                    <li> <a href="" class="detail-href-hover">Apache配置PHP相关配置</a></li>
-                    <li> <a href="" class="detail-href-hover">[ Laravel 5.7 文档 ] 前端开发 —— Blade 模板引擎</a></li>
-                    <li> <a href="" class="detail-href-hover">探访西南地区最大铁路配餐中心 动车盒饭这样“出锅”</a></li>
-                </ul>
-            </div>
-        </div>
+          @if($relevant)
+              <div class="blog-info-relevant">
+                  <p class="blog-info-relevant-title">
+                      <i class="iconfont icon-aipinpaiwenzhangshixiao" ></i>
+                      <b>推荐文章</b>
+                      <em style="">{{count($relevant)}}</em>
+                  </p>
+                  <div class="blog-info-relevant-content">
+                      <ul>
+
+                          @foreach($relevant as $rel)
+                              <li> <a href="/article/details/aid/{{$rel->id}}" class="detail-href-hover">{{$rel->title}}</a></li>
+                          @endforeach
+
+                      </ul>
+                  </div>
+              </div>
+          @endif
+
 
         <div class="blog-info-comment">
             <p class="blog-info-comment-title">
