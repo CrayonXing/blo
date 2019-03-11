@@ -3,6 +3,7 @@
 @push('css')
     <link href="/web/css/article-detail.css" rel="stylesheet">
     <link href="/plugin/Spop/spop.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -240,7 +241,23 @@
 
     commentObj.loadCommentData();
 </script>
-<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    hljs.initHighlightingOnLoad()
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },500)
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },1000)
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },1500)
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },2000)
+</script>
+<script>
+
+</script>
 @endpush
