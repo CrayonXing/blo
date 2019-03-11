@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Model\Article;
 use App\Model\Category;
 use App\Model\Comment;
+use Illuminate\Support\Facades\DB;
 class ArticleController extends BaseController
 {
     public function category($cid,Category $category){
@@ -21,12 +22,42 @@ class ArticleController extends BaseController
 
     public function details(int $aid,Request $request,Comment $comment){
         $info = Article::where('id',$aid)->first();
+
+        $piece = [
+            'previous'=>[],
+            'next'    =>[]
+        ];
+
+        $relevant = [];
+
         if($info){
             $info = $info->toArray();
             $info['tag'] = explode(',',$info['tag']);
+            $previous  = Article::where('id','<',$aid)->orderBy('id','desc')->select('id','title')->first();
+            $next      = Article::where('id','>',$aid)->select('id','title')->first();
+            if($previous){
+                $piece['previous']  = $previous->toArray();
+            }
+
+            if($next){
+                $piece['next']      = $next->toArray();
+            }
+
+            $obj = DB::table('article')->where('id', '<>', $aid);
+
+
+//            dd($info['tag']);
+            foreach ($info['tag'] as $tag){
+                $obj->where('tag', 'like', "%{$tag}%");
+            }
+
+            $relevant = $obj->select('id','title')->limit(5)->get();
+            if($relevant){
+                $relevant = $relevant->toArray();
+            }
         }
 
-        return view('web.article.detail',['info'=>$info]);
+        return view('web.article.detail',['info'=>$info,'piece'=>$piece,'relevant'=>$relevant]);
     }
 
     /**

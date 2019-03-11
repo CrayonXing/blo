@@ -138,12 +138,9 @@
                     <div class="am-tabs-bd" >
                         <div class="am-tab-panel am-active" style="height: 400px;padding: 0;">
                             <ul class="web-sys-head" style="height: 360px;overflow-y: auto;">
-                                <li><img src="/static/sys-head/01f3d49b0414867c980787fca3b66af.jpg" alt=""><i class="am-icon-check-circle"></i></li>
-                                <li><img src="/static/sys-head/10c4180c1a20b590dac47b5ff93fa57.jpg" alt=""><i class="am-icon-check-circle"></i></li>
-                                <li><img src="/static/sys-head/bfbea6095a01f9cfd54814c3750c710.jpg" alt=""><i class="am-icon-check-circle"></i></li>
-                                <li><img src="/static/sys-head/886e1e38bcaf0fce870976dcdf9c090.jpg" alt=""><i class="am-icon-check-circle"></i></li>
-                                <li><img src="/static/sys-head/cf63388950819dfedb416910c12f93d.jpg" alt=""><i class="am-icon-check-circle"></i></li>
-                                <li><img src="/static/sys-head/e774ff9433d0e4feb2537b63a83ba40.jpg" alt=""><i class="am-icon-check-circle"></i></li>
+                                @foreach($imgs as $src)
+                                    <li><img src="{{$src}}" alt=""><i class="am-icon-check-circle"></i></li>
+                                @endforeach
                             </ul>
                             <div style="height: 30px;padding: 0;margin-top: 5px;">
                                 <span class="am-btn am-btn-default am-btn-sm" onclick="$('#doc-modal-1').modal('close')" >取消</span>

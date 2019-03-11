@@ -4,49 +4,62 @@
 <meta charset="utf-8">
 <title>New博客</title>
 <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-<meta name="keywords" content="New博客" />
+<meta name="keywords" content="New博客,PHP博客" />
 <meta name="description" content="New博客" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
 <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
 <link href="<?php echo e(asset('web/css/base.css')); ?>" rel="stylesheet">
-<link href="<?php echo e(asset('web/css/index.css')); ?>" rel="stylesheet">
-<link href="//at.alicdn.com/t/font_1038155_tajfhfyfkuq.css" rel="stylesheet">
+<link href="<?php echo e(asset('web/css/header-nav.css')); ?>" rel="stylesheet">
+<link href="//at.alicdn.com/t/font_1038155_kg8own05da8.css" rel="stylesheet">
 <link href="<?php echo e(asset('plugin/animate.min.css')); ?>" rel="stylesheet">
 <link href="<?php echo e(asset('web/css/login.css')); ?>" rel="stylesheet">
-<style type="text/css">
-	
-</style>
+<?php echo $__env->yieldPushContent('css'); ?>
 </head>
 <body>
 	<?php $__env->startSection('header'); ?>
-        <header id="blog-header" class="blog-header-fixed" >
-		  <div class="tophead">
-		    <div class="logo"><a href="/">New博客</a></div>
-		    <nav class="topnav" id="topnav" style="width: 850px;float: left;">
-		      <ul >
-		        <li><a href="/"  <?php if(request()->path() == '/'): ?> id="topnav_current" <?php endif; ?> >首页</a></li>
-		        <li><a href="/article/category/php" <?php if(request()->fullUrl() == url('/article/category/php')): ?> id="topnav_current" <?php endif; ?>>PHP</a></li>
-		        <li><a href="/article/category/swoole"  <?php if(request()->fullUrl() == url('/article/category/swoole')): ?> id="topnav_current" <?php endif; ?>>Swoole</a></li>
-		        <li><a href="/article/category/redis"  <?php if(request()->fullUrl() == url('/article/category/redis')): ?> id="topnav_current" <?php endif; ?>>Redis</a></li>
-		        <li><a href="/article/category/vue"  <?php if(request()->fullUrl() == url('/article/category/vue')): ?> id="topnav_current" <?php endif; ?>>Vue</a></li>
-		        <li><a href="/article/category/web"  <?php if(request()->fullUrl() == url('/article/category/web')): ?> id="topnav_current" <?php endif; ?>>Web</a></li>
-		        <li><a href="/article/category/问答"  <?php if(request()->fullUrl() == url('/article/category/问答')): ?> id="topnav_current" <?php endif; ?>>问答</a></li>
-		        <li><a href="/article/category/IT趣事"  <?php if(request()->fullUrl() == url('/article/category/IT趣事')): ?> id="topnav_current" <?php endif; ?>>IT趣事</a></li>
-		      </ul>
-		    </nav>
-		    <div class="blog-header-login-nav">
-		    	<ul >
-		    	<?php if(!auth('web')->check()): ?>
-					<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
-			        <li style="color: #FC9D9A" onclick="userLogin.showBox('register')">注册</li>
-			    <?php else: ?>
-					<li style="background: #FC9D9A;border-radius: 20px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
-					<li  > <a href="/user-logout" style="color: #FC9D9A;">&nbsp;&nbsp;退出登录</a></li>
-		    	<?php endif; ?>
-		        </ul>
-		    </div>
-		  </div>
+		<header id="blog-header" >
+			<div class="blog-header-main" >
+				<div class="blog-header-main-left" >
+					<a href="/" class="logo-href">New博客</a>
+				</div>
+				<div class="blog-header-main-right" >
+					<div class="blog-header-nav">
+						<ul >
+							<li <?php if(request()->path() == '/'): ?> class="blog-header-nav-current" <?php endif; ?>><a href="/"   >首页</a></li>
+
+                            <?php if($webNav = app('help')->getNav()): ?>
+                                <?php $__currentLoopData = $webNav; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $firstNav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li <?php if(request()->fullUrl() == url("/article/category/{$firstNav['id']}")): ?> class="blog-header-nav-current" <?php endif; ?> >
+                                        <a href="/article/category/<?php echo e($firstNav['id']); ?>" ><?php echo e($firstNav['name']); ?></a>
+                                        <?php if($firstNav['childnode']): ?>
+                                            <ul class="blog-header-sub-nav" >
+                                                
+                                                <?php $__currentLoopData = $firstNav['childnode']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $twoNav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <li><a href="/article/category/<?php echo e($twoNav['id']); ?>"><?php echo e($twoNav['name']); ?></a></li>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+						</ul>
+					</div>
+					<div class="blog-header-loginbox" style="width: 200px;height: 100%;float: left">
+						<div class="blog-header-login-nav">
+                            <ul >
+                                <?php if(!auth('web')->check()): ?>
+                                    <li style="background: #FC9D9A;border-radius: 3px;color: #fff;" onclick="userLogin.showBox('login')">登录</li>
+                                    <li style="background: #fdf5f5;color: #a9a8a8;margin-left: 3px;" onclick="userLogin.showBox('register')">注册</li>
+                                <?php else: ?>
+                                    <li style="background: #FC9D9A;border-radius: 3px;color: #fff;" ><a href="/user-main" style="color: #fff;" >个人中心</a></li>
+                                    <li style="background: #fdf5f5;color: #746b6b;margin-left: 3px;"> <a href="/user-logout" style="color: #a9a8a8;">退出登录</a></li>
+                                <?php endif; ?>
+                            </ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</header>
 		<div style="width: 100%;height: 80px;clear: both;"></div>
     <?php echo $__env->yieldSection(); ?>
@@ -55,7 +68,7 @@
 
     <?php $__env->startSection('footer'); ?>
 	    <footer>
-		  <p>© 2018 - 2019 New博客</p>
+		  <p>© 2018 - 2019 New博客属于个人开发实践及维护项目</p>
 		</footer>
 	<?php echo $__env->yieldSection(); ?>
 
@@ -136,10 +149,7 @@
 	</div>
 
 	<script src="<?php echo e(asset('web/js/jquery-2.1.1.min.js')); ?>"></script>
-	<script src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
 	<script src="<?php echo e(asset('plugin/functions.js')); ?>"></script>
-	
-
 	<script type="text/javascript">
 		$.ajaxSetup({
 		    headers: {
@@ -157,11 +167,10 @@
 	    });
 
 	    $("#web-to-top").click(function(){
-			$('html,body').animate({scrollTop: '0px'},300);
+			$('html,body').animate({scrollTop: 0},300);
 	    });
 	</script>
 	<script src="<?php echo e(asset('web/js/login-box.js')); ?>"></script>
-
 	<?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html>
