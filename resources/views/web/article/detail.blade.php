@@ -78,7 +78,6 @@
           @if($relevant)
               <div class="blog-info-relevant">
                   <p class="blog-info-relevant-title">
-                      <i class="iconfont icon-aipinpaiwenzhangshixiao" ></i>
                       <b>推荐文章</b>
                       <em style="">{{count($relevant)}}</em>
                   </p>
@@ -97,7 +96,7 @@
 
         <div class="blog-info-comment">
             <p class="blog-info-comment-title">
-              <i class="iconfont icon-buoumaotubiao48"></i> <b>热门评论</b> <em class="comment-create-header-comment-num" >0</em>
+               <b>热门评论</b> <em class="comment-create-header-comment-num" >0</em>
             </p>
 
             <div class="blog-info-comment-container">
