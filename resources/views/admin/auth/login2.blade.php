@@ -10,6 +10,11 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" type="text/css" href="/static/hAdmin/login/login2.css" tppabs="css/style.css"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1038155_keqhk7s252a.css">
+    <style>
+        .larry-btn-submit:active{
+            background: rgba(31, 204, 188, 0.8) !important;
+        }
+    </style>
 </head>
 
 <body class="login-body">
@@ -46,11 +51,16 @@
         </dvi>
 
         <div class="layui-form-item">
-            <button class="layui-btn larry-btn-submit">立即登录</button>
+            <button class="layui-btn larry-btn-submit" style="border: none;outline: none;cursor: pointer">立即登录</button>
         </div>
 
         <div class="layui-form-item layui-trans larryms-user-login-other">
+
             <a href="" class="reg-a forget">忘记密码</a>
+        </div>
+
+        <div class="layui-form-item">
+            <label style="font-size: 10px;margin-left: 25px;color: #020202;">Copyright © 2019 New博客. All Rights Reserved.</label>
         </div>
     </form>
 </div>
