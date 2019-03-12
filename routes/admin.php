@@ -14,4 +14,8 @@ Route::group(['namespace'=>'Admin', 'middleware' => 'web'],function (){
 
 
     Route::get('/login','AuthController@login');
+
+    Route::get('/auth/code', function(){
+        return json_encode(['img_url'=>Captcha::src()]);
+    })->name('admin_auth_code');
 });

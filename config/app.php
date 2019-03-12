@@ -179,6 +179,8 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         App\Providers\HelpServiceProvider::class,
+
+        Mews\Captcha\CaptchaServiceProvider::class,
     ],
 
     /*
@@ -228,6 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Help' => App\Facades\Help::class,
+
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];
