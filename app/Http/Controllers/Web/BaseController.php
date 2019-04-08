@@ -38,4 +38,15 @@ class BaseController extends Controller
             'data'=>$data
         ], $httpstatus);
     }
+
+    /**
+     * 统一包装返回数据格式
+     */
+    protected function rJson($code,$message,$data=[],$httpstatus=200){
+        return response()->json([
+            'code'=>$code,
+            'msg'=>$message,
+            'data'=>$data
+        ], $httpstatus);
+    }
 }

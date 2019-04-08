@@ -36,6 +36,14 @@
         #wrapper{
             overflow: hidden !important;
         }
+
+        body.mini-navbar .nav-header,.nav-header{
+            height: 50px;
+            background: -webkit-linear-gradient(left, #000000 , #9f9494); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(right, #000000 , #9f9494); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(right, #000000 , #9f9494); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to right, #000000 , #9f9494); /* 标准的语法 */
+        }
     </style>
 </head>
 
@@ -47,7 +55,7 @@
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="nav-header" style="background: #414163 !important">
+                    <li class="nav-header" >
                         <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
@@ -57,7 +65,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="logo-element">管理</div>
+                        <div class="logo-element">博</div>
                     </li>
 
                     <li>

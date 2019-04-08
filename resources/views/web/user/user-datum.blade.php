@@ -136,19 +136,19 @@
                     </ul>
 
                     <div class="am-tabs-bd" >
-                        <div class="am-tab-panel am-active" style="height: 400px;padding: 0;">
-                            <ul class="web-sys-head" style="height: 360px;overflow-y: auto;">
+                        <div class="am-tab-panel am-active" style="height: 410px;padding: 0;">
+                            <ul class="web-sys-head" style="height: 360px;overflow-y: auto;padding-left: 35px">
                                 @foreach($imgs as $src)
                                     <li><img src="{{$src}}" alt=""><i class="am-icon-check-circle"></i></li>
                                 @endforeach
                             </ul>
-                            <div style="height: 30px;padding: 0;margin-top: 5px;">
+                            <div style="height: 40px;padding: 0;margin-top: 5px;border-top: 1px solid #ccc;line-height: 40px;">
                                 <span class="am-btn am-btn-default am-btn-sm" onclick="$('#doc-modal-1').modal('close')" >取消</span>
                                 <span class="am-btn am-btn-secondary am-btn-sm" id="head-btn" >确定</span>
                             </div>
                         </div>
-                        <div class="am-tab-panel" style="height: 400px;">
-
+                        <div class="am-tab-panel" style="height: 410px;">
+                                https://github.com/fengyuanchen/cropper
                         </div>
                     </div>
                 </div>

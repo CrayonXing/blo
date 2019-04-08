@@ -9,10 +9,10 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico"> 
-    <link href="<?php echo e(asset('hAdmin/css/bootstrap.min.css?v=3.3.6')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('hAdmin/css/font-awesome.min.css?v=4.4.0')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('hAdmin/css/animate.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('hAdmin/css/style.css?v=4.1.0')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/bootstrap.min.css?v=3.3.6')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/font-awesome.min.css?v=4.4.0')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/animate.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/style.css?v=4.1.0')); ?>" rel="stylesheet">
     <style type="text/css">
         .cus-nav > li{
             border-left: 1px solid #f1e9e9;
@@ -36,6 +36,14 @@
         #wrapper{
             overflow: hidden !important;
         }
+
+        body.mini-navbar .nav-header,.nav-header{
+            height: 50px;
+            background: -webkit-linear-gradient(left, #000000 , #9f9494); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(right, #000000 , #9f9494); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(right, #000000 , #9f9494); /* Firefox 3.6 - 15 */
+            background: linear-gradient(to right, #000000 , #9f9494); /* 标准的语法 */
+        }
     </style>
 </head>
 
@@ -47,7 +55,7 @@
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="nav-header" style="background: #414163 !important">
+                    <li class="nav-header" >
                         <div class="dropdown profile-element">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
@@ -57,7 +65,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="logo-element">管理</div>
+                        <div class="logo-element">博</div>
                     </li>
 
                     <li>
@@ -120,18 +128,18 @@
     </div>
 
     <!-- 全局js -->
-    <script src="<?php echo e(asset('hAdmin/js/jquery.min.js?v=2.1.4')); ?>"></script>
-    <script src="<?php echo e(asset('hAdmin/js/bootstrap.min.js?v=3.3.6')); ?>"></script>
-    <script src="<?php echo e(asset('hAdmin/js/plugins/metisMenu/jquery.metisMenu.js')); ?>"></script>
-    <script src="<?php echo e(asset('hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('hAdmin/js/plugins/layer/layer.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/jquery.min.js?v=2.1.4')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/bootstrap.min.js?v=3.3.6')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/plugins/metisMenu/jquery.metisMenu.js')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/plugins/layer/layer.min.js')); ?>"></script>
 
     <!-- 自定义js -->
-    <script src="<?php echo e(asset('hAdmin/js/hAdmin.js?v=4.1.0')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/hAdmin.js?v=4.1.0')); ?>"></script>
     <script type="text/javascript" src="<?php echo e(asset('hAdmin/js/index.js')); ?>"></script>
 
     <!-- 第三方插件 -->
-    <script src="<?php echo e(asset('hAdmin/js/plugins/pace/pace.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('static/hAdmin/js/plugins/pace/pace.min.js')); ?>"></script>
 
 </body>
 

@@ -1,6 +1,7 @@
 <?php $__env->startPush('css'); ?>
     <link href="/web/css/article-detail.css" rel="stylesheet">
     <link href="/plugin/Spop/spop.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -76,7 +77,6 @@
           <?php if($relevant): ?>
               <div class="blog-info-relevant">
                   <p class="blog-info-relevant-title">
-                      <i class="iconfont icon-aipinpaiwenzhangshixiao" ></i>
                       <b>推荐文章</b>
                       <em style=""><?php echo e(count($relevant)); ?></em>
                   </p>
@@ -95,7 +95,7 @@
 
         <div class="blog-info-comment">
             <p class="blog-info-comment-title">
-              <i class="iconfont icon-buoumaotubiao48"></i> <b>热门评论</b> <em class="comment-create-header-comment-num" >0</em>
+               <b>热门评论</b> <em class="comment-create-header-comment-num" >0</em>
             </p>
 
             <div class="blog-info-comment-container">
@@ -238,6 +238,25 @@
     });
 
     commentObj.loadCommentData();
+</script>
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad()
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },500)
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },1000)
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },1500)
+    setTimeout(function(){
+        $('code').removeClass('xml');
+    },2000)
+</script>
+<script>
+
 </script>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('web.layouts.blog-layout', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

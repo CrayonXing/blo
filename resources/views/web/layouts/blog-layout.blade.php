@@ -11,7 +11,7 @@
 <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
 <link href="{{asset('web/css/base.css')}}" rel="stylesheet">
 <link href="{{asset('web/css/header-nav.css')}}" rel="stylesheet">
-<link href="//at.alicdn.com/t/font_1038155_kg8own05da8.css" rel="stylesheet">
+<link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
 <link href="{{asset('plugin/animate.min.css')}}" rel="stylesheet">
 <link href="{{asset('web/css/login.css')}}" rel="stylesheet">
 @stack('css')

@@ -11,35 +11,35 @@
 				<div class="am-u-sm-6">
 	        		<form class="am-form am-form-horizontal">
 						<div class="am-form-group">
-							<div class="am-u-sm-10 am-u-sm-offset-2">
+							<div class="am-u-sm-9 am-u-sm-offset-3">
 								<div id="fr-changepwd-error" style="display: none;width: 100%;height: 25px;margin-right: 1px;background-color: #fcebeb;line-height: 25px;text-align: center;color: #c8bab0;float: right;">旧密码不能为空</div>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;" >旧密码</label>
-							<div class="am-u-sm-10">
+							<label  class="am-u-sm-3 am-form-label" style="font-weight: initial;color: #ccc;" >旧密码</label>
+							<div class="am-u-sm-9">
 								<input type="password"  placeholder="旧密码不能为空" id="fr-changepwd-oldpwd" >
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;" >新密码</label>
-							<div class="am-u-sm-10">
+							<label  class="am-u-sm-3 am-form-label" style="font-weight: initial;color: #ccc;" >新密码</label>
+							<div class="am-u-sm-9">
 								<input type="password"  placeholder="新密码不能为空" id="fr-changepwd-newpwd" class="am-input-sm">
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label  class="am-u-sm-2 am-form-label" style="font-weight: initial;color: #ccc;padding-left: 0" >确认密码</label>
-							<div class="am-u-sm-10">
+							<label  class="am-u-sm-3 am-form-label" style="font-weight: initial;color: #ccc;padding-left: 0" >确认密码</label>
+							<div class="am-u-sm-9">
 								<input type="password"  placeholder="确认密码必须与新密码一致"  id="fr-changepwd-newpwd2" class="am-input-sm">
 								<p class="am-form-help">注: 密码格式必须为8~16位字母+数字</p>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<div class="am-u-sm-10 am-u-sm-offset-2">
+							<div class="am-u-sm-9 am-u-sm-offset-3">
 								<span  class="theme-btn" onclick="changPwdObj.submit()" >立即修改</span>
 							</div>
 						</div>

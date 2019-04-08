@@ -13,6 +13,8 @@
             .user-info-table tr em{
                   color:#ed8282;font-size: 16px;
             }
+
+            /*box-shadow: 17px 12px 20px 5px #fff2f1;*/
       </style>
 
       <?php echo $__env->make('web.layouts.web-main-left', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
