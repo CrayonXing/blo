@@ -181,6 +181,7 @@ return [
         App\Providers\HelpServiceProvider::class,
 
         Mews\Captcha\CaptchaServiceProvider::class,
+        SwooleTW\Http\LaravelServiceProvider::class,
     ],
 
     /*

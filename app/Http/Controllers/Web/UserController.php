@@ -180,6 +180,15 @@ class UserController extends BaseController
 
         return $this->rJson(305,'签到失败');
     }
+
+
+    public function uploadHead(Request $request){
+        $img = $_POST['img'];
+        $img = str_replace('data:image/jpeg;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $path = '100001/'.date('ymd').'/'.uniqid().'.jpeg';
+        \Storage::disk('public')->put($path, $data);
+        return $this->rJson(200,'上传成功',['url'=>asset("storage/{$path}")]);
+    }
 }
-
-

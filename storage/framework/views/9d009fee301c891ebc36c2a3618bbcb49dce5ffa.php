@@ -68,7 +68,7 @@
 
     <?php $__env->startSection('footer'); ?>
 	    <footer>
-		  <p>© 2018 - 2019 New博客属于个人开发实践及维护项目</p>
+		  <p>© 2018 - 2019 New博客 个人开发实践及维护项目</p>
 		</footer>
 	<?php echo $__env->yieldSection(); ?>
 

@@ -13,6 +13,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "mews/captcha": "^2.2",
+        "swooletw/laravel-swoole": "v2.6.5.4",
         "tymon/jwt-auth": "1.0.0-rc.3"
     },
     "require-dev": {

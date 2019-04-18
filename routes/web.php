@@ -42,4 +42,6 @@ Route::group(['namespace'=>'Web'],function (){
 	Route::post('/signin','UserController@userSign')->middleware('checkLogin');
 
 
+
+    Route::post('/user-uploadHead','UserController@uploadHead')->middleware('checkLogin');
 });
