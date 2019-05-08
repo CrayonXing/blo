@@ -9,6 +9,8 @@
 Route::group(['namespace'=>'Web'],function (){
     Route::get('/','IndexController@index');
 
+    Route::get('/swooletest','IndexController@swooleTest');
+
     Route::get('/article/category/{cid}','ArticleController@category');
     Route::get('/article/details/aid/{aid}','ArticleController@details');
 

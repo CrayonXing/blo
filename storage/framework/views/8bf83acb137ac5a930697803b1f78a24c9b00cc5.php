@@ -1,3 +1,5 @@
+﻿
+
 <?php $__env->startSection('content'); ?>
     <link rel="stylesheet" href="/plugin/Swiper/swiper.min.css">
 
@@ -30,7 +32,8 @@
 
 <?php $__env->startPush('scripts'); ?>
   <script src="/plugin/Swiper//swiper.min.js"></script>
-  <script src="/plugin/template-web.js"></script>
+<script src="/plugin/template-web.js"></script>
+<script src="/js/socket.js"></script>
   <?php echo $__env->make('web.template.tpl-blog-list', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <script>
         new Swiper('.swiper-container', {
@@ -102,5 +105,24 @@
         o.loadListData();
     });
 </script>
+<script type="text/javascript">
+                /**
+                * 消息推送处理类
+                * @type  type 
+                */
+                new mySocket({
+                    adminid:"1",
+                    url:'ws://47.105.180.123:1215/connect',
+                },
+                [
+                    {
+                        channel     :'loginchannel',
+                        channelType :2,           //群发渠道
+                        callback    :function(res){
+                            console.log(res)
+                        }
+                    }
+                ]);
+        </script>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('web.layouts.blog-layout', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

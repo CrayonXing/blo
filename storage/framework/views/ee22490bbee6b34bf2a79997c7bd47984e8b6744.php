@@ -8,10 +8,10 @@
     <meta name="description" content="">
     <link rel="shortcut icon" href="favicon.ico"> 
 
-    <link href="<?php echo e(asset('hAdmin/css/bootstrap.min.css?v=3.3.6')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('hAdmin/css/font-awesome.min.css?v=4.4.0')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('hAdmin/css/animate.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('hAdmin/css/style.css?v=4.1.0')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/bootstrap.min.css?v=3.3.6')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/font-awesome.min.css?v=4.4.0')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/animate.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('static/hAdmin/css/style.css?v=4.1.0')); ?>" rel="stylesheet">
     <style>
     #cus-breadcrumb {
         width: 100%;
@@ -67,7 +67,7 @@
             position:relative;
             width: 317px;
             height: 550px;
-            background: transparent url(/hAdmin/img/wx_mobile_header_bg.png) no-repeat 0 0;
+            background: transparent url(/static/hAdmin/img/wx_mobile_header_bg.png) no-repeat 0 0;
             background-position: 0 0;
             border: 1px solid #e7e7eb;
         }
@@ -79,7 +79,7 @@
             left: 0;
             right: 0;
             border-top: 1px solid #e7e7eb;
-            background: transparent url(/hAdmin/img/wx_mobile_footer_bg.png) no-repeat 0 0;
+            background: transparent url(/static/hAdmin/img/wx_mobile_footer_bg.png) no-repeat 0 0;
             background-position: 0 0;
             background-repeat: no-repeat;
             padding-left: 43px;
@@ -113,7 +113,7 @@
             color: #44b549;
         }
         .menu-item .icon-menu-dot{
-            background: url(/hAdmin/img/wx_mobile_index.png) 0 0 no-repeat;
+            background: url(/static/hAdmin/img/wx_mobile_index.png) 0 0 no-repeat;
             width: 7px;
             height: 7px;
             vertical-align: middle;
@@ -209,7 +209,7 @@
             cursor: pointer;
         }
         .weixin-icon{
-            background: url(/hAdmin/img/weixin_icon.png) 0 -4418px no-repeat;
+            background: url(/static/hAdmin/img/weixin_icon.png) 0 -4418px no-repeat;
             width: 16px;
             height: 16px;
             vertical-align: middle;
@@ -221,7 +221,7 @@
             background-position: 0 0;
         }
         .weixin-icon.sort-gray {
-            background: url(/hAdmin/img/weixin_icon.png) 0 -32px no-repeat;
+            background: url(/static/hAdmin/img/weixin_icon.png) 0 -32px no-repeat;
             background-position: 0 -32px;
             margin-top: -1px;
             display:none;
@@ -492,8 +492,8 @@
     </div>
 
     <!-- 全局js -->
-    <script src="<?php echo e(asset('hAdmin/js/jquery.min.js?v=2.1.4')); ?>"></script>
-    <script src="<?php echo e(asset('hAdmin/js/wechat-menu.js?v=2.1.4')); ?>"></script>
+    <script src="<?php echo e(asset('/static/hAdmin/js/jquery.min.js?v=2.1.4')); ?>"></script>
+    <script src="<?php echo e(asset('/static/hAdmin/js/wechat-menu.js?v=2.1.4')); ?>"></script>
     <script type="text/javascript">
         var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]},{"type":"miniprogram","name":"跳转小程序","url":"http://47.105.180.123/admin","appid":"AKASDAS1A1S5FA1531DA","pagepath":"http://47.105.180.123","sub_button":[]},{"type":"view","name":"添加子菜单","url":"发送到","sub_button":[]}]}]}';
         let menuObj =  new Menu(menuJson);

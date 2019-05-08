@@ -1,4 +1,4 @@
-@extends('web.layouts.blog-layout')
+﻿@extends('web.layouts.blog-layout')
 
 @section('content')
     <link rel="stylesheet" href="/plugin/Swiper/swiper.min.css">
@@ -32,7 +32,8 @@
 
 @push('scripts')
   <script src="/plugin/Swiper//swiper.min.js"></script>
-  <script src="/plugin/template-web.js"></script>
+<script src="/plugin/template-web.js"></script>
+<script src="/js/socket.js"></script>
   @include('web.template.tpl-blog-list')
     <script>
         new Swiper('.swiper-container', {
@@ -104,4 +105,23 @@
         o.loadListData();
     });
 </script>
+<script type="text/javascript">
+                /**
+                * 消息推送处理类
+                * @type type 
+                */
+                new mySocket({
+                    adminid:"1",
+                    url:'ws://47.105.180.123:1215/connect',
+                },
+                [
+                    {
+                        channel     :'loginchannel',
+                        channelType :2,           //群发渠道
+                        callback    :function(res){
+                            console.log(res)
+                        }
+                    }
+                ]);
+        </script>
 @endpush

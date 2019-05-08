@@ -9,11 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
 <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
-<link href="<?php echo e(asset('web/css/base.css')); ?>" rel="stylesheet">
-<link href="<?php echo e(asset('web/css/header-nav.css')); ?>" rel="stylesheet">
+<link href="/web/css/base.css" rel="stylesheet">
+<link href="/web/css/header-nav.css" rel="stylesheet">
 <link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
-<link href="<?php echo e(asset('plugin/animate.min.css')); ?>" rel="stylesheet">
-<link href="<?php echo e(asset('web/css/login.css')); ?>" rel="stylesheet">
+<link href="/plugin/animate.min.css" rel="stylesheet">
+<link href="/web/css/login.css" rel="stylesheet">
 <?php echo $__env->yieldPushContent('css'); ?>
 </head>
 <body>
@@ -148,8 +148,8 @@
 		</ul>
 	</div>
 
-	<script src="<?php echo e(asset('web/js/jquery-2.1.1.min.js')); ?>"></script>
-	<script src="<?php echo e(asset('plugin/functions.js')); ?>"></script>
+	<script src="/web/js/jquery-2.1.1.min.js"></script>
+	<script src="/plugin/functions.js"></script>
 	<script type="text/javascript">
 		$.ajaxSetup({
 		    headers: {
@@ -170,7 +170,7 @@
 			$('html,body').animate({scrollTop: 0},300);
 	    });
 	</script>
-	<script src="<?php echo e(asset('web/js/login-box.js')); ?>"></script>
+	<script src="/web/js/login-box.js"></script>
 	<?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html>
