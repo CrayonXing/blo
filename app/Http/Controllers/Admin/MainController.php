@@ -16,11 +16,7 @@ class MainController extends Controller
      * @return string
      */
     public function index(Request $request){
-        // if(Auth::guard('admin')->attempt(['email' => '837215079@qq.com', 'password' =>'aa123456'],true)){
-        //     echo '登陆成功...';
-        // }
-
-        return view('admin.main.main');
+        return view('admin.layout.layout');
     }
 
     public function index2(){
