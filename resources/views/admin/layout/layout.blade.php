@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+    <meta name="renderer" content="webkit">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="data-spm" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="Author" content="New 博客" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <title>New博客后台</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
     <link rel="stylesheet" href="/static/admin/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/static/admin/css/main.css">
     <style>
@@ -35,7 +38,7 @@
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" ></script>
 </head>
 
-<body  class="hasTopbar hasSidebar domain" style="padding-top: 50px; padding-left: 50px;">
+<body  class="hasTopbar hasSidebar domain" style="padding-top: 50px; padding-left: 50px;overflow: hidden;">
     <div id="console-bar">
         <div class="newblog-console-base-bar">
             <div class="console-base-container">
@@ -67,6 +70,7 @@
                             </div>
                         </div>
 
+                        {{--消息通知--}}
                         {{--<div class="pull-left dropdown topbar-notice topbar-info-dropdown topbar-info-item message-box">--}}
                             {{--<a  class="topbar-btn topbar-info-dropdown-toggle" href="/" target="_blank" rel="noopener noreferrer">--}}
                                 {{--<span class="topbar-btn-notice-title">消息<span class="topbar-btn-notice-num">0</span></span>--}}
@@ -206,18 +210,19 @@
                         </div>
                         <ul class="sidebar-products">
                             {{--product-item-active--}}
-                            <li class="product-item"  data-productid="ecs" style="transform: translate3d(0px, 0px, 0px);">
-                                <span class="product-item-icon-box">
-                                    <i class="iconfont icon-menu"></i>
-                                </span>
+                            {{--<li class="product-item"  data-productid="ecs" style="transform: translate3d(0px, 0px, 0px);">--}}
+                                {{--<span class="product-item-icon-box">--}}
+                                    {{--<i class="iconfont icon-menu"></i>--}}
+                                {{--</span>--}}
 
-                                <a href="/" class="product-item-link" >
-                                    <span class="product-item-name">权限管理</span>
-                                </a>
-                            </li>
+                                {{--<a href="/" class="product-item-link" >--}}
+                                    {{--<span class="product-item-name">权限管理</span>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -225,44 +230,96 @@
     <div class="console-frame">
         <div class="new-product-small"></div>
         <div class="side" id="my-left-box">
-            <div class="brand">域名服务</div>
-            <div class="menu">
-                <ul>
-                    <li class=""><span class="icon"></span>
-                        <div class="text">域名列表</div>
-                    </li>
-                    <li class=" "><span class="icon"></span>
-                        <div class="text">信息模板</div>
-                    </li>
-                    <li class=" "><span class="icon"></span>
-                        <div class="text">批量操作</div>
-                    </li>
-                    <li class=" "><span class="icon"></span>
-                        <div class="text">域名转入</div>
-                    </li>
-                    <li class="">
-                        <span class="icon"><i class="iconfont icon-arrLeft-fill"></i></span>
-                        <div class="text">我是卖家</div>
-                        <ul class="ng-scope ng-hide" >
-                            <li class="active"><span class="icon"></span><div class="text">我要卖域名</div></li>
-                            <li class=" "><span class="icon"></span><div class="text">批量操作</div></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="menu-box">
+                <div class="brand">域名服务</div>
+                <div class="menu">
+                    <ul>
+                        <li class=""><span class="icon"></span>
+                            <div class="text">域名列表</div>
+                        </li>
+                        <li class=" "><span class="icon"></span>
+                            <div class="text">信息模板</div>
+                        </li>
+                        <li class=" "><span class="icon"></span>
+                            <div class="text">批量操作</div>
+                        </li>
+                        <li class=" "><span class="icon"></span>
+                            <div class="text">域名转入</div>
+                        </li>
+                        <li class="">
+                            <span class="icon"><i class="iconfont icon-arrLeft-fill"></i></span>
+                            <div class="text">我是卖家</div>
+                            <ul class="ng-scope ng-hide" >
+                                <li class="active"><span class="icon"></span><div class="text">我要卖域名</div></li>
+                                <li class=" "><span class="icon"></span><div class="text">批量操作</div></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="toggle" id="my-close-left">
-                <div class="shape"></div>
-            </div>
-        </div>
-        <div class="content">
-            <div style="width: 100%;height: 1000px;background-color: red">
 
-            </div>
+            <div class="toggle" id="my-close-left"><div class="shape"></div></div>
+        </div>
+
+        <div class="content" style="background-color: #f2eeee;overflow: hidden">
+            {{--<iframe id="J_iframe" width="100%" height="100%" src="http://47.105.180.123/article/details/aid/59" frameborder="0" seamless=""></iframe>--}}
         </div>
     </div>
 </body>
 
 <script>
+
+    const  menuObj = {
+        config:[
+            {
+                itemname:'微信服务',
+                icon:'iconfont icon-menu',
+                href:"http://192.168.6.60/admin",
+                subelement:{
+                    brand:'微信管理',
+                    subMenu:[
+                        {
+                            itemname:'公众号管理',
+                            href:'',
+                            subMenu:[],
+                        },
+                        {
+                            itemname:'小程序管理',
+                            href:'',
+                            subMenu:[],
+                        }
+                    ]
+                },
+            }
+        ],
+        packMenu1:function(data,i){
+            let menu = this.config;
+            for (let i=0;i< menu.length;i++){
+                let top = i*40;
+                let data = menu[i];
+                let html = `<li class="product-item" data-itemid='${i}' style="transform: translate3d(0px,${top}px,0px);">
+                                <span class="product-item-icon-box">
+                                    <i class="${data.icon}"></i>
+                                </span>
+                                <a href="${data.href}" class="product-item-link" >
+                                    <span class="product-item-name">${data.itemname}</span>
+                                </a>
+                            </li>`;
+
+                $('.sidebar-products').append(html);
+            }
+        },
+        packMenu2:function(){
+
+        },
+        init(){
+            this.packMenu1()
+
+        }
+    };
+
+    menuObj.init();
+
     $('#my-close-left').on('click',function(){
         if($('#my-left-box').hasClass('collapse')){
             $('#my-left-box').removeClass('collapse')
