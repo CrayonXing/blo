@@ -37,16 +37,16 @@
         <em style="font-size: 12px;">Management System</em>
     </div>
 
-    <form class="layui-form larryms-form" onsubmit="return false;">
+    <form class="layui-form larryms-form" onsubmit="return false;" autocomplete="off">
         <dvi class="layui-form-item">
             <label class="larryms-label"><i class="iconfont icon-ai-user" style="color: white"></i></label>
-            <input type="text" id="fr-login-username" autocomplete="off" placeholder="请输入您的用户名" class="layui-input larry-input">
+            <input type="text" id="fr-login-username" autocomplete="off" placeholder="请输入您的用户名" class="layui-input larry-input" >
             <span class="validation"><i class="larry-icon larry-gou4"></i></span>
         </dvi>
 
         <dvi class="layui-form-item">
             <label class="larryms-label"><i class="iconfont icon-suo" style="color: white"></i></label>
-            <input type="password" id="fr-login-password" autocomplete="off" placeholder="请输入您的密码" class="layui-input larry-input">
+            <input type="password" id="fr-login-password" autocomplete="off" placeholder="请输入您的密码" class="layui-input larry-input" >
             <span class="validation"><i class="larry-icon larry-gou4"></i></span>
         </dvi>
 

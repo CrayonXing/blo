@@ -12,7 +12,6 @@ class IndexController extends Controller
      * @return string
      */
     public function index(Request $request){
-
-        return view('admin.layout.layout');
+        return view('admin.index.index');
     }
 }
