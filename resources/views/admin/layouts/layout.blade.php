@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/static/admin/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/static/admin/css/main.css">
     {{--自定义阿里字体库--}}
-    <link type="text/css" rel="stylesheet" href="//at.alicdn.com/t/font_1038155_n3nqkajp76.css">
+    <link type="text/css" rel="stylesheet" href="//at.alicdn.com/t/font_1038155_bvfj232ori.css">
 
     {{--框架css--}}
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/css/larry.css" media="all">
@@ -201,10 +201,26 @@
                         {{--product-item-active--}}
                         <li class="product-item" data-productid="ecs" style="transform: translate3d(0px, 0px, 0px);">
                             <span class="product-item-icon-box">
-                                <i class="iconfont icon-menu"></i>
+                                <i class="iconfont icon-quanxian"></i>
+                            </span>
+                            <a href="/admin" class="product-item-link">
+                                <span class="product-item-name">权限管理</span>
+                            </a>
+                        </li>
+                        <li class="product-item" data-productid="ecs" style="transform: translate3d(0px, 40px, 0px);">
+                            <span class="product-item-icon-box">
+                                <i class="iconfont icon-weixin"></i>
                             </span>
                             <a href="/admin/wechat/menu" class="product-item-link">
                                 <span class="product-item-name">微信管理</span>
+                            </a>
+                        </li>
+                        <li class="product-item" data-productid="ecs" style="transform: translate3d(0px, 80px, 0px);">
+                            <span class="product-item-icon-box">
+                                <i class="iconfont icon-wenzhangguanli1"></i>
+                            </span>
+                            <a href="/admin" class="product-item-link">
+                                <span class="product-item-name">文章管理</span>
                             </a>
                         </li>
                     </ul>

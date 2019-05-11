@@ -511,7 +511,6 @@
             let menuObj =  new Menu(menuJson);
         </script>
     </div>
-
 @endsection
 
 @push('scripts')
