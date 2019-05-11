@@ -11,13 +11,20 @@
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/console.css">
     <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_477590_n82storgbj.css">
+    <style>
+        .admin-title{
+            color: #FC9D9A !important;
+            font-family: "Times New Roman",Georgia,Serif;
+            font-size: 20px;
+        }
+    </style>
 <div class="layui-fluid">
     <div class="larry-container">
         <div class="layui-row layui-col-space15 larryms-data-top">
             <div class="larry-col-lg12 larry-col-md12 larry-col-sm12 larry-col-xs12">
                 <section class="larry-card">
                     <div class="larry-card-body">
-                        <p class="title p10"><cite style="font-size: 20px;color: #fd9370;">后台控制面板</cite></p>
+                        <p class="title p10"><cite class="admin-title">New博客后台管理主页</cite></p>
                     </div>
                 </section>
             </div>
@@ -44,7 +51,7 @@
                     <div class="layui-card-body countup">
                         <div class="left b">
                             <i class="larry-icon larry-shouru"></i>
-                            <p>新增用户</p>
+                            <p>文章总量</p>
                         </div>
                         <div class="right">
                             <i class="larry-icon larry-xiangshang2"></i>

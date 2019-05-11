@@ -37,7 +37,7 @@
     @stack('css')
 </head>
 
-<body  class="hasTopbar hasSidebar domain" style="padding-top: 50px; padding-left: 50px;">
+<body  class="hasTopbar hasSidebar domain" style="padding-top: 50px; padding-left: 50px;overflow: hidden;">
 <div id="console-bar">
     <div class="newblog-console-base-bar">
         <div class="console-base-container">
