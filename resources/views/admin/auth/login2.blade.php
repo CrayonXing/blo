@@ -4,13 +4,13 @@
     <title>New博客(管理系统)</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" type="text/css" href="/static/hAdmin/login/login2.css" tppabs="css/style.css"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1038155_qwh7wmvveo.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <style>
         .larry-btn-submit:active {
             background: rgba(31, 204, 188, 0.8) !important;
@@ -106,6 +106,7 @@
                 username:$.trim($('#fr-login-username').val()),
                 password:$.trim($('#fr-login-password').val()),
                 code    :$.trim($('#fr-login-code').val()),
+                '_token':'{{csrf_token()}}'
             };
 
             if(data.username == ''){
@@ -118,10 +119,29 @@
 
             $('.larry-btn-submit').text('登录中...');
 
-            setTimeout(function(){
-                $('.larry-btn-submit').text('立即登录');
-                obj.showError('登录密码错误');return;
-            },3000)
+            $.ajax({
+                url: "{{route('admin_login')}}",
+                type: 'post',
+                dataType: 'json',
+                data:data,
+                success: function (res) {
+                    if(res.code == 200){
+                        $('.larry-btn-submit').text('登录成功');
+                        obj.showError('登录成功');
+                        window.location.href = "{{route('admin')}}";
+                    }else if(res.code == 401){
+                        $('.larry-btn-submit').text('立即登录');
+                        obj.showError('验证码错误');
+                    }else{
+                        $('.larry-btn-submit').text('立即登录');
+                        obj.showError('登录密码错误');
+                    }
+                },
+                error:function(){
+                    $('.larry-btn-submit').text('立即登录');
+                    obj.showError('登录密码错误');
+                }
+            });
         }
     };
 

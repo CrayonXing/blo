@@ -40,11 +40,6 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
-
-        'backend' => [
-           \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-        ],
     ];
 
     /**
@@ -69,6 +64,7 @@ class Kernel extends HttpKernel
         'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
 
         'checkLogin' => \App\Http\Middleware\CheckLogin::class,
+        'admin.auth' => \App\Http\Middleware\AdminAuth::class,
     ];
 
     /**

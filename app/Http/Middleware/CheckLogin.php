@@ -13,8 +13,10 @@ class CheckLogin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$guard = null)
     {
+
+        dd($guard);
 
         if(!auth('web')->check()){
             if($request->ajax()){

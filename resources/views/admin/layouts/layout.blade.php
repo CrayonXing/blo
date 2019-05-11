@@ -7,31 +7,18 @@
     <title>New博客后台</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
+
     <link rel="stylesheet" href="/static/admin/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/static/admin/css/main.css">
-    <style>
-        .blog-logo{
-            font-family: "Times New Roman",Georgia,Serif;
-            font-size: 20px;
-        }
-
-        .content::-webkit-scrollbar {
-            width: 6px;
-            background-color: #F5F5F5;
-        }
-        .content::-webkit-scrollbar-thumb {
-            background-color: #999;
-        }
-        .content::-webkit-scrollbar-track {
-            background-color: #F5F5F5;
-        }
-
-        .product-all-wrapper:hover{
-            background-color: transparent !important;
-        }
-    </style>
-
+    {{--自定义阿里字体库--}}
     <link type="text/css" rel="stylesheet" href="//at.alicdn.com/t/font_1038155_n3nqkajp76.css">
+
+    {{--框架css--}}
+    <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/css/larry.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/larryms.css">
+    <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/font/fa/font-awesome.min.css" media="all">
+
 
 
     @stack('css')
@@ -185,7 +172,7 @@
                                 </ul>
                             </div>
                             <div class="topbar-user-footer">
-                                <a href="" target="_self" >退出管理控制台</a>
+                                <a href="{{route('admin_logout')}}" target="_self" >退出管理控制台</a>
                             </div>
                         </div>
                     </div>
