@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>微信菜单编辑 - demo</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <link rel="shortcut icon" href="favicon.ico"> 
+@extends('admin.layouts.layout')
 
+@section('left-sidebar')
+
+@endsection
+
+
+@section('content')
     <link href="{{asset('static/hAdmin/css/bootstrap.min.css?v=3.3.6')}}" rel="stylesheet">
     <link href="{{asset('static/hAdmin/css/font-awesome.min.css?v=4.4.0')}}" rel="stylesheet">
     <link href="{{asset('static/hAdmin/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('static/hAdmin/css/style.css?v=4.1.0')}}" rel="stylesheet">
+
     <style>
-    #cus-breadcrumb {
-        width: 100%;
-        padding: 10px;
-        margin: 0;
-    }
+        #cus-breadcrumb {
+            width: 100%;
+            padding: 10px;
+            margin: 0;
+        }
 
         .weixin-menu-setting{
             margin:0;
@@ -339,7 +338,7 @@
         }
 
         .checkbox-inline, .radio-inline {
-             padding-left: 0px !important;
+            padding-left: 0px !important;
         }
         .my-box{
             width: 600px;min-height: 100px;background: #f4f4f4;padding: 20px;border-radius: 5px;display: none;
@@ -348,83 +347,82 @@
             font-size: 28px !important;
         }
     </style>
-</head>
 
-<body class="gray-bg">
-    <div class="row white-bg" id="cus-breadcrumb">
-        <div class="col-sm-4">
-            <ul class="breadcrumb">
-                <li><a><i class="fa fa-home"></i> 主页</a></li>
-                <li>我的管理</li>
-                <li>日记案例管理</li>
-            </ul>
+
+    <div class="gray-bg">
+        <div class="row white-bg" id="cus-breadcrumb">
+            <div class="col-sm-4">
+                <ul class="breadcrumb">
+                    <li><a><i class="fa fa-home"></i> 控制台</a></li>
+                    <li>公众号菜单管理</li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="wrapper wrapper-content animated fadeInLeftBig">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="mobile-menu-preview">
-                    <div class="mobile-head-title">微琳医美</div>
-                    <ul class="menu-list" id="menu-list">
-                        <li class="add-item extra" id="add-item">
-                            <a href="javascript:;" class="menu-link" title="添加菜单">
-                                <i class="weixin-icon add-gray"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div style="margin-left: 337px;margin-right: 2px;padding: 0;margin: 0;margin-left: 337px; ">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="ibox" style="border-radius: 0;">
-                                <div class="ibox-content">
-                                    <div class="file-manager">
-                                        <h5 style="color: #f18a71;font-size: 14px;">温馨提示：</h5>
-                                        <div class="hr-line-dashed"></div>
-                                        <a href="javascript:void(0)" style="color: #b7b1b1;">
-                                            1、自定义菜单最多包括3个一级菜单，每个一级菜单最多包含5个二级菜单。<br/>
-                                            2、一级菜单最多4个汉字，二级菜单最多7个汉字，多出来的部分将会以“...”代替。<br/>
-                                            3、创建自定义菜单后，菜单的刷新策略是，在用户进入公众号会话页或公众号profile页时，如果发现上一次拉取菜单的请求在5分钟以前，就会拉取一下菜单，如果菜单有更新，就会刷新客户端的菜单。测试时可以尝试取消关注公众账号后再次关注，则可以看到创建后的效果。
-                                        </a>
-                                        <div class="clearfix"></div>
+        <div class="wrapper wrapper-content animated fadeInLeftBig">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="mobile-menu-preview">
+                        <div class="mobile-head-title">微琳医美</div>
+                        <ul class="menu-list" id="menu-list">
+                            <li class="add-item extra" id="add-item">
+                                <a href="javascript:;" class="menu-link" title="添加菜单">
+                                    <i class="weixin-icon add-gray"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="margin-left: 337px;margin-right: 2px;padding: 0;margin: 0;margin-left: 337px; ">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="ibox" style="border-radius: 0;">
+                                    <div class="ibox-content">
+                                        <div class="file-manager">
+                                            <h5 style="color: #f18a71;font-size: 14px;">温馨提示：</h5>
+                                            <div class="hr-line-dashed"></div>
+                                            <a href="javascript:void(0)" style="color: #b7b1b1;">
+                                                1、自定义菜单最多包括3个一级菜单，每个一级菜单最多包含5个二级菜单。<br/>
+                                                2、一级菜单最多4个汉字，二级菜单最多7个汉字，多出来的部分将会以“...”代替。<br/>
+                                                3、创建自定义菜单后，菜单的刷新策略是，在用户进入公众号会话页或公众号profile页时，如果发现上一次拉取菜单的请求在5分钟以前，就会拉取一下菜单，如果菜单有更新，就会刷新客户端的菜单。测试时可以尝试取消关注公众账号后再次关注，则可以看到创建后的效果。
+                                            </a>
+                                            <div class="clearfix"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="ibox" style="border-radius: 0;">
-                                <div class="ibox-content" style="padding: 15px;min-height: 400px;">
-                                    <h3 style="font-weight: 500;border-bottom: 1px solid #e7eaec;padding-bottom: 20px;">微信菜单编辑区域</h3>
-                                    <form class="form-horizontal" onsubmit="return false;">
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label" >标题</label>
-                                            <div class="col-sm-11">
-                                                <input type="text" class="form-control" style="width: 200px;" id="fr-menu-name">
+                                <div class="ibox" style="border-radius: 0;">
+                                    <div class="ibox-content" style="padding: 15px;min-height: 400px;">
+                                        <h3 style="font-weight: 500;border-bottom: 1px solid #e7eaec;padding-bottom: 20px;">微信菜单编辑区域</h3>
+                                        <form class="form-horizontal" onsubmit="return false;">
+                                            <div class="form-group">
+                                                <label class="col-sm-1 control-label" >标题</label>
+                                                <div class="col-sm-11">
+                                                    <input type="text" class="form-control" style="width: 200px;" id="fr-menu-name">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="hr-line-dashed"></div>
-                                        <div class="cus-menu-box form-group hidden">
-                                            <label class="col-sm-1 control-label">事件</label>
-                                            <div class="col-sm-11">
-                                                <label class="checkbox-inline"><input type="radio" value="click" name="type"> 发送消息</label>
-                                                <label class="checkbox-inline"><input type="radio" value="view" name="type"> 跳转网页</label>
-                                                <label class="checkbox-inline"><input type="radio" value="miniprogram" name="type"> 跳转小程序</label>
-                                                <label class="checkbox-inline"><input type="radio" value="scancode_push" name="type"> 扫码推</label>
-                                                <label class="checkbox-inline"><input type="radio" value="scancode_waitmsg" name="type"> 扫码推提示框</label>
-                                                <label class="checkbox-inline"><input type="radio" value="pic_sysphoto" name="type"> 拍照发图</label>
-                                                <label class="checkbox-inline"><input type="radio" value="pic_photo_or_album" name="type"> 拍照相册发图</label>
-                                                <label class="checkbox-inline"><input type="radio" value="pic_weixin" name="type"> 相册发图</label>
-                                                <label class="checkbox-inline"><input type="radio" value="location_select" name="type"> 地理位置选择</label>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="cus-menu-box form-group hidden">
+                                                <label class="col-sm-1 control-label">事件</label>
+                                                <div class="col-sm-11">
+                                                    <label class="checkbox-inline"><input type="radio" value="click" name="type"> 发送消息</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="view" name="type"> 跳转网页</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="miniprogram" name="type"> 跳转小程序</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="scancode_push" name="type"> 扫码推</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="scancode_waitmsg" name="type"> 扫码推提示框</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="pic_sysphoto" name="type"> 拍照发图</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="pic_photo_or_album" name="type"> 拍照相册发图</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="pic_weixin" name="type"> 相册发图</label>
+                                                    <label class="checkbox-inline"><input type="radio" value="location_select" name="type"> 地理位置选择</label>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="cus-menu-box hr-line-dashed hidden"></div>
+                                            <div class="cus-menu-box hr-line-dashed hidden"></div>
 
-                                        <div class="cus-menu-box form-group hidden">
-                                            <div class="col-sm-offset-1 col-sm-11">
-                                                <div class="my-box-type1 my-box">
-                                                    <h5 style="color: #d2cbcb">点击该子菜单会跳到以下小程序</h5>
-                                                    <div class="ibox-content" style="padding-bottom: 0px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-12">
+                                            <div class="cus-menu-box form-group hidden">
+                                                <div class="col-sm-offset-1 col-sm-11">
+                                                    <div class="my-box-type1 my-box">
+                                                        <h5 style="color: #d2cbcb">点击该子菜单会跳到以下小程序</h5>
+                                                        <div class="ibox-content" style="padding-bottom: 0px;">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
 
                                                                     <div class="form-group">
                                                                         <label>小程序ID:</label>
@@ -439,49 +437,50 @@
                                                                         <input type="text" placeholder="页面地址，当不支持小程序时会跳转此页面" class="form-control" id="fr-menu-url2">
                                                                     </div>
 
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="my-box-type2 my-box">
-                                                    <h5 style="color: #d2cbcb">点击该菜单会跳到以下链接</h5>
-                                                    <div class="ibox-content" style="padding-bottom: 0px;">
-                                                        <div class="row">
-                                                            <div class="col-sm-12">
+                                                    <div class="my-box-type2 my-box">
+                                                        <h5 style="color: #d2cbcb">点击该菜单会跳到以下链接</h5>
+                                                        <div class="ibox-content" style="padding-bottom: 0px;">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
 
                                                                     <div class="form-group">
                                                                         <label>页面地址:</label>
                                                                         <input type="text"  class="form-control" id="fr-menu-url">
                                                                     </div>
 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="my-box-type3 my-box">
+                                                        <h5 style="color: #d2cbcb">点击编辑资源信息</h5>
+                                                        <div style="width: 292px;height: 137px;background:white;margin: 0 auto;border: 1px dashed #f1e1e1;">
+                                                            <p style="margin: 0;height: 30px;line-height: 30px;background: #ebe7e7;text-align: center">资源名: <span id="resources-name">- -</span></p>
+                                                            <div style="width: 100%;cursor: pointer" id="fr-menu-resources">
+                                                                <p><i class="glyphicon glyphicon-plus" style="font-size: 26px;color: #91cdeb;margin-left: 136px;margin-top: 20px;"></i></p>
+                                                                <p style="text-align: center;color: #91cdeb">选择现有资源</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="my-box-type3 my-box">
-                                                    <h5 style="color: #d2cbcb">点击编辑资源信息</h5>
-                                                    <div style="width: 292px;height: 137px;background:white;margin: 0 auto;border: 1px dashed #f1e1e1;">
-                                                        <p style="margin: 0;height: 30px;line-height: 30px;background: #ebe7e7;text-align: center">资源名: <span id="resources-name">- -</span></p>
-                                                        <div style="width: 100%;cursor: pointer" id="fr-menu-resources">
-                                                            <p><i class="glyphicon glyphicon-plus" style="font-size: 26px;color: #91cdeb;margin-left: 136px;margin-top: 20px;"></i></p>
-                                                            <p style="text-align: center;color: #91cdeb">选择现有资源</p>
-                                                        </div>
-                                                    </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-1 col-sm-11" style="padding-left: 3px;">
+                                                    <button class="btn btn-info" id="fr-submit">保存并发布</span></button>
+                                                    <button class="btn btn-danger" id="fr-remove"> 移除菜单</button>
+                                                    <button class="btn btn-danger" onclick="menuObj.getSelectionData()"> 获取选中</button>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-1 col-sm-11" style="padding-left: 3px;">
-                                                <button class="btn btn-info" id="fr-submit">保存并发布</span></button>
-                                                <button class="btn btn-danger" id="fr-remove"> 移除菜单</button>
-                                                <button class="btn btn-danger" onclick="menuObj.getSelectionData()"> 获取选中</button>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </form>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -489,14 +488,23 @@
                 </div>
             </div>
         </div>
+
+        <!-- 全局js -->
+        <script src="{{asset('/static/hAdmin/js/jquery.min.js?v=2.1.4')}}"></script>
+        <script src="{{asset('/static/hAdmin/js/wechat-menu.js?v=2.1.4')}}"></script>
+        <script type="text/javascript">
+            var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]},{"type":"miniprogram","name":"跳转小程序","url":"http://47.105.180.123/admin","appid":"AKASDAS1A1S5FA1531DA","pagepath":"http://47.105.180.123","sub_button":[]},{"type":"view","name":"添加子菜单","url":"发送到","sub_button":[]}]}]}';
+            let menuObj =  new Menu(menuJson);
+        </script>
     </div>
 
-    <!-- 全局js -->
-    <script src="{{asset('/static/hAdmin/js/jquery.min.js?v=2.1.4')}}"></script>
-    <script src="{{asset('/static/hAdmin/js/wechat-menu.js?v=2.1.4')}}"></script>
-    <script type="text/javascript">
-        var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]},{"type":"miniprogram","name":"跳转小程序","url":"http://47.105.180.123/admin","appid":"AKASDAS1A1S5FA1531DA","pagepath":"http://47.105.180.123","sub_button":[]},{"type":"view","name":"添加子菜单","url":"发送到","sub_button":[]}]}]}';
-        let menuObj =  new Menu(menuJson);
-    </script>
-</body>
-</html>
+@endsection
+
+@push('scripts')
+
+@endpush
+
+
+
+
+
