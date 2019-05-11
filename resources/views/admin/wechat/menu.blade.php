@@ -1,16 +1,10 @@
 @extends('admin.layouts.layout')
 
-@section('left-sidebar')
-
-@endsection
-
-
-@section('content')
+@push('css')
     <link href="{{asset('static/hAdmin/css/bootstrap.min.css?v=3.3.6')}}" rel="stylesheet">
     <link href="{{asset('static/hAdmin/css/font-awesome.min.css?v=4.4.0')}}" rel="stylesheet">
     <link href="{{asset('static/hAdmin/css/animate.css')}}" rel="stylesheet">
     <link href="{{asset('static/hAdmin/css/style.css?v=4.1.0')}}" rel="stylesheet">
-
     <style>
         #cus-breadcrumb {
             width: 100%;
@@ -347,8 +341,28 @@
             font-size: 28px !important;
         }
     </style>
+@endpush
 
+@section('left-sidebar')
+    <div class="side" id="my-left-box">
+        <div class="brand">微信管理</div>
+        <div class="menu">
+            <ul>
+                <li class="active"><span class="icon"></span>
+                    <div class="text">公众号菜单设置</div>
+                </li>
+                <li class=" "><span class="icon"></span>
+                    <div class="text">小程序设置</div>
+                </li>
+            </ul>
+        </div>
+        <div class="toggle" id="my-close-left">
+            <div class="shape"></div>
+        </div>
+    </div>
+@endsection
 
+@section('content')
     <div class="gray-bg">
         <div class="row white-bg" id="cus-breadcrumb">
             <div class="col-sm-4">

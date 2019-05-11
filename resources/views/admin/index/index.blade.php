@@ -122,19 +122,6 @@
                 incomec.start();
                 UVc.start();
                 userc.start();
-
-
-                larryms.notice({
-                    msg: '消息通知：点我在选项卡中打开百度Echarts页面！',
-                    url: 'library/charts/echarts.html'
-                }, {
-                    action: 3,
-                    navid: 75,
-                    navgroup: 1,
-                    navtitle: "百度Echarts",
-                    navfont: "larry-icon",
-                    navicon: "larry-moxing"
-                });
             });
         });
     </script>
