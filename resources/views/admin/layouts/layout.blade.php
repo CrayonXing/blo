@@ -108,10 +108,10 @@
                                         <a href="/" title="基本资料" target="_target">基本资料</a>
                                     </li>
                                     <li class="topbar-user-entrance">
-                                        <a href="/" title="实名认证" target="_target">实名认证</a>
+                                        <a href="/" title="实名认证" target="_target">我的消息</a>
                                     </li>
                                     <li class="topbar-user-entrance">
-                                        <a href="/" title="安全设置" target="_target">安全设置</a>
+                                        <a href="/" title="安全设置" target="_target">密码设置</a>
                                     </li>
                                 </ul>
                             </div>
@@ -189,7 +189,7 @@
                     <div class="product-all">
                         <div class="product-all-wrapper">
                             <span class="product-all-icon-box">
-                                <i class="iconfont icon-kongzhitai1" style="color: #fff"></i>
+                                <i class="iconfont icon-kongzhitai1" style="color: deepskyblue"></i>
                             </span>
                             <span class="product-all-name"><a href="/admin" style="color: white">控制台</a></span>
                             <span class="newblog-sidebar-toolbar">
