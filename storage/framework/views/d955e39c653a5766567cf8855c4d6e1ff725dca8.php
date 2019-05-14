@@ -4,16 +4,17 @@
 
 
 <?php $__env->startSection('content'); ?>
-
-    <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/css/larry.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/console.css">
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_477590_n82storgbj.css">
+    <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/demo/library.css" media="all">
     <style>
         .admin-title{
             color: #FC9D9A !important;
             font-family: "Times New Roman",Georgia,Serif;
             font-size: 20px;
+        }
+
+        .new-article tbody tr {
+            border-bottom: 1px solid #e4eaec;
         }
     </style>
 <div class="layui-fluid">
@@ -54,7 +55,7 @@
                         <div class="right">
                             <i class="larry-icon larry-xiangshang2"></i>
                             <div class="p">
-                                <h3 id="incomeCounter">20,000</h3>
+                                <h3 id="incomeCounter">20000</h3>
                                 <cite>+50%同比增长</cite>
                             </div>
                         </div>
@@ -71,7 +72,7 @@
                         <div class="right">
                             <i class="larry-icon larry-xiangshang2"></i>
                             <div class="p">
-                                <h3 id="UVcounter">33,568</h3>
+                                <h3 id="UVcounter">33568</h3>
                                 <cite>+35%环比增长</cite>
                             </div>
                         </div>
@@ -83,12 +84,12 @@
                     <div class="layui-card-body countup">
                         <div class="left d">
                             <i class="larry-icon larry-zhifumaijia"></i>
-                            <p>会员</p>
+                            <p>会员总数</p>
                         </div>
                         <div class="right">
                             <i class="larry-icon larry-xiangshang2"></i>
                             <div class="p">
-                                <h3 id="userCounter">3,168</h3>
+                                <h3 id="userCounter">3168</h3>
                                 <cite>+30%同比增长</cite>
                             </div>
                         </div>
@@ -96,150 +97,115 @@
                 </section>
             </div>
         </div>
-
-        <div class="larryms-card layui-row layui-col-space15 larryms-products">
-            <!-- 常用板块 -->
-            <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
+        <div class="layui-row  layui-col-space15 larryms-echarts">
+            <div class="layui-col-lg6 layui-col-md6 layui-col-sm12 layui-col-xs12">
                 <section class="layui-card">
-                    <div class="layui-card-body ui-a" larry-tab="iframe" data-url='../html/uidemo/basics/larrymsbutton.html' data-icon="larry-anniu" data-font="larry-icon" data-id="153" data-group="2">
-                        <i class="larry-icon larry-jiemiansheji"></i>
-                        <cite class="layui-hide">LarryMS按钮</cite>
-                        <p>UI范例</p>
-                        <div class="label-content">
-                            <span class="label label-default label-outline">larry组件</span>
-                            <span class="label label-default label-outline">layui组件</span>
-                            <span class="label label-default label-outline">基本</span>
-                            <span class="label label-default label-outline">进阶</span>
-                            <span class="label label-default label-outline">布局</span>
+                    <div class="larryms-card-head">最新文章</div>
+                    <div class="layui-card-body" style="height: 350px;">
+                        <table class="layui-table new-article" lay-skin="nob">
+                            <thead>
+                            <tr>
+                                <th >昵称</th>
+                                <th >分类</th>
+                                <th>标题</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>吕**</td>
+                                <td>PHP</td>
+                                <td >Mysql中MVCC的使用及原理详解</td>
+                            </tr>
+                            <tr>
+                                <td>吕**</td>
+                                <td>MySQL</td>
+                                <td>mysql-基础-视图，存储过程，触发器</td>
+                            </tr>
+                            <tr>
+                                <td>吕**</td>
+                                <td>MySQL</td>
+                                <td>使用Nginx来代理运行于Swoole上的Laravel</td>
+                            </tr>
+                            <tr>
+                                <td>吕**</td>
+                                <td>MySQL</td>
+                                <td>iWatch</td>
+                            </tr>
+                            <tr>
+                                <td>吕**</td>
+                                <td>MySQL</td>
+                                <td>使用Nginx来代理运行于Swoole上的Laravel</td>
+                            </tr>
+                            <tr>
+                                <td>吕**</td>
+                                <td>MySQL</td>
+                                <td>iWatch</td>
+                            </tr>
+                            <tr>
+                                <td>吕**</td>
+                                <td>MySQL</td>
+                                <td>使用Nginx来代理运行于Swoole上的Laravel</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <div class="layui-col-lg6 layui-col-md6 layui-col-sm12 layui-col-xs12">
+                <section class="layui-card">
+                    <div class="layui-card-header">
+                        文章分类统计
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="larryms-charts-box" id="demo8" _echarts_instance_="ec_1557562003248"
+                             style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative; background: rgba(0, 0, 0, 0);">
+                            <div style="position: relative; overflow: hidden; width: 963px; height: 330px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
+                                <canvas data-zr-dom-id="zr_0" width="1203" height="412"
+                                        style="position: absolute; left: 0px; top: 0px; width: 963px; height: 330px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                            </div>
+                            <div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s; background-color: rgba(50, 50, 50, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font: 14px/21px &quot;Microsoft YaHei&quot;; padding: 5px; left: 150px; top: 140px;">
+                                搜索引擎细分 <br>谷歌 : 251 (16.21%)
+                            </div>
                         </div>
                     </div>
                 </section>
             </div>
-            <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                <section class="layui-card">
-                    <div class="layui-card-body ui-b" larry-tab="iframe" data-url='../html/library/charts/ani.html' data-icon="larry-donghua" data-font="larry-icon" data-id="78" data-group="1">
-                        <i class="larry-icon larry-js1"></i>
-                        <cite class="layui-hide">aniJS动画库</cite>
-                        <p>JS组件库</p>
-                        <div class="label-content">
-                            <span class="label label-default label-outline">动画库</span>
-                            <span class="label label-default label-outline">120+JS库</span>
-                            <span class="label label-default label-outline">编辑器</span>
-                            <span class="label label-default label-outline">2000+图标库</span>
-                            <span class="label label-default label-outline">用户自定义组件</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                <section class="layui-card">
-                    <div class="layui-card-body ui-c"  larry-tab="iframe" data-url='../html/use/notice.html' data-icon="larry-info" data-font="larry-icon" data-id="89" data-group="0">
-                        <i class="larry-icon larry-gailan"></i>
-                        <cite class="layui-hide">消息推送功能</cite>
-                        <p>框架基础功能示例</p>
-                        <div class="label-content">
-                            <span class="label label-default label-outline">消息通知</span>
-                            <span class="label label-default label-outline">分步表单</span>
-                            <span class="label label-default label-outline">tree</span>
-                            <span class="label label-default label-outline">表单生成器</span>
-                            <span class="label label-default label-outline">treeTable</span>
-                            <span class="label label-default label-outline">示例持续更新</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                <section class="layui-card">
-                    <div class="layui-card-body ui-f"   larry-tab="iframe" data-url='../html/larrycms/content/list.html' data-icon="larry-neirongguanli2" data-font="larry-icon" data-id="26" data-group="3">
-                        <i class="larry-icon larry-msnui-sys-report"></i>
-                        <cite class="layui-hide">所有文章列表</cite>
-                        <p>系统行业模板</p>
-                        <div class="label-content">
-                            <span class="label label-default label-outline">权限</span>
-                            <span class="label label-default label-outline">菜单</span>
-                            <span class="label label-default label-outline">CMS</span>
-                            <span class="label label-default label-outline">CRM</span>
-                            <span class="label label-default label-outline">OA</span>
-                            <span class="label label-default label-outline">微信公众</span>
-                            <span class="label label-default label-outline">200+模板页</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                <section class="layui-card">
-                    <div class="layui-card-body ui-e"  larry-tab="iframe" data-url='../html/library/charts/echarts.html' data-icon="larry-moxing" data-font="larry-icon" data-id="75" data-group="1">
-                        <i class="larry-icon larry-tubiao-zhuzhuangtu"></i>
-                        <cite class="layui-hide">百度Echarts</cite>
-                        <p>图表动画</p>
-                        <div class="label-content">
-                            <span class="label label-default label-outline">Echarts</span>
-                            <span class="label label-default label-outline">仪表盘</span>
-                            <span class="label label-default label-outline">svg动画</span>
-                            <span class="label label-default label-outline">scrolla动画</span>
-                            <span class="label label-default label-outline">炫酷CSS3</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="layui-col-xs12 layui-col-sm6 layui-col-md4 layui-col-lg2">
-                <section class="layui-card">
-                    <div class="layui-card-body ui-d" larry-tab="iframe" data-url='../html/general/scene/4041.html' data-icon="larry-lianxiren" data-font="larry-icon" data-id="171" data-group="3">
-                        <i class="larry-icon larry-changyongshili"></i>
-                        <cite class="layui-hide">404.1</cite>
-                        <p>页面示例</p>
-                        <div class="label-content">
-                            <span class="label label-default label-outline">相册</span>
-                            <span class="label label-default label-outline">400系列</span>
-                            <span class="label label-default label-outline">注册登录</span>
-                            <span class="label label-default label-outline">联系人</span>
-                            <span class="label label-default label-outline">H5场景</span>
-                            <span class="label label-default label-outline">60+常用页</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
         </div>
+
         <div class="layui-row layui-col-space15">
-            <!-- 升级购买 -->
-            <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg-12">
-                <section class="larryms-buy larry-bg-white larry-panel">
-                    <div class="larry-panel-header">
-                        <h3 class="larry-panel-title">LarryMS/LarryCMS获取授权流程</h3>
-                        <i class="larry-icon larry-guanbi1 close"></i>
+            <div class="layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
+                <section class="layui-card" data-step="4" data-intro="使用如此简单，当然这个仅仅是基本演示，如页面跳转，制作介绍教程比较实用" data-position="right">
+                    <div class="layui-card-header header-title library-tit">
+                        <h1 style="text-align: left;font-size: 16px;"  >服务器及PHP信息</h1>
                     </div>
-                    <div class="larry-panel-body">
-                        <div class="buy-content clearfix">
-                            <div class="layui-col-xs-12 layui-col-sm6 layui-col-md3 layui-col-lg3 buy-step step1">
-                                <div class="em nums">1</div>
-                                <div class="text">
-                                    <cite>购买</cite>
-                                    <span class="explain">选择您需要购买的产品及服务</span>
-                                </div>
-                            </div>
-                            <div class="layui-col-xs-12 layui-col-sm6 layui-col-md3 layui-col-lg3 buy-step step2 larry-bg-green">
-                                <div class="em nums">2</div>
-                                <div class="text">
-                                    <cite>付款</cite>
-                                    <span class="explain">官网在线支付费用</span>
-                                </div>
-                            </div>
-                            <div class="layui-col-xs-12 layui-col-sm6 layui-col-md3 layui-col-lg3 buy-step step3">
-                                <div class="em nums">3</div>
-                                <div class="text">
-                                    <cite>完成</cite>
-                                    <span class="explain">下载源码、索取发票</span>
-                                </div>
-                            </div>
-                            <div class="layui-col-xs-12 layui-col-sm6 layui-col-md3 layui-col-lg3 buy-step step4">
-                                <div class="em nums">4</div>
-                                <div class="text">
-                                    <cite>售后</cite>
-                                    <span class="explain">在线反馈、售后服务、加群交流</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="layui-card-body library-body" data-step="6" data-intro="好了，基本演示就到这里，丰富的示例请在框架开发者文档中查看,点击完成结束分步介绍！">
+                        <table cellspacing="1" cellpadding="3" style="overflow: auto">
+                            <tbody><tr>
+                                <th width="12%">服务器操作系统:</th>
+                                <td width="21%"><?php echo e($PHP_OS); ?></td>
+                                <th width="12%">Web 服务器:</th>
+                                <td width="21%"><?php echo e($server_software); ?></td>
+                                <th width="12%">PHP 版本:</th>
+                                <td width="21%"><?php echo e($PHP_VERSION); ?></td>
+                            </tr>
+                            <tr>
+                                <th>MySQL 版本:</th>
+                                <td><?php echo e($mysql_version); ?></td>
+                                <th>Laravel 版本:</th>
+                                <td>5.7</td>
+                                
+                                <th>文件上传限制:</th>
+                                <td><?php echo e($upload_max_filesize); ?></td>
+                            </tr>
+                            <tr>
+                                <th>时区设置:</th>
+                                <td><?php echo e($timezone); ?></td>
+                                <th></th>
+                                <td></td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            </tbody></table>
                     </div>
                 </section>
             </div>
@@ -248,7 +214,149 @@
 </div>
 
 <script type="text/javascript" src="/plugin/larryms/layui/layui.js"></script>
+    <script type="text/javascript">
+        layui.config({
+            base: '/plugin/larryms/',
+        }).extend({
+            larry: 'js/base'
+        }).use('larry',function(){
+            layui.use(['jquery','countup','larryms'], function() {
+                var $ = layui.$;
+                var countup = layui.countup;
+                var larryms = layui.larryms;
 
+                var UVc = new countup('UVcounter', 0, $('#UVcounter').text());
+                var incomec = new countup('incomeCounter', 0, $('#incomeCounter').text());
+                var orderc = new countup('orderCounter', 0, $('#orderCounter').text());
+                var userc = new countup('userCounter', 0, $('#userCounter').text());
+
+                orderc.start();
+                incomec.start();
+                UVc.start();
+                userc.start();
+
+            });
+
+            layui.use('echarts', function() {
+                var echarts = layui.echarts;
+
+                var options_demo8 = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    toolbox: {
+                        show: true,
+                        y: 'bottom',
+                        feature: {
+                            mark: {
+                                show: true
+                            },
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: true,
+                                type: ['line', 'bar', 'stack', 'tiled']
+                            },
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    legend: {
+                        data: ['PHP', 'Swoole', 'Web', 'Python', 'Linux', 'IT趣闻', 'Mysql', '其它']
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        splitLine: {
+                            show: false
+                        },
+                        data: ['5/05', '5/06', '5/07', '5/08', '5/09', '5/10', '5/11']
+                    }],
+                    yAxis: [{
+                        type: 'value',
+                        position: 'right'
+                    }],
+                    series: [{
+                        name: 'PHP',
+                        type: 'bar',
+                        data: [320, 332, 301, 334, 390, 330, 320]
+                    }, {
+                        name: 'Swoole',
+                        type: 'bar',
+                        tooltip: {
+                            trigger: 'item'
+                        },
+                        stack: '广告',
+                        data: [120, 132, 101, 134, 90, 230, 210]
+                    }, {
+                        name: 'Web',
+                        type: 'bar',
+                        tooltip: {
+                            trigger: 'item'
+                        },
+                        stack: '广告',
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    }, {
+                        name: 'Python',
+                        type: 'bar',
+                        tooltip: {
+                            trigger: 'item'
+                        },
+                        stack: '广告',
+                        data: [150, 232, 201, 154, 190, 330, 410]
+                    }, {
+                        name: 'Linux',
+                        type: 'bar',
+                        tooltip: {
+                            trigger: 'item'
+                        },
+                        stack: '广告',
+                        data: [150, 232, 201, 154, 190, 330, 410]
+                    },
+                        {
+                            name: 'IT趣闻',
+                            type: 'bar',
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            stack: '广告',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        },
+                        {
+                            name: 'Mysql',
+                            type: 'bar',
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            stack: '广告',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        },
+                        {
+                            name: '其它',
+                            type: 'bar',
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            stack: '广告',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        }
+                    ]
+                };
+
+                var demo8 = echarts.init(document.getElementById('demo8'), layui.echartStyle('larry'));
+
+                setTimeout(function() {
+                    demo8.setOption(options_demo8);
+                }, 350);
+            });
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('scripts'); ?>

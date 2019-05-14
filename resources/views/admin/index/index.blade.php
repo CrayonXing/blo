@@ -184,35 +184,28 @@
                         <table cellspacing="1" cellpadding="3" style="overflow: auto">
                             <tbody><tr>
                                 <th width="12%">服务器操作系统:</th>
-                                <td width="21%">WINNT (127.0.0.1)</td>
+                                <td width="21%">{{$PHP_OS}}</td>
                                 <th width="12%">Web 服务器:</th>
-                                <td width="21%">Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td>
+                                <td width="21%">{{$server_software}}</td>
                                 <th width="12%">PHP 版本:</th>
-                                <td width="21%">7.2.1</td>
+                                <td width="21%">{{$PHP_VERSION}}</td>
                             </tr>
                             <tr>
                                 <th>MySQL 版本:</th>
-                                <td>5.7.24</td>
-                                <th>安全模式:</th>
-                                <td>否</td>
-                                <th>安全模式GID:</th>
-                                <td>否</td>
+                                <td>{{$mysql_version}}</td>
+                                <th>Laravel 版本:</th>
+                                <td>5.7</td>
+                                
+                                <th>文件上传限制:</th>
+                                <td>{{$upload_max_filesize}}</td>
                             </tr>
                             <tr>
-                                <th>Socket 支持:</th>
-                                <td>是</td>
                                 <th>时区设置:</th>
-                                <td>Asia/Shanghai</td>
-                                <th>GD 版本:</th>
-                                <td>GD2 ( JPEG GIF PNG)</td>
-                            </tr>
-                            <tr>
-                                <th>Zlib 支持:</th>
-                                <td>是</td>
-                                <th>IP 库版本:</th>
-                                <td>20071024</td>
-                                <th>文件上传的最大大小:</th>
-                                <td>50M</td>
+                                <td>{{$timezone}}</td>
+                                <th></th>
+                                <td></td>
+                                <th></th>
+                                <td></td>
                             </tr>
                             </tbody></table>
                     </div>
@@ -243,6 +236,7 @@
                 incomec.start();
                 UVc.start();
                 userc.start();
+
             });
 
             layui.use('echarts', function() {
