@@ -34,7 +34,7 @@
                             <span class="blog-logo">N</span>
                         </a>
                         <a href="/" target="_self" class="console-link pull-left">
-                            <span>New博客后台管理s</span>
+                            <span>New博客后台管理</span>
                         </a>
                     </div>
                 </div>
