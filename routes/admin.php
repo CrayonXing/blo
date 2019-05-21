@@ -9,6 +9,8 @@ Route::group(['namespace'=>'Admin', 'middleware' => 'web'],function (){
     Route::get('/auth/code', function(){
         return json_encode(['img_url'=>Captcha::src()]);
     })->name('admin_auth_code');
+
+    Route::post('/cahnge-pwd','AuthController@changePwd')->name('admin_change_pwd')->middleware('admin.auth');
 });
 
 

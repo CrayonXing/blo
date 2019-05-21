@@ -29,7 +29,7 @@
     </style>
 </head>
 
-<body class="login-body">
+<body class="login-body" style="background: #51d2c6">
 <canvas class="pg-canvas" width="2048" height="590"></canvas>
 <div class="login pt-page-scaleUp">
     <div class="login-title">
@@ -82,7 +82,7 @@
 <script src="/static/hAdmin/login/jquery.js"></script>
 <script src="/static/hAdmin/login/Particleground.js"></script>
 <script>
-    $('body').particleground({dotColor: '#5cbdaa', lineColor: '#5cbdaa'});
+    // $('body').particleground({dotColor: '#5cbdaa', lineColor: '#5cbdaa'});
 
     $('.code-img img').on('click', function () {
         var _that = $(this);

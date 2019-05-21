@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Mews\Captcha\Facades\Captcha;
 
 class AuthController extends Controller
@@ -51,7 +52,6 @@ class AuthController extends Controller
 
     /**
      * Log the user out (Invalidate the token).
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
@@ -59,5 +59,32 @@ class AuthController extends Controller
         Auth::guard('admin')->logout();
 
         return redirect('/admin/login');
+    }
+
+    /**
+     * 修改密码接口
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changePwd(Request $request){
+        $oldPassword = $request->post('oldpwd','');
+        $newPassword = $request->post('newpwd','');
+
+        if(empty($oldPassword) || empty($newPassword)){
+            return response()->json(['code' => 301,'msg' => '请求参数错误错误']);
+        }
+
+        if (!\Hash::check($oldPassword,Auth::guard('admin')->user()->password)) {
+            return response()->json(['code' => 302,'msg' => '旧密码填写错误']);
+        }
+
+        $admin = Auth::guard('admin')->user();
+        $admin->password = bcrypt($newPassword);
+        $isTrue = $admin->save();
+        if($isTrue){
+            return response()->json(['code' => 200,'msg' => '密码修改成功']);
+        }
+
+        return response()->json(['code' => 305,'msg' => '密码修改失败']);
     }
 }

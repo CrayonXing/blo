@@ -544,7 +544,8 @@ body.reg { margin-top: 0px; }
     -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
     position: relative;
-    width: 260px; /*border-top: 2px solid #D8312A;*/
+    width: 260px;
+    /* border-top: 2px solid #D8312A; */
     height: 320px;
     position: absolute;
     left: 0;
@@ -553,12 +554,12 @@ body.reg { margin-top: 0px; }
     top: 0;
     bottom: 0;
     padding: 40px;
-    background: #35394a; /* Old browsers */
-    border-radius: 8px; /* FF3.6+ */
+    background: #35394a;
+    border-radius: 8px;
     background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #35394a), color-stop(100%, rgb(207, 157, 157)));
     background: -webkit-linear-gradient(230deg, rgba(53, 57, 74, 0) 0%, rgb(207, 157, 157) 100%);
-    background: linear-gradient(230deg, rgba(53, 57, 74, 0) 0%, rgb(207, 157, 157) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(53, 57, 74, 0)', endColorstr='rgb(0, 0, 0)', GradientType=1);  /* IE6-9 fallback on horizontal gradient */
+    background: linear-gradient(230deg, rgba(53, 57, 74, 0) 0%, rgb(50, 50, 50) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(53, 57, 74, 0)', endColorstr='rgb(0, 0, 0)', GradientType=1);
 }
 
 
@@ -572,9 +573,9 @@ body.reg { margin-top: 0px; }
 .login-body .larryms-form .larryms-label { display: block; width: 20px; height: 20px; text-align: center; line-height: 20px; position: absolute; z-index: 1; left: 6px; top: 10px; opacity: .5; }
 .login-body .larryms-form .larryms-label i.larry-icon { color: #fff; line-height: 20px; vertical-align: top; }
 .login-body .larryms-form  input[type='text'],
-.login-body .larryms-form input[type='password'] { color: #f2f2f2;  /*width: 190px;*/ margin-top: -2px; background: rgba(57, 61, 82, 0.8); left: 0;  /*padding: 10px 65px;*/ padding-left: 32px; border-top: none; border-bottom: none; border-right: none; border-left: none; outline: none; font-family: 'Gudea', sans-serif; box-shadow: none; }
+.login-body .larryms-form input[type='password'] { color: white;  /*width: 190px;*/ margin-top: -2px; background: rgba(57, 61, 82, 0.8); left: 0;  /*padding: 10px 65px;*/ padding-left: 32px; border-top: none; border-bottom: none; border-right: none; border-left: none; outline: none; font-family: 'Gudea', sans-serif; box-shadow: none; }
 .login-body .larryms-form input[type='password'],
-.login-body .larryms-form input[type='text'] { color: #61BFFF !important; }
+.login-body .larryms-form input[type='text'] { color: white !important; }
 .login-body .larryms-form  span.validation { display: block; position: absolute; z-index: 1; right: 10px; top: 8px; color: #fff; opacity: 0; }
 .login-body .larryms-form .larryms-code { margin-bottom: 30px; }
 .login-body .larryms-form .larryms-code input { width: 52%; }
@@ -588,7 +589,9 @@ body.reg { margin-top: 0px; }
     font-size: 12px; color: #c2c2c2; }
 .login-body .larryms-form  input:-ms-input-placeholder {	/* Internet Explorer 10+ */
     font-size: 12px; color: #c2c2c2; }
-.login-body .larryms-form .larry-btn-submit { display: block; width: 75%; height: 42px; line-height: 42px; margin: 0 auto; font-size: 16px; border-radius: 20px; background: rgba(0, 150, 136, 0.8); color: #f2f2f2; }
+
+.login-body .larryms-form .larry-btn-submit { display: block; width: 100%; height: 42px; line-height: 42px; margin: 0 auto; font-size: 16px;  background: rgba(19, 171, 157, 0.8); color: #f2f2f2; }
+
 .login-body .authent { box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55); display: none; background: #35394a;  /* Old browsers */  /* FF3.6+ */
 
     /* Chrome10+,Safari5.1+ */

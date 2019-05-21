@@ -7,9 +7,10 @@
     <title>New博客后台</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/static/admin/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/static/admin/css/main.css">
+
     {{--自定义阿里字体库--}}
     <link type="text/css" rel="stylesheet" href="//at.alicdn.com/t/font_1038155_bvfj232ori.css">
 
@@ -18,8 +19,6 @@
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/larryms.css">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/font/fa/font-awesome.min.css" media="all">
-
-
     @stack('css')
 </head>
 
@@ -96,7 +95,7 @@
                     </div>
 
                     <div class="pull-left topbar-info-item topbar-info-dropdown user-box">
-                        <a class="topbar-info-dropdown-toggle topbar-btn" rel="noopener noreferrer">
+                        <a class="topbar-info-dropdown-toggle topbar-btn" rel="noopener noreferrer" style="cursor: pointer">
                             <img class="topbar-user-avatar" src="/static/admin/css/default_handsome.jpg">
                         </a>
                         <div class="topbar-info-dropdown-memu topbar-info-dropdown-memu-list">
@@ -273,45 +272,55 @@
         @yield('content')
     </div>
 
-    <div class="dropdown-menu-list  pt-page-moveFromTop " id="change-pwd-box" style="display: none;margin: 0 auto;left: 0;right: 0;width: 430px;height: 330px;">
-        <h5>修改密码<span class="msg-clear-all" id="clearMsg" onclick="mainObj.closeChangeBox()">关闭</span></h5>
-        <div class="slimScrollDiv" style="height: 2100px;">
-            <div class="msg-box lslimscroll noti-scrol" style="overflow: hidden">
-                <div class="msg-item" >
-                    <div class="msg-icon larry-bg-info" >
-                        旧密码
+    <div class="dropdown-menu-list  pt-page-moveFromTop" id="change-pwd-box" style="display: none;margin: 0 auto;left: 0;right: 0;width: 430px;height: 330px;">
+        <div >
+            <h5 style="border-bottom: 1px solid #f7f2f2;">密码设置<span class="msg-clear-all" id="clearMsg" onclick="mainObj.closeChangeBox()">关闭</span></h5>
+            <div class="slimScrollDiv" style="height: 230px;">
+                <div class="msg-box" style="overflow: hidden">
+                    <p style="color: #e57b7b;padding-left: 92px;padding-top: 5px;padding-bottom: 5px;" id="fr-changepwd-err" class="hidden"><i class="iconfont icon-iconfontzhizuobiaozhun023132"></i> <span>密码不能为空</span></p>
+                    <div class="msg-item" >
+                        <div class="msg-icon"  style="color: #cccccc;width: 60px;">旧密码</div>
+                        <div class="msg-detail"  style="width: 290px;padding-top: 10px;">
+                            <input type="password" id="fr-changepwd-oldpwd"  class="form-control" maxlength="16"  style="border-radius: 0;border:1px solid #ccccff" placeholder="请输入旧密码">
+                        </div>
                     </div>
-                    <div class="msg-detail"  style="width: 315px;padding-top: 10px;">
-                        <input type="password" class="form-control"   style="border-radius: 0;border:1px solid #ccccff" placeholder="请输入旧密码">
+                    <div class="msg-item" >
+                        <div class="msg-icon"  style="color: #cccccc;width: 60px;">新密码</div>
+                        <div class="msg-detail"  style="width: 290px;padding-top: 10px;">
+                            <input type="password" id="fr-changepwd-newpwd" class="form-control" maxlength="16"  style="border-radius: 0;border:1px solid #ccccff" placeholder="请设置新密码">
+                        </div>
                     </div>
-                </div>
+                    <div class="msg-item" >
+                        <div class="msg-icon"  style="color: #cccccc;width: 60px;">确认密码</div>
+                        <div class="msg-detail"  style="width: 290px;padding-top: 10px;">
+                            <input type="password" id="fr-changepwd-newpwd2" class="form-control" maxlength="16"  style="border-radius: 0;border:1px solid #ccccff" placeholder="请再次输入新的密码">
+                        </div>
+                    </div>
 
-                <div class="msg-item" >
-                    <div class="msg-icon larry-bg-info" >
-                        新密码
-                    </div>
-                    <div class="msg-detail"  style="width: 315px;padding-top: 10px;">
-                        <input type="password" class="form-control" maxlength="16" style="border-radius: 0;border:1px solid #ccccff" placeholder="请设置新密码">
-                    </div>
-                </div>
-                <div class="msg-item" >
-                    <div class="msg-icon larry-bg-info" >
-                        确认密码
-                    </div>
-                    <div class="msg-detail"  style="width: 315px;padding-top: 10px;">
-                        <input type="password" class="form-control" maxlength="16"  style="border-radius: 0;border:1px solid #ccccff" placeholder="请再次输入新的密码">
-                    </div>
                 </div>
             </div>
+            <div class="fix-look"  id="viewMsg" style="border-top: 1px solid #f7f2f2;cursor: pointer;" onclick="mainObj.postChangePwd()">立即修改</div>
         </div>
-        <div class="fix-look"  id="viewMsg" style="border-top: 1px solid #f7f2f2;cursor: pointer;" onclick="mainObj.posChangePwd()">
-            立即修改
+
+        <div style="position: absolute;top: 0;left: -1px;width: 430px;height: 100%;background: rgba(237, 235, 235, 0.5);" id="fr-changepwd-loading" class="hidden">
+            <div style="margin-top: 150px;text-align: center">
+                <p><i class="fa-spin fa fa-spinner" style="color: #ff5722;font-size: 26px;"></i></p>
+                <p style="padding-top: 5px;">修改中...</p>
+            </div>
+
         </div>
     </div>
 </div>
 </body>
 
 <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 <script type="text/javascript">
     $('#my-close-left').on('click', function () {
         if ($('#my-left-box').hasClass('collapse')) {
@@ -337,10 +346,55 @@
             $('#change-pwd-box').show();
         },
         closeChangeBox(){
+            $('#fr-changepwd-err').addClass('hidden');
+            $('#fr-changepwd-oldpwd,#fr-changepwd-newpwd,#fr-changepwd-newpwd2').val('');
             $('#change-pwd-box').hide();
         },
-        posChangePwd(){
-            alert('此功能尚未开发')
+        changPwdLock:false,
+        postChangePwd(){
+            let data = {
+                oldpwd:$('#fr-changepwd-oldpwd').val(),
+                newpwd:$('#fr-changepwd-newpwd').val(),
+                newpwd2:$('#fr-changepwd-newpwd2').val()
+            };
+
+            if(data.oldpwd == ''){
+                $('#fr-changepwd-err').removeClass('hidden').find('span').text('请填写旧密码');return;
+            }else if(data.newpwd == ''){
+                $('#fr-changepwd-err').removeClass('hidden').find('span').text('请设置新密码');return;
+            }else if(data.newpwd2 == ''){
+                $('#fr-changepwd-err').removeClass('hidden').find('span').text('请再次填写新密码');return;
+            }else if(data.newpwd != data.newpwd2){
+                $('#fr-changepwd-err').removeClass('hidden').find('span').text('两次密码填写不一致');return;
+            }else{
+                $('#fr-changepwd-err').addClass('hidden');
+            }
+
+            if(this.changPwdLock){return;}
+            this.changPwdLock = true;
+            let _this = this;
+            $('#fr-changepwd-loading').removeClass('hidden');
+            $.ajax({
+                url: "{{route('admin_change_pwd')}}",
+                type: 'post',
+                dataType: 'json',
+                data:data,
+                success: function (res) {
+                    if(res.code == 200){
+                        $('#fr-changepwd-oldpwd,#fr-changepwd-newpwd,#fr-changepwd-newpwd2').val('');
+                        setTimeout(function(){
+                            $('#change-pwd-box').hide();
+                        },3000);
+                    }
+                    $('#fr-changepwd-err').removeClass('hidden').find('span').text(res.msg);
+                    _this.changPwdLock = false;
+                    $('#fr-changepwd-loading').addClass('hidden');
+                },
+                error:function(){
+                    _this.changPwdLock = false;
+                    $('#fr-changepwd-loading').addClass('hidden');
+                }
+            });
         }
     }
 </script>
