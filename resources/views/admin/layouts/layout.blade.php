@@ -111,7 +111,7 @@
                                         <a href="/" title="实名认证" target="_target">我的消息</a>
                                     </li>
                                     <li class="topbar-user-entrance">
-                                        <a href="/" title="安全设置" target="_target">密码设置</a>
+                                        <a  title="安全设置" onclick='mainObj.showChangeBox()'>密码设置</a>
                                     </li>
                                 </ul>
                             </div>
@@ -272,6 +272,42 @@
     <div class="content" style="padding: 2px 2px 5px 2px;border-left: 2px solid white;background-color: #f8f5f5">
         @yield('content')
     </div>
+
+    <div class="dropdown-menu-list  pt-page-moveFromTop " id="change-pwd-box" style="display: none;margin: 0 auto;left: 0;right: 0;width: 430px;height: 330px;">
+        <h5>修改密码<span class="msg-clear-all" id="clearMsg" onclick="mainObj.closeChangeBox()">关闭</span></h5>
+        <div class="slimScrollDiv" style="height: 2100px;">
+            <div class="msg-box lslimscroll noti-scrol" style="overflow: hidden">
+                <div class="msg-item" >
+                    <div class="msg-icon larry-bg-info" >
+                        旧密码
+                    </div>
+                    <div class="msg-detail"  style="width: 315px;padding-top: 10px;">
+                        <input type="password" class="form-control"   style="border-radius: 0;border:1px solid #ccccff" placeholder="请输入旧密码">
+                    </div>
+                </div>
+
+                <div class="msg-item" >
+                    <div class="msg-icon larry-bg-info" >
+                        新密码
+                    </div>
+                    <div class="msg-detail"  style="width: 315px;padding-top: 10px;">
+                        <input type="password" class="form-control" maxlength="16" style="border-radius: 0;border:1px solid #ccccff" placeholder="请设置新密码">
+                    </div>
+                </div>
+                <div class="msg-item" >
+                    <div class="msg-icon larry-bg-info" >
+                        确认密码
+                    </div>
+                    <div class="msg-detail"  style="width: 315px;padding-top: 10px;">
+                        <input type="password" class="form-control" maxlength="16"  style="border-radius: 0;border:1px solid #ccccff" placeholder="请再次输入新的密码">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fix-look"  id="viewMsg" style="border-top: 1px solid #f7f2f2;cursor: pointer;" onclick="mainObj.posChangePwd()">
+            立即修改
+        </div>
+    </div>
 </div>
 </body>
 
@@ -294,6 +330,19 @@
             $(this).removeClass('expand').find('.ng-scope').addClass('ng-hide')
         }
     });
+
+
+    let mainObj = {
+        showChangeBox(){
+            $('#change-pwd-box').show();
+        },
+        closeChangeBox(){
+            $('#change-pwd-box').hide();
+        },
+        posChangePwd(){
+            alert('此功能尚未开发')
+        }
+    }
 </script>
 
 @stack('scripts')
