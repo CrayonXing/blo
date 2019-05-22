@@ -184,7 +184,7 @@
 </div>
 
 <script type="text/javascript" src="/plugin/larryms/layui/layui.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
         layui.config({
             base: '/plugin/larryms/',
         }).extend({

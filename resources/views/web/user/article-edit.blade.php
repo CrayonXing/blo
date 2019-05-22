@@ -123,13 +123,12 @@
         .upload-container-error{
             display: none;float: left;line-height: 33px;padding-left: 10px;color: #ed9696;font-size: 16px;
         }
+
     </style>
     <article>
-        @include('web.layouts.web-main-left')
-
-        <div class="web-main-right">
+        <div class="web-main-right" style="width: 1200px;">
             <div class="web-main-breadcrumb">
-                <p><a>会员中心</a> <span>/</span> <a>添加(编辑文章)</a></p>
+                <p><a>New博客</a> <span>/</span> <a>添加(编辑文章)</a></p>
             </div>
             <div class="web-main-content">
                 <div class="newsview">
@@ -153,7 +152,7 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <div id="wang-editor"><?php echo htmlspecialchars_decode($info['content']);?></div>
+                                    <div id="wang-editor" style="min-height:300px;"><?php echo htmlspecialchars_decode($info['content']);?></div>
                                 </div>
 
                                 <div class="am-form-group">

@@ -196,12 +196,11 @@
                         </div>
                     </div>
                     <ul class="sidebar-products">
-                        {{--product-item-active--}}
                         <li class="product-item" data-productid="ecs" style="transform: translate3d(0px, 0px, 0px);">
                             <span class="product-item-icon-box">
                                 <i class="iconfont icon-quanxian"></i>
                             </span>
-                            <a href="/admin" class="product-item-link">
+                            <a href="/admin/rbac/admin-page" class="product-item-link">
                                 <span class="product-item-name">权限管理</span>
                             </a>
                         </li>

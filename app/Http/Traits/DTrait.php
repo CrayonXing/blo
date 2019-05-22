@@ -19,7 +19,6 @@ trait DTrait
         return (int)ceil((int)$total/(int)$page_size);
     }
 
-
     /**
      * 包装分页数据
      * @param array $rows        列表数据

@@ -1,8 +1,12 @@
 pre {
-    background-color: #23241f !important;
+    background-color: #424242 !important;
     color: #c2c2c2 !important;
 }
 
+
+.hljs {
+    background-color: #424242 !important;
+}
 
 .news_infos-reprint{
     color: #c6b4b2;margin-top: 20px;

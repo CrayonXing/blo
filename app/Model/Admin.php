@@ -27,7 +27,7 @@ class Admin extends \Illuminate\Foundation\Auth\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','created_at','updated_at'
     ];
 
     /**
@@ -45,11 +45,13 @@ class Admin extends \Illuminate\Foundation\Auth\User
     public function createAdmin(array $data){
         try {
             $isTrue  = self::create([
-                'name' => $data['name'],
+                'name' => $data['username'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'remember_token' => str_random(10),
-                'expiry_time'=>$this->_getExpiryTime()
+                'status'=>10,
+                'created_at'=>date('Y-m-d H:i:s'),
+                'updated_at'=>date('Y-m-d H:i:s')
             ]);
 
             if($isTrue){
@@ -63,9 +65,9 @@ class Admin extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * 获取管理员登录的过期时间
+     * 获取管理员数据
      */
-    private function _getExpiryTime(){
-        return date('Y-m-d H:i:s',strtotime('+30 day'));
+    public function getAdminList($page,$page_size,$params=[]){
+
     }
 }
