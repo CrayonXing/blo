@@ -80,7 +80,6 @@
 </div>
 
 <script src="/static/hAdmin/login/jquery.js"></script>
-<script src="/static/hAdmin/login/Particleground.js"></script>
 <script>
     // $('body').particleground({dotColor: '#5cbdaa', lineColor: '#5cbdaa'});
 

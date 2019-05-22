@@ -32,7 +32,7 @@
                         <a href="/" target="_blank" class="newblog-icon pull-left">
                             <span class="blog-logo">N</span>
                         </a>
-                        <a href="/" target="_self" class="console-link pull-left">
+                        <a class="console-link pull-left">
                             <span>New博客后台管理</span>
                         </a>
                     </div>
@@ -54,42 +54,41 @@
                         </div>
                     </div>
 
-                    {{--<div class="pull-left dropdown topbar-notice topbar-info-dropdown topbar-info-item message-box">--}}
-                    {{--<a  class="topbar-btn topbar-info-dropdown-toggle" href="/" target="_blank" rel="noopener noreferrer">--}}
-                    {{--<span class="topbar-btn-notice-title">消息<span class="topbar-btn-notice-num">0</span></span>--}}
-                    {{--</a>--}}
-                    {{--<div class="topbar-info-dropdown-memu topbar-info-dropdown-memu-list">--}}
-                    {{--<div class="topbar-notice-head">--}}
-                    {{--<strong>站内消息通知</strong><a href="/">消息接收管理</a>--}}
-                    {{--</div>--}}
-                    {{--<div class="topbar-notice-body">--}}
-                    {{--<ul class="topbar-notice-list">--}}
-                    {{--<li class="">--}}
-                    {{--<a href="/" target="_blank" class="clearfix" rel="noopener noreferrer">--}}
-                    {{--<p class="topbar-notice-item-name" title="企业安全无法保障？  员工办事效率低下？">企业安全无法保障？员工办事效率低下？</p>--}}
-                    {{--<p class="topbar-notice-item-time">2019-03-26 15:15</p>--}}
-                    {{--</a>--}}
-                    {{--</li>--}}
-                    {{--</ul>--}}
-                    {{--</div>--}}
-                    {{--<div class="topbar-notice-foot">--}}
-                    {{--<a class="topbar-notice-more" target="_blank" rel="noopener noreferrer" href="https://msc.console.newblog.com/#/innerMsg/unread/0">查看更多</a>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
+                    <div class="pull-left dropdown topbar-notice topbar-info-dropdown topbar-info-item message-box">
+                        <a class="topbar-btn topbar-info-dropdown-toggle" href="/" target="_blank"
+                           rel="noopener noreferrer">
+                            <span class="topbar-btn-notice-title">消息<span class="topbar-btn-notice-num">0</span></span>
+                        </a>
+                        <div class="topbar-info-dropdown-memu topbar-info-dropdown-memu-list">
+                            <div class="topbar-notice-head">
+                                <strong>站内消息通知</strong><a href="/">消息接收管理</a>
+                            </div>
+                            <div class="topbar-notice-body">
+                                <ul class="topbar-notice-list">
+                                    <li class="">
+                                        <a href="/" target="_blank" class="clearfix" rel="noopener noreferrer">
+                                            <p class="topbar-notice-item-name" title="企业安全无法保障？  员工办事效率低下？">
+                                                企业安全无法保障？员工办事效率低下？</p>
+                                            <p class="topbar-notice-item-time">2019-03-26 15:15</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="topbar-notice-foot">
+                                <a class="topbar-notice-more" target="_blank" rel="noopener noreferrer"
+                                   href="https://msc.console.newblog.com/#/innerMsg/unread/0">查看更多</a>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="pull-left topbar-info-item topbar-info-dropdown support-box ">
                         <a href="https://www.newblog.com/service" target="_blank"
-                           class="topbar-btn topbar-info-dropdown-toggle"><span>服务</span></a>
+                           class="topbar-btn topbar-info-dropdown-toggle"><span>关于我们</span></a>
                         <ul class="topbar-info-dropdown-memu topbar-info-dropdown-memu-list">
                             <li class="topbar-info-btn">
                                 <span class="topbar-info-btn-gap"></span>
-                                <a href="https://yq.newblog.com/articles" target="_blank"><span>博客</span></a>
-                            </li>
-                            <li class="topbar-info-btn">
-                                <span class="topbar-info-btn-gap"></span>
-                                <a href="https://mvp.newblog.com/zhidao/add" target="_blank"><span>社区求助</span></a>
+                                <a href="/" target="_blank"><span>New博客</span></a>
                             </li>
                         </ul>
                     </div>

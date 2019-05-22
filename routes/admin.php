@@ -16,7 +16,14 @@ Route::group(['namespace'=>'Admin', 'middleware' => 'web'],function (){
 
 
 Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],function (){
-	Route::get('/','IndexController@index')->name('admin');
+    Route::get('/','IndexController@index')->name('admin');
+    Route::get('/index-articlec-census','IndexController@articlecCensus')->name('admin');
+
+
+
+
+
+
 
 
     Route::get('/wechat/menu','WechatController@menu');

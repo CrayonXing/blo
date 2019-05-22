@@ -44,9 +44,6 @@ class ArticleController extends BaseController
             }
 
             $obj = DB::table('article')->where('id', '<>', $aid);
-
-
-//            dd($info['tag']);
             foreach ($info['tag'] as $tag){
                 $obj->where('tag', 'like', "%{$tag}%");
             }
