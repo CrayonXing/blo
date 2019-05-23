@@ -98,6 +98,6 @@ class RbacController extends Controller
     public function test(){
         $auth = new RbacAuth();
 
-        $auth->test();
+        $auth->removePermission(2);
     }
 }
