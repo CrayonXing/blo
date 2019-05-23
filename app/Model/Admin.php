@@ -1,11 +1,13 @@
 <?php
-
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Traits\DTrait;
 class Admin extends \Illuminate\Foundation\Auth\User
 {
+    use DTrait;
+
     /**
      * 关联到模型的数据表
      *
@@ -68,6 +70,13 @@ class Admin extends \Illuminate\Foundation\Auth\User
      * 获取管理员数据
      */
     public function getAdminList($page,$page_size,$params=[]){
+        $countObj = DB::table('admin');
+        $rowsObj = DB::table('admin');
 
+        $rowsObj->select('admin.id','admin.name','admin.email','admin.status','admin.created_at');
+
+
+        $rows = $rowsObj->forPage($page,$page_size)->get()->toArray();
+        return $this->packData($rows,$countObj->count('*'),$page,$page_size);
     }
 }

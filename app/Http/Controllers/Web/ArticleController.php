@@ -21,6 +21,9 @@ class ArticleController extends BaseController
     }
 
     public function details(int $aid,Request $request,Comment $comment){
+
+        DB::table('article')->where('id',$aid)->increment('visits');
+
         $info = Article::where('id',$aid)->first();
 
         $piece = [

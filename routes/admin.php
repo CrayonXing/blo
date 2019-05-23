@@ -30,10 +30,12 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
 Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],function (){
     Route::get('/rbac/admin-page','RbacController@adminMangePage')->name('rbac-admin-page');
     Route::get('/rbac/get-admin-api','RbacController@getAdminApi')->name('rbac-get-admin-api');
+    Route::post('/rbac/chage-admin-status-api','RbacController@chageAdminStatus')->name('rbac_chage_admin_status');
+    Route::post('/rbac/reset-admin-pwd','RbacController@resetAdminPassword')->name('rbac_reset_admin_pwd');
 
+    Route::get('/rbac/test','RbacController@test');
 
 
     Route::post('/rbac/admin-add-api','RbacController@adminAddApi')->name('rbac-admin-add-api');
     Route::get('/rbac/admin-edit-api','RbacController@adminEditApi')->name('rbac-admin-edit-api');
-
 });

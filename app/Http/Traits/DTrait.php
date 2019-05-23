@@ -33,7 +33,7 @@ trait DTrait
         return array_merge([
             'rows'          =>$rows,
             'page'          =>$page,
-            'page_total'    =>($page_size == 0?1:getPageTotal($total,$page_size)),
+            'page_total'    =>($page_size == 0?1:$this->getPageTotal($total,$page_size)),
             'total'         =>$total,
         ],$params);
     }

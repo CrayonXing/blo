@@ -19,6 +19,18 @@
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/larryms.css">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/font/fa/font-awesome.min.css" media="all">
+    <style>
+        .console-frame .side .brand{
+            background-color: rgba(0, 0, 0, 0.7);
+            font-family: "Times New Roman",Georgia,Serif;
+            color: #FFFFFF;
+
+        }
+
+        .pointer{
+            cursor: pointer;
+        }
+    </style>
     @stack('css')
 </head>
 
@@ -266,7 +278,7 @@
         </div>
     @show
 
-    <div class="content" style="padding: 2px 2px 5px 2px;border-left: 2px solid white;background-color: #f8f5f5">
+    <div class="content" style="padding: 2px 2px 5px 2px;background-color: #f8f5f5">
         @yield('content')
     </div>
 

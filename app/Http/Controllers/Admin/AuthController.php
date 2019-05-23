@@ -31,7 +31,7 @@ class AuthController extends Controller
             return response()->json(['code' => 401,'msg' => '验证码错误']);
         }
 
-        if(Auth::guard('admin')->attempt(['name'=>$request->post('username',''),'password'=>$request->post('password','')],true)){
+        if(Auth::guard('admin')->attempt(['name'=>$request->post('username',''),'password'=>$request->post('password',''),'status'=>10],true)){
             return response()->json(['code' => 200,'msg' => '登录成功...']);
         }
 

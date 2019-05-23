@@ -183,8 +183,12 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/plugin/larryms/layui/layui.js"></script>
-<script type="text/javascript">
+
+@endsection
+
+@push('scripts')
+    <script type="text/javascript" src="/plugin/larryms/layui/layui.js"></script>
+    <script type="text/javascript">
         layui.config({
             base: '/plugin/larryms/',
         }).extend({
@@ -261,8 +265,4 @@
             });
         });
     </script>
-@endsection
-
-@push('scripts')
-
 @endpush
