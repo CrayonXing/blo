@@ -247,7 +247,7 @@
 
             $('#admin-table-reload').on('click',function(){
                 adminListTable.reload({
-                    page: {curr: 1},
+                    page: false,
                     where:{}
                 });
             });
