@@ -23,15 +23,26 @@
         <div class="brand">权限管理</div>
         <div class="menu">
             <ul>
-                <li class="active"><span class="icon"></span>
-                    <div class="text">管理员管理</div>
-                </li>
-                <li class=" "><span class="icon"></span>
-                    <div class="text">角色管理</div>
-                </li>
-                <li class=" "><span class="icon"></span>
-                    <div class="text">权限管理</div>
-                </li>
+                <ul>
+                    <li class="active">
+                        <a href="/admin/rbac/admin-page" >
+                            <span class="icon"></span>
+                            <div class="text">管理员管理</div>
+                        </a>
+                    </li>
+                    <li  >
+                        <a href="/admin/rbac/role-page" >
+                            <span class="icon"></span>
+                            <div class="text">角色管理</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/rbac/permissions-page">
+                            <span class="icon"></span>
+                            <div class="text">权限管理</div>
+                        </a>
+                    </li>
+                </ul>
             </ul>
         </div>
         <div class="toggle" id="my-close-left">
@@ -49,7 +60,7 @@
             <div class="larryms-panel-body layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
                 <div class="larryms-tools">
                     <div class="layui-btn-group larryms-btn-group" style="background: none;">
-                        <button class="layui-btn layui-btn-sm layui-btn-warm" id="admin-table-reload"><i class="icon larry-icon larry-kuangjia_daohang_shuaxin"></i> 刷新</button>
+                        <button class="layui-btn layui-btn-sm layui-btn-warm" id="admin-table-reload" style="background-color: #77d9ed"><i class="icon larry-icon larry-kuangjia_daohang_shuaxin"></i> 刷新</button>
                         <button class="layui-btn layui-btn-sm layui-btn-warm" style="margin-left: 5px !important;"><i class="icon larry-icon larry-jia1"></i> 添加管理员</button>
                     </div>
                 </div>
@@ -80,7 +91,7 @@
     </script>
 
     <script type="text/html" id="resetPasswordHtml">
-        <div style="padding: 20px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">
+        <div style="padding: 20px;line-height: 22px;background-color: #ffffff;color: #9d8c8c;font-weight: 300;border-bottom: 1px solid #d7d7d7;">
             <form class="form-horizontal" id="changePasswordBox">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">操作令牌</label>
@@ -113,7 +124,7 @@
             var table = layui.table,larryms = layui.larryms;
 
             $(document).on('mouseover','.my-tips', function(){
-                layer.tips('点击可切换账号状态', this,{tips: 1}); //在元素的事件回调体中，follow直接赋予this即可
+                layer.tips('点击可切换账号状态', this,{tips: 2}); //在元素的事件回调体中，follow直接赋予this即可
             }).on('mouseout','.my-tips', function(){
                 layer.close(layer.tips());
             });
@@ -181,9 +192,9 @@
                     {field: 'created_at', title: '添加时间',width: 150,align: 'center'},
                     {field: 'id', title: '操作',toolbar: '#menuBar',width:200,align:'center'}
                 ]],
-                limit:20,
+                limit:100000,
                 limits: [20, 30, 50],
-                page: true,
+                page: false,
             });
 
             layui.table.on('tool(adminfilter)', function(obj){
@@ -241,6 +252,9 @@
                 });
             });
         });
+
+
+
     </script>
 @endpush
 

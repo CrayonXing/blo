@@ -11,6 +11,9 @@ Route::group(['namespace'=>'Admin', 'middleware' => 'web'],function (){
     })->name('admin_auth_code');
 
     Route::post('/cahnge-pwd','AuthController@changePwd')->name('admin_change_pwd')->middleware('admin.auth');
+
+
+    Route::get('/auth/power','AuthController@power')->name('admin_auth_power');
 });
 
 
@@ -20,7 +23,6 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
     Route::get('/index-articlec-census','IndexController@articlecCensus');
 
 
-
     Route::get('/wechat/menu','WechatController@menu');
 });
 
@@ -28,12 +30,20 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
  * RbacController 控制器分组
  */
 Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],function (){
-    Route::get('/rbac/admin-page','RbacController@adminMangePage')->name('rbac-admin-page');
+    Route::get('/rbac/admin-page','RbacController@adminMangePage')->name('rbac-admin-page')->middleware('admin.rbac');
     Route::get('/rbac/get-admin-api','RbacController@getAdminApi')->name('rbac-get-admin-api');
-    Route::post('/rbac/chage-admin-status-api','RbacController@chageAdminStatus')->name('rbac_chage_admin_status');
-    Route::post('/rbac/reset-admin-pwd','RbacController@resetAdminPassword')->name('rbac_reset_admin_pwd');
+    Route::post('/rbac/chage-admin-status-api','RbacController@chageAdminStatus')->name('rbac_chage_admin_status')->middleware('admin.rbac');
+    Route::post('/rbac/reset-admin-pwd','RbacController@resetAdminPassword')->name('rbac_reset_admin_pwd')->middleware('admin.rbac');
 
-    Route::get('/rbac/test','RbacController@test');
+    Route::get('/rbac/role-page','RbacController@roleMangePage')->name('rbac_role_page')->middleware('admin.rbac');
+    Route::get('/rbac/get-role-api','RbacController@getRoleApi')->name('rbac_get_role_api');
+    Route::post('/rbac/chage-role-status-api','RbacController@chageRoleStatus')->name('rbac_chage_role_status')->middleware('admin.rbac');
+    Route::post('/rbac/add-role-api','RbacController@createRoleApi')->name('rbac_create_role_api')->middleware('admin.rbac');
+
+
+    Route::get('/rbac/permissions-page','RbacController@permissionsMangePage')->name('rbac_permissions_page')->middleware('admin.rbac');
+    Route::get('/rbac/give-permissions-page','RbacController@givePermissionsPage')->name('rbac_give_permissions_page');
+    Route::post('/rbac/give-permissions-api','RbacController@givePermissionsApi')->name('rbac_give_permissions_api')->middleware('admin.rbac');
 
 
     Route::post('/rbac/admin-add-api','RbacController@adminAddApi')->name('rbac-admin-add-api');

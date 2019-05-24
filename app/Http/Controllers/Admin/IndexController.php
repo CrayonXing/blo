@@ -42,7 +42,6 @@ class IndexController extends Controller
     public function articlecCensus(){
         $rows = DB::table('category')->select('id','name')->get()->toArray();
 
-
         $series = [];
         $start_time = date('Y-m-d 00:00:00',strtotime('-6 days'));
         $end_time = date('Y-m-d 23:59:59');

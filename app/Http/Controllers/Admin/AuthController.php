@@ -74,4 +74,12 @@ class AuthController extends Controller
 
         return response()->json(['code' => 305,'msg' => '密码修改失败']);
     }
+
+
+    /**
+     * 暂无访问权限提示
+     */
+    public function power(){
+        return view('admin.auth.visit-power-page');
+    }
 }

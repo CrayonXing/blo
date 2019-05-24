@@ -2,11 +2,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Model\Admin;
+use App\Model\Rbac\Roles;
+use App\Model\Rbac\Permissions;
+
+use App\Model\Rbac\RolePermissions;
+use App\Helpers\Tree;
 
 use App\Model\Rbac\RbacAuth;
-use Illuminate\Http\Request;
 
-use App\Model\Admin;
 class RbacController extends Controller
 {
     /**
@@ -94,10 +99,132 @@ class RbacController extends Controller
         return response()->json(['code' => 305,'msg' =>'修改失败']);
     }
 
+    /**
+     * 角色管理页面
+     */
+    public function roleMangePage(){
+        return view('admin.rbac.role-mange-page');
+    }
 
-    public function test(){
-        $auth = new RbacAuth();
+    /**
+     * 获取角色数据接口
+     */
+    public function getRoleApi(Request $request,Roles $roles){
+        $page        = $request->get('page',1);
+        $page_size   = $request->get('limit',20);
+        $params      = [];
 
-        $auth->removePermission(2);
+        $data = $roles->getRoleList($page,$page_size,$params);
+        return response()->json(['code' =>200,'msg' =>'','data'=>$data]);
+    }
+
+    /**
+     * 修改角色状态
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function chageRoleStatus(Request $request){
+        $adminid = $request->post('id',0);
+        $status = $request->post('status',null);
+
+        if($adminid == 0 || !in_array($status,[0,10])){
+            return response()->json(['code' => 301,'msg' =>'请求参数错误']);
+        }
+
+        $res = Roles::where('id',$adminid)->update(['status' => $status]);
+        if($res){
+            return response()->json(['code' => 200,'msg' =>'修改成功']);
+        }
+        return response()->json(['code' => 305,'msg' =>'修改失败']);
+    }
+
+    /**
+     * 权限管理页面
+     */
+    public function permissionsMangePage(){
+        $rows = [];
+        if($data = Permissions::all()){
+            $rows = $data->toArray();
+        }
+
+        $tree = Tree::instance();
+        $tree->init($rows, 'pid');
+        $treeList = $tree->getTreeList($tree->getTreeArray(0), 'description');
+        return view('admin.rbac.permissions-mange-page',['treeList'=>$treeList]);
+    }
+
+    /**
+     * 分配权限页面
+     */
+    public function givePermissionsPage(Request $request){
+        $roleID = (int)$request->get('id',0);
+
+        $rows = [];
+        if($data = Permissions::select('id','pid','description as title')->get()){
+            $rows = $data->toArray();
+        }
+
+
+        $rolePermissions = RolePermissions::select('permissions_id')->where('role_id',$roleID)->get();
+        if($rolePermissions){
+            $rolePermissions = $rolePermissions->toArray();
+        }
+
+        $rolePermissions = array_column($rolePermissions,'permissions_id');
+
+        foreach ($rows as $k=>$row){
+            $rows[$k]['checked']= in_array($row['id'],$rolePermissions)?true:false;
+            $rows[$k]['open']=true;
+        }
+
+        $roleInfo = Roles::where('id',$roleID)->first();
+        return view('admin.rbac.give-permissions-page',['data'=>json_encode($rows),'roleInfo'=>$roleInfo]);
+    }
+
+    /**
+     * 分配权限接口
+     */
+    public function givePermissionsApi(Request $request,RbacAuth $rbacAuth){
+        $permission_ids  = $request->post('ids','');
+        $roleID          = (int)$request->post('roleID',0);
+
+        $permission_ids = trim($permission_ids,',');
+
+        if($roleID == 0 || empty($permission_ids)){
+            return response()->json(['code' => 301,'msg' =>'请求参数错误']);
+        }
+
+        $arr = explode(',',$permission_ids);
+        if($rbacAuth->roleGivePermissionTo($roleID,$arr)){
+            return response()->json(['code' => 200,'msg' =>'授权成功']);
+        }
+        return response()->json(['code' => 305,'msg' =>'授权失败']);
+    }
+
+    /**
+     * 添加或编辑角色
+     */
+    public function createRoleApi(Request $request,RbacAuth $rbacAuth){
+        $id     = (int)$request->post('id',0);
+        $name   = $request->post('name','');
+        $desc   = $request->post('desc','');
+        $status = $request->post('status',null);
+
+        if(empty($name) || empty($desc) || !in_array($status,[0,10])){
+            return response()->json(['code' => 301,'msg' =>'请求参数错误']);
+        }
+
+        if($id == 0){
+            if($rbacAuth->roleCreate($name,$desc,$status)){
+                return response()->json(['code' => 200,'msg' =>'角色添加成功']);
+            }
+            return response()->json(['code' => 302,'msg' =>'角色名已存在']);
+        }
+
+        if($rbacAuth->roleUpdate($id,$name,$desc,$status)){
+            return response()->json(['code' => 200,'msg' =>'角色添加成功']);
+        }
+
+        return response()->json(['code' => 302,'msg' =>'角色名已被他人使用']);
     }
 }

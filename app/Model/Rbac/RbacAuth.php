@@ -18,14 +18,15 @@ class RbacAuth
      * @param $routeAlias     请求地址路由别名
      * @return bool
      */
-    public function can($adminID,$routeAlias){
+    public static function can($adminID,$routeAlias){
         $isTrue = DB::table('admin_role')
             ->leftJoin('role_permissions','admin_role.role_id','=','role_permissions.role_id')
+            ->leftJoin('roles','roles.id','=','admin_role.role_id')
             ->leftJoin('permissions','role_permissions.permissions_id','=','permissions.id')
             ->where('admin_role.admin_id',$adminID)
+            ->where('roles.status',10)
             ->where('permissions.route',$routeAlias)
             ->exists();
-
         return $isTrue?true:false;
     }
 
@@ -61,11 +62,33 @@ class RbacAuth
      * @param $description   角色描述
      * @return bool
      */
-    public function roleCreate($name,$description){
+    public function roleCreate($name,$description,$status=10){
         try{
             $res = Roles::create([
-                'route'=>$name,
-                'description'=>$description
+                'name'         =>$name,
+                'description'   =>$description,
+                'status'        =>$status,
+                'created_at'    =>date('Y-m-d H:i:s')
+            ]);
+        }catch (\Exception $e){
+            return false;
+        }
+
+        return $res?true:false;
+    }
+
+    /**
+     * 更新角色
+     * @param $name          角色名称
+     * @param $description   角色描述
+     * @return bool
+     */
+    public function roleUpdate($role_id,$name,$description,$status=10){
+        try{
+            $res = Roles::where('id',$role_id)->update([
+                'name'          =>$name,
+                'description'   =>$description,
+                'status'        =>$status
             ]);
         }catch (\Exception $e){
             return false;
@@ -88,8 +111,8 @@ class RbacAuth
         DB::beginTransaction();
         try{
             if($info){
-                $info->adminRoles()->delete();
                 $info->permissions()->delete();
+                $info->adminRoles()->delete();
                 $info->delete();
             }
 
@@ -110,8 +133,8 @@ class RbacAuth
      */
     public function roleGivePermissionTo(int $roleId,array $permissionArr){
         $arr = [];
-        foreach ($permissionArr as $row){
-            $arr[] = ['role_id'=>$roleId,'permissions'=>$row['id']];
+        foreach ($permissionArr as $permissions_id){
+            $arr[] = ['role_id'=>$roleId,'permissions_id'=>$permissions_id];
         }
 
         DB::beginTransaction();

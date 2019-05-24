@@ -30,6 +30,18 @@
         .pointer{
             cursor: pointer;
         }
+
+        #my-left-box > .menu > li  a{
+            display: block;
+        }
+
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            background-color: #6ddddc !important;
+        }
+
+        .layui-table-page >div{
+            text-align: right !important;
+        }
     </style>
     @stack('css')
 </head>
