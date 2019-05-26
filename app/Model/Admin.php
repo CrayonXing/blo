@@ -60,9 +60,9 @@ class Admin extends \Illuminate\Foundation\Auth\User
                 return [true,'管理员添加成功...'];
             }
 
-            return [false,'登录名已存在...'];
+            return [false,'登录名或邮箱已被他人使用...'];
         } catch (\Exception $e) {
-            return [false,'登录名已存在...'];
+            return [false,'登录名或邮箱已被他人使用...'];
         }
     }
 

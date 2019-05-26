@@ -19,7 +19,7 @@ class AdminRbac
         $user  = auth('admin')->user();
         if($user->name !=='admin' && !RbacAuth::can($user->id,$request->path())){
             if($request->ajax()){
-                return response()->json(['code' => 403,'msg' => '暂无该访问权限!']);
+                return response()->json(['code' => 403,'msg' => '暂无此操作权限!']);
             }else{
                 return redirect(route('admin_auth_power'));
             }

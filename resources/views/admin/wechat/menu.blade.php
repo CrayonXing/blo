@@ -352,7 +352,7 @@
                     <div class="text">公众号菜单设置</div>
                 </li>
                 <li class=" "><span class="icon"></span>
-                    <div class="text">小程序设置</div>
+                    <div class="text">微信配置设置</div>
                 </li>
             </ul>
         </div>
@@ -377,7 +377,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="mobile-menu-preview">
-                        <div class="mobile-head-title">微琳医美</div>
+                        <div class="mobile-head-title">New博客</div>
                         <ul class="menu-list" id="menu-list">
                             <li class="add-item extra" id="add-item">
                                 <a href="javascript:;" class="menu-link" title="添加菜单">

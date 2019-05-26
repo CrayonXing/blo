@@ -899,6 +899,12 @@ layui.define(["jquery", "layer", "laytpl", "element", "configure"], function(e) 
                 } else {
                     return true
                 }
+            case "email":
+                if (!/^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/.test(e)) {
+                    return false
+                } else {
+                    return true
+                }
             default:
                 return false
         }

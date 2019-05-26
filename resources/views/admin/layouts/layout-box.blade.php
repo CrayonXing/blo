@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/font/fa/font-awesome.min.css" media="all">
     @stack('css')
+    <link type="text/css" rel="stylesheet" href="/static/admin/css/style-main.css">
 </head>
 
 <body>

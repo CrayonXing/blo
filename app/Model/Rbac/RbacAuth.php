@@ -152,20 +152,43 @@ class RbacAuth
 
     /**
      * 添加权限
-     * @param string $route           权限路由
-     * @param string $description     权限描述
-     * @param int $pid                权限父ID
+     * @param int $pid               权限父ID
+     * @param string $route          权限路由
+     * @param string $description    权限描述
+     * @param $type                  权限类型
      * @return bool
      */
-    public function permissionCreate(string $route,string $description,$pid=0){
+    public function permissionCreate($pid=0,string $route,string $description,$type){
         $res = Permissions::create([
             'pid'=>$pid,
             'route'=>$route,
-            'description'=>$description
+            'description'=>$description,
+            'type'=>$type
         ]);
 
         return $res?true:false;
     }
+
+    /**
+     * 编辑权限
+     * @param $id                    权限ID
+     * @param int $pid               权限父ID
+     * @param string $route          权限路由
+     * @param string $description    权限描述
+     * @param $type                  权限类型
+     * @return bool
+     */
+    public function permissionEdit($id,$pid=0,string $route,string $description,$type){
+        $res = Permissions::where('id',$id)->update([
+            'pid'=>$pid,
+            'route'=>$route,
+            'description'=>$description,
+            'type'=>$type
+        ]);
+
+        return $res?true:false;
+    }
+
 
     /**
      * 移除权限

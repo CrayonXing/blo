@@ -19,31 +19,9 @@
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/larryms.css">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/base.css" media="all">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/larry/font/fa/font-awesome.min.css" media="all">
-    <style>
-        .console-frame .side .brand{
-            background-color: rgba(0, 0, 0, 0.7);
-            font-family: "Times New Roman",Georgia,Serif;
-            color: #FFFFFF;
-
-        }
-
-        .pointer{
-            cursor: pointer;
-        }
-
-        #my-left-box > .menu > li  a{
-            display: block;
-        }
-
-        .layui-laypage .layui-laypage-curr .layui-laypage-em {
-            background-color: #6ddddc !important;
-        }
-
-        .layui-table-page >div{
-            text-align: right !important;
-        }
-    </style>
     @stack('css')
+
+    <link type="text/css" rel="stylesheet" href="/static/admin/css/style-main.css">
 </head>
 
 <body class="hasTopbar hasSidebar domain" style="padding-top: 50px; padding-left: 50px;overflow: hidden;">
@@ -142,59 +120,12 @@
                                     <li class="topbar-user-entrance">
                                         <a href="/" target="_target" rel="noopener noreferrer">
                                                 <span class="topbar-user-entrance-logo-box">
-                                                    <i class="topbar-user-entrance-logo icon-topbar-secure-control topbar-sidebar-secure-control"></i>
+                                                    <i class="iconfont icon-yanzhengma"></i>
                                                 </span>
                                             <span class="topbar-user-entrance-name">安全管控</span>
                                         </a>
                                     </li>
 
-                                    <li class="topbar-user-entrance">
-                                        <a href="https://ram.console.newblog.com/" target="_target"
-                                           rel="noopener noreferrer">
-                                                <span class="topbar-user-entrance-logo-box">
-                                                    <i class="topbar-user-entrance-logo icon-topbar-ram topbar-sidebar-ram1"></i>
-                                                </span>
-                                            <span class="topbar-user-entrance-name">访问控制</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="topbar-user-entrance">
-                                        <a href="https://ak-console.newblog.com/" target="_target"
-                                           rel="noopener noreferrer">
-                                                <span class="topbar-user-entrance-logo-box">
-                                                    <i class="topbar-user-entrance-logo icon-topbar-accesskeys topbar-sidebar-accesskeys"></i>
-                                                </span>
-                                            <span class="topbar-user-entrance-name">accesskeys</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="topbar-user-entrance">
-                                        <a href="https://club.newblog.com/#/growth?_k=ynjugy" target="_target"
-                                           rel="noopener noreferrer">
-                                                <span class="topbar-user-entrance-logo-box">
-                                                    <i class="topbar-user-entrance-logo icon-account topbar-sidebar-account"></i>
-                                                </span>
-                                            <span class="topbar-user-entrance-name">会员权益</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="topbar-user-entrance">
-                                        <a href="https://club.newblog.com/" target="_target" rel="noopener noreferrer">
-                                                <span class="topbar-user-entrance-logo-box">
-                                                    <i class="topbar-user-entrance-logo icon-account icon-score topbar-sidebar-score"></i>
-                                                </span>
-                                            <span class="topbar-user-entrance-name">会员积分</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="topbar-user-entrance">
-                                        <a href="https://promotion.newblog.com/ntms/yunparter/personal-center.html"
-                                           target="_target" rel="noopener noreferrer">
-                                                <span class="topbar-user-entrance-logo-box">
-                                                    <i class="topbar-user-entrance-logo icon-cps topbar-sidebar-cps topbar-sidebar-yundashi"></i>
-                                                </span>
-                                            <span class="topbar-user-entrance-name">推荐返利后台</span></a>
-                                    </li>
                                 </ul>
                             </div>
                             <div class="topbar-user-footer">
@@ -215,7 +146,7 @@
                             </span>
                             <span class="product-all-name"><a href="/admin" style="color: white">控制台</a></span>
                             <span class="newblog-sidebar-toolbar">
-                                <i class="topbar-sidebar-angle-right "></i>
+                                <i class="iconfont icon-shouqi"></i>
                             </span>
                         </div>
                     </div>

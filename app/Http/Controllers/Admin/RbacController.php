@@ -11,6 +11,7 @@ use App\Model\Rbac\RolePermissions;
 use App\Helpers\Tree;
 
 use App\Model\Rbac\RbacAuth;
+use Illuminate\Support\Facades\DB;
 
 class RbacController extends Controller
 {
@@ -33,12 +34,6 @@ class RbacController extends Controller
         return response()->json(['code' =>200,'msg' =>'','data'=>$data]);
     }
 
-    /**
-     * 管理员信息编辑接口
-     */
-    public function adminEditApi(Request $request,Admin $admin){
-
-    }
 
     /**
      * 添加管理员接口
@@ -100,6 +95,48 @@ class RbacController extends Controller
     }
 
     /**
+     * 管理员分配角色页面
+     */
+    public function giveRolePage(Request $request){
+        $id = $request->get('id');
+        $sqlObj = DB::table('roles')
+            ->select('roles.id','roles.name','roles.description','admin_role.admin_id')
+            ->leftJoin('admin_role', function ($join) use ($id) {
+                $join->on('admin_role.role_id','=','roles.id')->where('admin_role.admin_id', '=', $id);
+            })->get();
+
+        $data = [];
+        if($sqlObj){
+            $data = $sqlObj->toArray();
+        }
+
+        return view('admin.rbac.give-role-page',['roles'=>$data,'adminID'=>$id]);
+    }
+
+    /**
+     * 管理员分配角色接口
+     * @param Request $request
+     * @param RbacAuth $rbacAuth
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function giveRoleApi(Request $request,RbacAuth $rbacAuth){
+        $ids    = $request->post('ids','');
+        $adminID = (int)$request->post('adminID',0);
+
+        $ids = trim($ids,',');
+        if($adminID == 0 || empty($ids)){
+            return response()->json(['code' => 301,'msg' =>'请求参数错误']);
+        }
+
+        $arr = explode(',',$ids);
+        if($rbacAuth->adminGiveRole($adminID,$arr)){
+            return response()->json(['code' => 200,'msg' =>'授权成功']);
+        }
+
+        return response()->json(['code' => 305,'msg' =>'授权失败']);
+    }
+
+    /**
      * 角色管理页面
      */
     public function roleMangePage(){
@@ -150,7 +187,21 @@ class RbacController extends Controller
         $tree = Tree::instance();
         $tree->init($rows, 'pid');
         $treeList = $tree->getTreeList($tree->getTreeArray(0), 'description');
-        return view('admin.rbac.permissions-mange-page',['treeList'=>$treeList]);
+
+        $rows2 = [];
+        if($rows){
+            foreach($rows as $v){
+                if($v['type'] != 2){
+                    $rows2[] = $v;
+                }
+            }
+        }
+
+        $tree2 = Tree::instance();
+        $tree2->init($rows2, 'pid');
+        $tree2List = $tree2->getTreeList($tree2->getTreeArray(0), 'description');
+
+        return view('admin.rbac.permissions-mange-page',['treeList'=>$treeList,'select'=>$tree2List]);
     }
 
     /**
@@ -226,5 +277,30 @@ class RbacController extends Controller
         }
 
         return response()->json(['code' => 302,'msg' =>'角色名已被他人使用']);
+    }
+
+    public function editPermissionsApi(Request $request,RbacAuth $rbacAuth){
+        $id    = (int)$request->post('id',0);
+        $pid   = (int)$request->post('pid',0);
+        $name  = $request->post('name','');
+        $route = $request->post('route','');
+        $type  = $request->post('type',null);
+
+        if(empty($name) || empty($route) || !in_array($type,[0,1,2])){
+            return response()->json(['code' => 301,'msg' =>'请求参数错误']);
+        }
+        $type = intval($type);
+
+
+        if($id == 0){
+            $isTrue = $rbacAuth->permissionCreate($pid,$route,$name,$type);
+        }else{
+            $isTrue = $rbacAuth->permissionEdit($id,$pid,$route,$name,$type);
+        }
+
+        if($isTrue){
+            return response()->json(['code' => 200,'msg' =>'编辑成功']);
+        }
+        return response()->json(['code' => 305,'msg' =>'编辑失败']);
     }
 }

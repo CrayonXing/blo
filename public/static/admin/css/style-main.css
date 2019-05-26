@@ -1,0 +1,34 @@
+.console-frame .side .brand{
+    background-color: rgba(0, 0, 0, 0.7);
+    font-family: "Times New Roman",Georgia,Serif;
+    color: #FFFFFF;
+
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+#my-left-box > .menu > li  a{
+    display: block;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #6ddddc !important;
+}
+
+.layui-table-page >div{
+    text-align: right !important;
+}
+
+.radius-none{
+    border-radius: 0 !important;
+}
+
+.form-control{
+    border: 1px solid #93ecff !important;
+}
+
+.control-label{
+    font-weight: 400;
+}

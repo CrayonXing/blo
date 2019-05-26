@@ -15,6 +15,7 @@
     .new-article tbody tr {
         border-bottom: 1px solid #e4eaec;
     }
+    .layui-layer-btn-c a{border-radius: 0 !important;}
 </style>
 @endpush
 
@@ -38,7 +39,7 @@
             <li>
                 <a href="/admin/rbac/permissions-page">
                     <span class="icon"></span>
-                    <div class="text">权限管理</div>
+                    <div class="text">规则管理</div>
                 </a>
             </li>
         </ul>
@@ -59,7 +60,7 @@
             <div class="larryms-tools">
                 <div class="layui-btn-group larryms-btn-group" style="background: none;">
                     <button class="layui-btn layui-btn-sm layui-btn-warm" id="admin-table-reload" style="background-color: #77d9ed"><i class="icon larry-icon larry-kuangjia_daohang_shuaxin"></i> 刷新</button>
-                    <button class="layui-btn layui-btn-sm layui-btn-warm " style="margin-left: 5px !important;" id="create-role"><i class="icon larry-icon larry-jia1"></i> 添加角色</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-warm " style="margin-left: 5px !important;background-color: #ffa1a1" id="create-role"><i class="icon larry-icon larry-jia1"></i> 添加角色</button>
                 </div>
             </div>
 

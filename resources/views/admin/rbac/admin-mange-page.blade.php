@@ -1,8 +1,6 @@
 @extends('admin.layouts.layout')
 
 @push('css')
-
-    <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/larryms.css">
     <link rel="stylesheet" type="text/css" href="/plugin/larryms/css/admin/admin.css">
 
     <style>
@@ -15,6 +13,7 @@
         .new-article tbody tr {
             border-bottom: 1px solid #e4eaec;
         }
+        .layui-layer-btn-c a{border-radius: 0 !important;}
     </style>
 @endpush
 
@@ -39,7 +38,7 @@
                     <li>
                         <a href="/admin/rbac/permissions-page">
                             <span class="icon"></span>
-                            <div class="text">权限管理</div>
+                            <div class="text">规则管理</div>
                         </a>
                     </li>
                 </ul>
@@ -60,8 +59,8 @@
             <div class="larryms-panel-body layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
                 <div class="larryms-tools">
                     <div class="layui-btn-group larryms-btn-group" style="background: none;">
-                        <button class="layui-btn layui-btn-sm layui-btn-warm" id="admin-table-reload" style="background-color: #77d9ed"><i class="icon larry-icon larry-kuangjia_daohang_shuaxin"></i> 刷新</button>
-                        <button class="layui-btn layui-btn-sm layui-btn-warm" style="margin-left: 5px !important;"><i class="icon larry-icon larry-jia1"></i> 添加管理员</button>
+                        <button class="layui-btn layui-btn-sm" id="admin-table-reload" style="background-color: #77d9ed"><i class="icon larry-icon larry-kuangjia_daohang_shuaxin"></i> 刷新</button>
+                        <button class="layui-btn layui-btn-sm show-admin-box" style="margin-left: 5px !important;background-color: #ffa1a1" ><i class="icon larry-icon larry-jia1"></i> 添加管理员</button>
                     </div>
                 </div>
 
@@ -73,9 +72,6 @@
 
 @push('scripts')
     <script type="text/javascript" src="/plugin/larryms/layui/layui.js"></script>
-    <script type="text/html" id="menuBar">
-        <a href="" style="color: #77D9ED">编辑信息</a>
-    </script>
     <script type="text/html" id="statusBar">
         <div data-status="@{{ d.status }}" data-adminid="@{{ d.id }}" data-lock="false"  class="changeStatus">
             @{{# if(d.status == 10){ }}
@@ -85,11 +81,46 @@
             @{{# }}}
         </div>
     </script>
-
-    <script type="text/html" id="roleBar">
-        <span style="color: #77D9ED">查看角色</span>
+    <script type="text/html" id="TplAdmineBox">
+        <div style="width: 500px;height: 303px;overflow-y: auto;overflow-x: hidden;padding: 20px 20px 0 20px;">
+            <form class="form-horizontal" id="create-admin-from">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">登录账号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control radius-none" id="fr-admin-username" placeholder="请设置登录账号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">邮箱账号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control radius-none" id="fr-admin-email" placeholder="请设置邮箱账号">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">设置密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control radius-none" id="fr-admin-password" placeholder="请设置登录密码">
+                        <span class="help-block m-b-none">密码格式必须为8~16位字母+数字+特殊字符</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control radius-none" id="fr-admin-password2" placeholder="请再次输入登录密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <p style="height: 30px;line-height: 30px;color: #ed6565;display: none" id="fr-admin-tip"><i class="fa fa-exclamation-circle" style="font-size: 16px;"></i>&nbsp;<span>1351531351</span></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div style="text-align: center;border-top: 1px dashed #ccc;padding-top: 10px;">
+            <button type="button" class="btn btn-w-m btn-white radius-none close-admin-box" style="background-color: #ece8e8;color: #cebebe;">取消编辑</button>
+            <button type="button" class="btn btn-w-m btn-info radius-none submit-admin-box">立即添加</button>
+        </div>
     </script>
-
     <script type="text/html" id="resetPasswordHtml">
         <div style="padding: 20px;line-height: 22px;background-color: #ffffff;color: #9d8c8c;font-weight: 300;border-bottom: 1px solid #d7d7d7;">
             <form class="form-horizontal" id="changePasswordBox">
@@ -114,7 +145,6 @@
             </form>
         </div>
     </script>
-
     <script type="text/javascript">
         layui.config({
             base: '/plugin/larryms/',
@@ -130,10 +160,7 @@
             });
 
             $(document).on('click','.changeStatus',function(){
-                if($(this).data('lock')){
-                    return;
-                }
-
+                if($(this).data('lock')){return;}
                 $(this).html('<span><i class="fa fa-spinner fa-spin"></i></span>');
 
                 let _this = $(this);
@@ -176,21 +203,18 @@
                 text: {none: '暂无数据...'},
                 cols: [[
                     {field: 'name', title: '登录账号'},
+                    {field: 'email', title: '邮箱'},
                     {field: 'id', title: '登陆密码',width: 100,align: 'center',event:'resetPassword',templet:function(data){
                         return '<span class="larryms-status-blue" style="color: #77D9ED;cursor: pointer">重置密码</span>';
                     }},
-                    {field: 'email', title: '邮箱'},
                     {field: 'status',title: '账号状态',toolbar: '#statusBar',width: 100,align: 'center'},
                     {field: 'id',title: '在线状态',width: 100,align: 'center',templet:function(data){
-                            if(data.order_type == 1){
-                                return '<span class="larryms-status-blue">登录状态</span>';
-                            }else{
-                                return '<span class="larryms-status-gray">离线状态</span>';
-                            }
+                        return (data.order_type == 1)?'<span class="larryms-status-blue">登录状态</span>':'<span class="larryms-status-gray">离线状态</span>';
                     }},
-                    {field: 'id',title: '角色权限',templet: '#roleBar',width: 100,align: 'center'},
+                    {field: 'id',title: '角色权限',width: 120,align: 'center',event:'allocationRole',templet:function(data){
+                        return '<span class="larryms-status-blue" style="color: #77D9ED;cursor: pointer">查看/分配</span>';
+                    }},
                     {field: 'created_at', title: '添加时间',width: 150,align: 'center'},
-                    {field: 'id', title: '操作',toolbar: '#menuBar',width:200,align:'center'}
                 ]],
                 limit:100000,
                 limits: [20, 30, 50],
@@ -199,20 +223,86 @@
 
             layui.table.on('tool(adminfilter)', function(obj){
                 if(obj.event == 'resetPassword'){
-                    let adminId = obj.data.id;
+                    adminPageObj.resetPassword(obj.data.id);
+                }else if(obj.event == 'allocationRole'){
+                    adminPageObj.allocationRole(obj.data.id);
+                }
+            });
+
+            $('#admin-table-reload').on('click',function(){
+                adminListTable.reload({page: false,where:{}});
+            });
+
+            var adminPageObj = {
+                adminAddLock:false,
+                adminBoxIndex:null,
+                showAddAdminBox(){
+                    this.adminBoxIndex = layui.layer.open({
+                        type: 1,title:'添加管理员',closeBtn: 1,shadeClose: true,area: ['500px', '400px'],content: TplAdmineBox.innerHTML
+                    });
+                },
+                closeAdminBox(){
+                    layer.close(this.adminBoxIndex)
+                },
+                addAdmin(){
+                    let _this = this;
+                    let data = {
+                        username:$('#fr-admin-username').val(),
+                        email:$('#fr-admin-email').val(),
+                        password:$('#fr-admin-password').val(),
+                        password2:$('#fr-admin-password2').val(),
+                    };
+
+                    let pwdReg = /^(?![a-zA-z]+$)(?!\d+$)(?![!@#$%^&*]+$)(?![a-zA-z\d]+$)(?![a-zA-z!@#$%^&*]+$)(?![\d!@#$%^&*]+$)[a-zA-Z\d!@#$%^&*]+$/;
+                    if(data.username == ''){
+                        $('#fr-admin-tip').show().find('span').text('登陆账号不能为空');
+                    }else if(data.email == ''){
+                        $('#fr-admin-tip').show().find('span').text('重复密码输入错误');
+                    }else if(!larryms.isVerify(data.email,'email')){
+                        $('#fr-admin-tip').show().find('span').text('邮箱格式不正确');
+                    }else if(data.password == ''){
+                        $('#fr-admin-tip').show().find('span').text('登录密码不能为空');
+                    }else if(data.password.length < 8 || data.password.length >16  || !pwdReg.test(data.password)){
+                        $('#fr-admin-tip').show().find('span').text('登录密码格式设置不正确');
+                    }else if(data.password !== data.password2){
+                        $('#fr-admin-tip').show().find('span').text('重复密码输入错误');
+                    }else if(!this.adminAddLock){
+                        this.adminAddLock = true;
+                        delete data.password2;
+                        $('#fr-admin-tip').hide();
+                        $.ajax({
+                            url: "{{route('rbac_create_admin_api')}}",
+                            type: 'post',
+                            dataType: 'json',
+                            data:data,
+                            success: function (res) {
+                                _this.adminAddLock = false;
+                                if(res.code == 200){
+                                    layer.msg('添加管理员已成功');
+                                    _this.closeAdminBox();
+                                    adminListTable.reload({page: false,where:{}});
+                                }else {
+                                    layer.msg(res.msg)
+                                }
+                            },
+                            error:function(){
+                                _this.adminAddLock = false;
+                            }
+                        });
+                    }
+                },
+                resetPassword(adminId){
                     let index = layer.open({
-                        type: 1,title: false,closeBtn: false,area: '400px;',shade: 0.6,id: 'LAY_layuipro',resize: false,btn: ['放弃修改', '立即修改']
-                        ,btnAlign: 'c',moveType: 1,content: resetPasswordHtml.innerHTML
-                        ,btn1: function(){
-                            layer.close(index);
-                        }
-                        ,btn2: function(){
+                        type: 1,title: false,closeBtn: false,area: '400px;',shade: 0.6,id: 'LAY_layuipro',resize: false,btn: ['立即修改', '取消修改']
+                        ,btnAlign: 'c',moveType: 1,content: resetPasswordHtml.innerHTML,
+                        btn1: function(){
                             let pwd2 = $('#change-pwd2').val();
                             let data = {
                                 id:adminId,
                                 secretkey:$.trim($('#change-pwd-secretkey').val()),
                                 password:$('#change-pwd1').val(),
                             };
+
 
                             if(data.secretkey == ''){
                                 larryms.message('操作令牌不能为空');
@@ -238,23 +328,33 @@
                                     }
                                 });
                             }
-
-                            return false;
                         }
                     });
+                },
+                allocationRole(adminId){
+                    layer.open({
+                        title:'分配角色',
+                        type: 2,
+                        area: ['700px', '450px'],
+                        fixed: false, //不固定
+                        maxmin: false,
+                        content: '/admin/rbac/give-role-page?id='+adminId
+                    });
                 }
+            };
+
+            $('.show-admin-box').on('click',function(){
+                adminPageObj.showAddAdminBox();
             });
 
-            $('#admin-table-reload').on('click',function(){
-                adminListTable.reload({
-                    page: false,
-                    where:{}
-                });
+            $(document).on('click','.close-admin-box',function(){
+                adminPageObj.closeAdminBox();
+            });
+
+            $(document).on('click','.submit-admin-box',function(){
+                adminPageObj.addAdmin();
             });
         });
-
-
-
     </script>
 @endpush
 
