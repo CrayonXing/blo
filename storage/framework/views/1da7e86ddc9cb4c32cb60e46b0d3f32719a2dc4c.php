@@ -2,7 +2,7 @@
   
 <article>
   <h1 class="t_nav">
-    <span style="float: left;">您现在的位置是：首页 > 分类列表 > <?php echo e($category); ?> </span>
+    <span style="float: left;">导航栏：首页 > 分类列表 > <?php echo e($category); ?> </span>
     <span style="float: right;">不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span>
   </h1>
 
