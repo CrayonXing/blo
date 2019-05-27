@@ -69,6 +69,4 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
 
 
     Route::post('/wechat/wx-publish-menu-api','WechatController@publishMenuApi')->name('wx_publis_menu_api')->middleware('admin.rbac');
-
-
 });
