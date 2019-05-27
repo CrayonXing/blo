@@ -26,9 +26,6 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
 });
 
 
-
-
-
 /**
  * RbacController 控制器分组
  */
