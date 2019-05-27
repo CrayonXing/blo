@@ -212,7 +212,7 @@ function Menu(menuJsonStr){
             }else if(type == 'miniprogram'){
                 $('.my-box-type1').show();
             }else{
-                $('.my-box-type3').show();
+                // $('.my-box-type3').show();
             }
 
             $('.select-item').data('type',type);
