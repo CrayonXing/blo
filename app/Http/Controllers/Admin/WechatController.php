@@ -37,17 +37,28 @@ class WechatController extends Controller
         }
 
 
+<<<<<<< HEAD
         
 
         return view('admin.wechat.menu-page',['menuJson'=>json_encode($menuJson)]);
     }
+=======
+
+		return view('admin.wechat.menu-page',['menuJson'=>json_encode($menuJson)]);
+	}
+>>>>>>> 1e296baf3dae1fa12d8aa24202091ce9c3764e9b
 
     /**
      * 微信菜单发布接口
      */
+<<<<<<< HEAD
     public function publishMenuApi(Request $request){
 
         $menu = $request->post('menuJson','');
+=======
+	public function publishMenuApi(Request $request){
+	    $menu = $request->post('menuJson','');
+>>>>>>> 1e296baf3dae1fa12d8aa24202091ce9c3764e9b
         $config = DB::table('config')->where('config_name','wechat_conf')->first();
         $data = [];
         if($config){
@@ -61,12 +72,15 @@ class WechatController extends Controller
         ];
 
         $app = Factory::officialAccount($config);
-
         $data = json_decode($menu,true);
 
-        $result = $app->menu->create($data['button']);
-        if($result['errcode'] == 0){
-            return response()->json(['code' => 200,'msg' =>'菜单发布成功']);
+        try{
+            $result = $app->menu->create($data['button']);
+            if($result['errcode'] == 0){
+                return response()->json(['code' => 200,'msg' =>'菜单发布成功']);
+            }
+        }catch (\Exception $e){
+            return response()->json(['code' => 305,'msg' =>"发布失败: 错误描述 [{$e->getMessage()}]"]);
         }
 
         return response()->json(['code' => 305,'msg' =>"发布失败: 错误码[{$result['errcode']}]-错误描述[{$result['errmsg']}]"]);
