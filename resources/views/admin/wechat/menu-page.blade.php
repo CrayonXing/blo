@@ -505,25 +505,40 @@
 
 @push('scripts')
     <script src="{{asset('/static/admin/js/wechat-menu.js?v=2.1.4')}}"></script>
-
+    <script type="text/javascript" src="/plugin/larryms/layui/layui.js"></script>
     <script type="text/javascript">
-        var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]},{"type":"miniprogram","name":"跳转小程序","url":"http://47.105.180.123/admin","appid":"AKASDAS1A1S5FA1531DA","pagepath":"http://47.105.180.123","sub_button":[]},{"type":"view","name":"添加子菜单","url":"发送到","sub_button":[]}]}]}';
-        let menuObj =  new Menu(menuJson);
 
-        menuObj.saveRelease = function(){
-            let data = this.getReleaseData();
-            $.ajax({
-                url: "{{route('wx_publis_menu_api')}}",
-                type: 'post',
-                dataType: 'json',
-                data:{menuJson:JSON.stringify(data)},
-                success: function (res) {
+        var menuJson = '<?php echo $menuJson;?>';
 
-                },
-                error:function(){
+        // var menuJson = '{"button":[{"name":"一级菜单","sub_button":[{"type":"click","name":"活动一","key":"key|","sub_button":[]},{"type":"click","name":"活动二","key":"key|","sub_button":[]},{"type":"view","name":"活动三","url":"http://172.16.100.85/weixin","sub_button":[]}]},{"name":"官网","sub_button":[{"type":"view","name":"微信端","url":"http://172.16.100.85/weixin","sub_button":[]},{"type":"click","name":"PC端","key":"key|","sub_button":[]}]},{"name":"网站","sub_button":[{"type":"view","name":"百度网站","url":"https://news.baidu.com/","sub_button":[]},{"type":"view","name":"新浪新闻","url":"https://news.sina.com.cn/","sub_button":[]},{"type":"view","name":"腾讯新闻","url":"https://news.qq.com/","sub_button":[]},{"type":"miniprogram","name":"跳转小程序","url":"http://47.105.180.123/admin","appid":"AKASDAS1A1S5FA1531DA","pagepath":"http://47.105.180.123","sub_button":[]},{"type":"view","name":"添加子菜单","url":"发送到","sub_button":[]}]}]}';
 
-                }
-            });
-        }
+        layui.config({
+            base: '/plugin/larryms/',
+        }).extend({
+            larry: 'js/base'
+        }).use(['larry','larryms'],function(){
+            let larryms = layui.larryms;
+
+            let menuObj =  new Menu(menuJson);
+            menuObj.saveRelease = function(){
+                let data = this.getReleaseData();
+                $.ajax({
+                    url: "{{route('wx_publis_menu_api')}}",
+                    type: 'post',
+                    dataType: 'json',
+                    data:{menuJson:JSON.stringify(data)},
+                    success: function (res) {
+                        if(res.code == 200){
+                            larryms.notice({msg:"菜单发布成功...",msgtype:'success',bgcolor:'#77d9ed'});
+                        }else{
+                            larryms.notice({msg:res.msg,msgtype:'danger'});
+                        }
+                    },
+                    error:function(){
+                        larryms.notice({msg:"网络错误，请稍后再试...",msgtype:'danger'});
+                    }
+                });
+            }
+        });
     </script>
 @endpush
