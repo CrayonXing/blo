@@ -6,7 +6,7 @@
 
 <?php $__env->startSection('content'); ?>
 <article>
-      <h1 class="t_nav"><span style="float: left;">您现在的位置是：<a href="/">首页</a> > 文章详情 > <?php echo e($info['title']); ?></span></h1>
+      <h1 class="t_nav"><span style="float: left;">导航栏：<a href="/">首页</a> > 文章详情 > <?php echo e($info['title']); ?></span></h1>
 
       <div class="infos">
         <div class="newsview">
