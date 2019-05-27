@@ -20,6 +20,8 @@ class WechatController extends Controller
      * 微信菜单发布接口
      */
 	public function publishMenuApi(Request $request){
+
+	    $menu = $request->post('menuJson','');
         $config = DB::table('config')->where('config_name','wechat_conf')->first();
         $data = [];
         if($config){
@@ -33,8 +35,13 @@ class WechatController extends Controller
         ];
 
         $app = Factory::officialAccount($config);
-        $list = $app->menu->list();
-        dd($list);
+
+        $result = $app->menu->create(json_decode($menu,true));
+        if($result['errcode'] == 0){
+            return response()->json(['code' => 200,'msg' =>'菜单发布成功']);
+        }
+
+        return response()->json(['code' => 305,'msg' =>"发布失败: 错误码[{$result['errcode']}]-错误描述[{$result['errmsg']}]"]);
     }
 
     /**

@@ -145,9 +145,6 @@ function Menu(menuJsonStr){
                 menuJson.button.push(_this.getItemJson(currentMenuItem));
             }
         });
-
-        console.log(menuJson);
-        console.log(JSON.stringify(menuJson));
         return menuJson;
     };
 
@@ -237,7 +234,7 @@ function Menu(menuJsonStr){
         $('#fr-menu-resources').on('click',function(){
             // alert('此功能暂未开放');
         });
-    }
+    };
 
     this.init();
 }
