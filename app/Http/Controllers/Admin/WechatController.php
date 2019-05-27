@@ -36,8 +36,6 @@ class WechatController extends Controller
             $menuJson = [];
         }
 
-
-
 		return view('admin.wechat.menu-page',['menuJson'=>json_encode($menuJson)]);
 	}
 
