@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" type="text/css" href="/static/hAdmin/login/login2.css" tppabs="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/login2.css" tppabs="css/style.css"/>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1038155_qwh7wmvveo.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <style>
@@ -79,10 +79,8 @@
     <span style="color: #c8c8c8">asdfanskdnf </span>
 </div>
 
-<script src="/static/hAdmin/login/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script>
-    // $('body').particleground({dotColor: '#5cbdaa', lineColor: '#5cbdaa'});
-
     $('.code-img img').on('click', function () {
         var _that = $(this);
         $.ajax({

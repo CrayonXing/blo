@@ -163,7 +163,7 @@
                             <span class="product-item-icon-box">
                                 <i class="iconfont icon-weixin"></i>
                             </span>
-                            <a href="/admin/wechat/menu" class="product-item-link">
+                            <a href="/admin/wechat/wx-conf-page" class="product-item-link">
                                 <span class="product-item-name">微信管理</span>
                             </a>
                         </li>

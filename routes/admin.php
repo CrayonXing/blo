@@ -27,14 +27,6 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
 
 
 
-/**
- * WechatController 控制器分组
- */
-Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],function (){
-    Route::get('/wechat/menu','WechatController@menu');
-});
-
-
 
 
 /**
@@ -58,4 +50,25 @@ Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],functi
     Route::get('/rbac/give-permissions-page','RbacController@givePermissionsPage')->name('rbac_give_permissions_page');
     Route::post('/rbac/give-permissions-api','RbacController@givePermissionsApi')->name('rbac_give_permissions_api')->middleware('admin.rbac');
     Route::post('/rbac/edit-permissions-api','RbacController@editPermissionsApi')->name('rbac_edit_permissions_api')->middleware('admin.rbac');
+});
+
+
+
+
+
+
+
+/**
+ * WechatController 控制器分组
+ */
+Route::group(['namespace'=>'Admin', 'middleware' => ['web','admin.auth']],function (){
+    Route::get('/wechat/menu-page','WechatController@menu');
+
+    Route::get('/wechat/wx-conf-page','WechatController@wxConfPage')->name('wx_conf_page')->middleware('admin.rbac');
+    Route::post('/wechat/wx-conf-api','WechatController@wxConfApi')->name('wx_conf_api')->middleware('admin.rbac');
+
+
+    Route::get('/wechat/wx-publish-menu-api','WechatController@publishMenuApi')->name('wx_publis_menu_api')->middleware('admin.rbac');
+
+
 });

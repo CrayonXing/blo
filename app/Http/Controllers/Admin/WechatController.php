@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use EasyWeChat\Factory;
 
 class WechatController extends Controller
 {
@@ -11,13 +13,63 @@ class WechatController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
 	public function menu(){
-		return view('admin.wechat.menu');
+		return view('admin.wechat.menu-page');
 	}
 
     /**
      * 微信菜单发布接口
      */
-	public function menuPublish(Request $request){
+	public function publishMenuApi(Request $request){
+        $config = DB::table('config')->where('config_name','wechat_conf')->first();
+        $data = [];
+        if($config){
+            $data = json_decode($config->config_params,true);
+        }
 
+        $config = [
+            'app_id' => $data['wxPublicAppID'],
+            'secret' => $data['wxPublicAppSecret'],
+            'response_type' => 'array',
+        ];
+
+        $app = Factory::officialAccount($config);
+        $list = $app->menu->list();
+        dd($list);
+    }
+
+    /**
+     * 微信配置设置页面
+     */
+    public function wxConfPage(){
+        $config = DB::table('config')->where('config_name','wechat_conf')->first();
+        $data = [];
+        if($config){
+            $data = json_decode($config->config_params,true);
+        }
+
+        return view('admin.wechat.wx-config-page',['config'=>$data]);
+    }
+
+    /**
+     * 微信配置设置接口
+     */
+    public function wxConfApi(Request $request){
+        $data = $request->only(['wxPublicAppID', 'wxPublicAppSecret','wxPublicToken','wxMinProgramAppID','wxMinProgramAppSecret','wxMinProgramToken','wxMchID','wxMchKey','wxMchCertPath','wxMchKeyPath']);
+        if($data && count($data) == 10){
+            $data = array_map(function($val){
+                return !is_null($val)?$val:'';
+            },$data);
+            $json = json_encode($data);
+            if(DB::table('config')->where('config_name','wechat_conf')->exists()){
+                $isTrue = DB::table('config')->where('config_name','wechat_conf')->update(['config_params'=>$json]);
+            }else{
+                $isTrue = DB::table('config')->insert(['config_name'=>'wechat_conf','config_params'=>$json]);
+            }
+
+            if($isTrue){
+                return response()->json(['code' => 200,'msg' =>'编辑成功']);
+            }
+        }
+        return response()->json(['code' => 305,'msg' =>'编辑失败']);
     }
 }
