@@ -15,8 +15,8 @@ function Menu(menuJsonStr){
             $.each(this.menuJsonStr.button,function(key,val){
                 $('#menu-list .menu-item').find('.sub-menu-box').hide();
                 $('#add-item').before(_this.getItemHtml(val));
-                if( val.sub_button != undefined && val.sub_button.length > 0){
-                    $.each(val.sub_button,function(key2,val2){
+                if( val.sub_button != undefined){
+                    $.each(val.sub_button.list,function(key2,val2){
                         $('#menu-list .menu-item').eq(key).find('.add-sub-item').before(_this.getSubItemHtml(val2));
                     });
                 }
