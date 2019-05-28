@@ -40,6 +40,7 @@ class IndexController extends Controller
      * 首页分类统计
      */
     public function articlecCensus(){
+        echo '<pre>';
         $rows = DB::table('category')->select('id','name')->get()->toArray();
 
         $series = [];
@@ -57,14 +58,19 @@ class IndexController extends Controller
             $xAxis[] = date('m/d',strtotime("-$i days"));
         }
 
+
+
+
         foreach ($rows as $row){
             $tmp_date_arr = $dateArr;
             $cid = $row->id;
             if(isset($arr[$cid])){
+                print_r($dateArr);exit;
                 foreach ($arr[$row->id] as $v){
                     $tmp_date_arr[$v->days] = $tmp_date_arr[$v->days]+$v->count;
                 }
             }
+
 
             $series[] = [
                 'id'=>$row->id,
@@ -79,7 +85,13 @@ class IndexController extends Controller
             $legend[] = $row->name;
         }
 
+        print_r($series);exit;
+
+
         sort($xAxis);
+
+
+
 
         return response()->json(['code' => 200,'msg' => '','data'=>['series'=>$series,'legend'=>$legend,'xAxis'=>$xAxis]]);
     }

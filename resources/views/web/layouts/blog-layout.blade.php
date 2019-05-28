@@ -67,8 +67,8 @@
     @yield('content')
 
     @section('footer')
-	    <footer>
-		  <p>© 2018 - 2019 New博客 个人开发实践及维护项目</p>
+	    <footer style="padding: 0;height: 40px;line-height: 40px;">
+		  <p style="margin: 0">© 2018 - 2019 New博客 个人开发实践及维护项目</p>
 		</footer>
 	@show
 
