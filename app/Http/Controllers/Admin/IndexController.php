@@ -61,10 +61,14 @@ class IndexController extends Controller
             $tmp_date_arr = $dateArr;
             $cid = $row->id;
             if(isset($arr[$cid])){
+
                 foreach ($arr[$row->id] as $v){
                     $tmp_date_arr[$v->days] = $tmp_date_arr[$v->days]+$v->count;
                 }
+
+                ksort($tmp_date_arr);
             }
+
 
             $series[] = [
                 'id'=>$row->id,

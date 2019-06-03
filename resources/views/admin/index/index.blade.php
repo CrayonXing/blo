@@ -256,6 +256,8 @@
 
                 $.get("/admin/index-articlec-census", function(result){
                     echartsOptions.xAxis[0].data = result.data.xAxis;
+
+                    console.log(result.data.series);
                     echartsOptions.series = result.data.series;
                     echartsOptions.legend.data = result.data.legend;
                     var echartsOptionsObj = echarts.init(document.getElementById('demo8'), layui.echartStyle('larry'));

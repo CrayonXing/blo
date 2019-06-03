@@ -7,6 +7,9 @@
       <div class="blogs" style="min-height: 850px;">
           <div class="swiper-container"style="margin-top: -15px;margin-bottom: 10px;height: 400px;">
               <div class="swiper-wrapper">
+
+                  <div class="swiper-slide"><img src="/web/images/background/ansjknfajsnfajsnnakj.jpeg" style="width: 100%;height: 100%" /></div>
+
                   <div class="swiper-slide"><img src="/web/images/background/a1bf0590d6002d63f4f183e7cff1b24.jpg" style="width: 100%;height: 100%" /></div>
                   <div class="swiper-slide"><img src="/web/images/background/848c8bd0b677b9b89cbacbceb86f330.jpg" style="width: 100%;height: 100%" /></div>
                   <div class="swiper-slide"><img src="/web/images/background/a85cd35b138a6d18d58e5d4b2b80dbe.jpg" style="width: 100%;height: 100%" /></div>
