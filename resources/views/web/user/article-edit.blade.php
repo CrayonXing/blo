@@ -316,7 +316,7 @@
 @push('scripts')
     <script type="text/javascript" src="/plugin/wangEditor/release/wangEditor.min.js"></script>
     <script type="text/javascript" src="/plugin/tagsInput/jquery.tagsinput-revisited.js"></script>
-    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.clouddeep.cn/amazeui/1.0.1/js/amazeui.min.js"></script>
     <script type="text/javascript">
 
         var E = window.wangEditor;

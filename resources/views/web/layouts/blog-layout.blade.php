@@ -8,7 +8,7 @@
 <meta name="description" content="New博客" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
-<link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+<link href="http://cdn.clouddeep.cn/amazeui/1.0.1/css/amazeui.min.css" rel="stylesheet">
 <link href="/web/css/base.css" rel="stylesheet">
 <link href="/web/css/header-nav.css" rel="stylesheet">
 <link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
