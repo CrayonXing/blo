@@ -15,7 +15,8 @@ var userLogin = {
 	login:function(){
 		var data = {
 			mobile:$('#loginbox-login-mobile').val(),
-			pwd:$('#loginbox-login-pwd').val()
+			pwd:$('#loginbox-login-pwd').val(),
+			'_token':$('meta[name="csrf-token"]').attr('content')
 		};
 
 		if(!functions.checkMobile(data.mobile)){

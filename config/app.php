@@ -175,13 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-
         App\Providers\HelpServiceProvider::class,
 
-        Mews\Captcha\CaptchaServiceProvider::class,
-        SwooleTW\Http\LaravelServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class
     ],
 
     /*

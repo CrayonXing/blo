@@ -22,7 +22,7 @@
 
       <div class="web-main-right">
             <div class="web-main-breadcrumb">
-                 <p><a>会员中心</a> </p>
+                 <p><a>个人中心</a> </p>
             </div>
             <div class="web-main-content" style="padding: 10px;">
                   <div style="width: 100%;min-height: 100px;border-radius: 5px;box-shadow: -4px 0px 45px -11px #fe8074;" >

@@ -53,36 +53,6 @@ class UserController extends BaseController
         return view('web.user.user-datum',['uinfo'=>$this->uInfo(),'imgs'=>$imgs]);
     }
 
-    /**
-     * 用户签到页面
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function signin(Request $request,SigninCalendar $signinCalendar,SigninRecord $signinRecord){
-        $year  = (int)$request->input('y',date('Y'));
-        $month = (int)$request->input('m',date('m'));
-
-        if($month == 1){
-            $lastY = $year -1;$lastM = 12;
-        }else{
-            $lastY = $year;$lastM = $month - 1;
-        }
-
-        if($month==12){
-            $nextM = 1;$nextY = $year + 1;
-        }else{
-            $nextM = $month + 1;$nextY = $year;
-        }
-
-        $signinStr = $signinCalendar->init($year,$month,$signinRecord->getSigninRecord($this->uInfo('id'),$year,$month));
-
-        return view('web.user.user-signin',[
-            'isSignin'      =>$signinRecord->isSamedaySignin($this->uInfo('id')),
-            'signinCalendar'=>$signinStr,
-            'date'          =>date('Y年m月',strtotime("{$year}-{$month}")),
-            'lastMonth'     =>'/user-signin?y='.$lastY.'&m='.$lastM,
-            'nextMonth'     =>'/user-signin?y='.$nextY.'&m='.$nextM,
-        ]);
-    }
 
     /**
      * 修改面提交处理接口
@@ -161,25 +131,6 @@ class UserController extends BaseController
         return $this->returnAjax([],'资料修改失败',305);
     }
 
-
-    /**
-     * 用户签到接口
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function userSign(Request $request,SigninRecord $signinRecord){
-        list($isOK,$msg,$code,$data) = $signinRecord->userSignIn($this->uInfo('id'));
-
-        if($isOK){
-            return $this->rJson(200,'签到成功');
-        }
-
-        if($code == 1){
-            return $this->rJson(302,'不能重复签到');
-        }
-
-        return $this->rJson(305,'签到失败');
-    }
 
 
     public function uploadHead(Request $request){

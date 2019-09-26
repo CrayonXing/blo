@@ -8,7 +8,7 @@
 <meta name="description" content="New博客" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
-<link href="http://cdn.clouddeep.cn/amazeui/1.0.1/css/amazeui.min.css" rel="stylesheet">
+<link href="/plugin/amazeui/css/amazeui.css" rel="stylesheet">
 <link href="/web/css/base.css" rel="stylesheet">
 <link href="/web/css/header-nav.css" rel="stylesheet">
 <link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
@@ -68,7 +68,7 @@
 
     @section('footer')
 	    <footer style="padding: 0;height: 40px;line-height: 40px;">
-		  <p style="margin: 0">© 2018 - 2019 New博客 个人开发实践及维护项目</p>
+		  <p style="margin: 0">© 2018 - 2019 New博客</p>
 		</footer>
 	@show
 
@@ -149,13 +149,16 @@
 	</div>
 
 	<script src="/web/js/jquery-2.1.1.min.js"></script>
+	<script>
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+	</script>
 	<script src="/plugin/functions.js"></script>
 	<script type="text/javascript">
-		$.ajaxSetup({
-		    headers: {
-		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		    }
-		});
+
 
 		$(window).scroll(function(){//bug
 	        var _top= $(window).scrollTop();
