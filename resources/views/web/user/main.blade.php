@@ -48,10 +48,6 @@
                                     <span style="color: #CCCCCC;">座右铭:</span>
                                     <span style="color:#afadad;padding-left: 10px;">生活需要梦想、需要坚持。只有不断提高自我，才会得到想要的生活...</span>
                               </p>
-                              <p>
-                                    <span style="color: #CCCCCC;">园龄时间 :</span>
-                                    <span style="color:#afadad;padding-left: 10px;">1年零6个月</span>
-                              </p>
                         </div>
                         <div class="clear"></div>
                   </div>

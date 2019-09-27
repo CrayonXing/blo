@@ -169,7 +169,7 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 
 .news_infos { line-height: 24px; text-align: justify; }
 .news_infos p { margin-bottom: 10px }
-.news_infos img { max-width: 650px; height: auto; }
+.news_infos img { max-width: 650px; height: auto; margin: 10px auto;}
 
 .news_pl { margin: 10px 0; width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }
 .news_pl h2 { background: url(../images/newsbg03.png) no-repeat left 10px center; border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 30px; color: #000 }

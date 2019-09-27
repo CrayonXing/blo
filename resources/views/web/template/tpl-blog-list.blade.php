@@ -2,9 +2,9 @@
     @{{each rows as v index}}
         <li   @{{if index%2 }} class="animated fadeInLeft" @{{ else}} class="animated fadeInRight" @{{/if}} >
 
-          @{{if v.imgs.length > 0 }}
+          @{{if v.img }}
             <span class="blogpic">
-              <a href="/article/details/aid/@{{v.id}}"><img src="@{{v.imgs[0]}}"></a>
+              <a href="/article/details/aid/@{{v.id}}"><img src="@{{v.img}}"></a>
             </span>
           @{{/if}}
 

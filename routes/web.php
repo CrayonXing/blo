@@ -18,6 +18,7 @@ Route::group(['namespace'=>'Web'],function (){
     Route::post('/article/comment','ArticleController@comment')->middleware('checkLogin');
     Route::get('/article/get-comment-list','ArticleController@getCommentList')->middleware('checkLogin');
 
+    Route::get('/article/editor-md','ArticleController@editorMd')->middleware('checkLogin');
     Route::get('/article/edit','ArticleController@edit')->middleware('checkLogin');
     Route::post('/article/uploadFile','ArticleController@uploadFile');
     Route::get('/article/search','ArticleController@getArticleList');
@@ -30,7 +31,6 @@ Route::group(['namespace'=>'Web'],function (){
     Route::get('/user-main','UserController@index')->middleware('checkLogin');
 
     Route::get('/user-article','UserController@article')->middleware('checkLogin');
-    Route::get('/user-article-edit','UserController@articleEdit')->middleware('checkLogin');
 
     Route::get('/user-pwd','UserController@password')->middleware('checkLogin');
     Route::post('/user-edit-pwd','UserController@editPassword')->middleware('checkLogin');
@@ -46,4 +46,7 @@ Route::group(['namespace'=>'Web'],function (){
 
 
     Route::post('/user-uploadHead','UserController@uploadHead')->middleware('checkLogin');
+
+
+    Route::post('/uoload/upload-img','UploadController@uploadImg')->middleware('checkLogin');
 });

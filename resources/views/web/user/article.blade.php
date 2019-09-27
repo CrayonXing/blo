@@ -14,7 +14,6 @@
                   <div class="web-main-article">
                       <div class="web-main-article-category">
                           <div class="am-g">
-                              <div class="am-u-sm-1" style="padding: 0;text-align: right">文章分类</div>
                               <div class="am-u-sm-11" style="padding-left: 0">
                                   <span class="web-main-article-category-current" data-category="0">全部</span>
                                   @if($list)
@@ -77,7 +76,7 @@
 
                   <span class="list-footer-right">
                       <a href="/article/details/aid/@{{v.id}}">阅读原文</a>
-                      <a href="/user-article-edit?aid=@{{v.id}}">编辑原文</a>
+                      <a href="/article/editor-md?aid=@{{v.id}}">编辑原文</a>
                   </span>
               </div>
 

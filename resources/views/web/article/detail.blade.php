@@ -51,6 +51,7 @@
             @endif
         </div>
 
+        @if($piece['previous'] || $piece['next'])
         <div class="blog-info-nextpage">
 
             @if($piece['previous'])
@@ -62,16 +63,7 @@
             @endif
 
         </div>
-
-        <div class="blog-info-fabulous">
-              <span  id="test-id">
-                <i class="iconfont icon-dianzan1" data-icon2='icon-dianzan1' data-icon2='icon-dianzan2' ></i><a>点赞(51)</a>
-              </span>
-
-              <span>
-                <i class="iconfont icon-shoucang" data-icon2='icon-dianzan1' data-icon2='icon-dianzan2' ></i><a>收藏(51)</a>
-              </span>
-        </div>
+        @endif
 
         <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
 

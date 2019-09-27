@@ -28,7 +28,7 @@ class Article extends Model
      *
      * @var array
      */
-    protected $fillable = ['category_id','uid','title','tag','describe','imgs','content','status','created_time','updated_time','is_overt','reprint_url'];
+    protected $fillable = ['category_id','uid','title','tag','describe','img','content','markdown_content','status','created_time','updated_time','reprint_url'];
 
     /**
      * 表明模型是否应该被打上时间戳
@@ -37,47 +37,36 @@ class Article extends Model
      */
     public $timestamps = false;
 
-    /**
-     * 编辑文章
-     * @param array $params   文章参数
-     * @param bool $isDraft   是否保存草稿标识
-     * @param int $id         文章id 默认为0
-     * @return array
-     */
-    public function saveArticle($params=[],$isDraft = false,$id = 0){
-		$data = [
-    		'category_id'		=>$params['category_id'],
-    		'uid'				=>$params['uid'],
-    		'title'				=>$params['title'],
-    		'tag'				=>$params['tag'],
-    		'describe'			=>$params['describe'],
-    		'imgs'				=>json_encode($params['imgs']),
-    		'content'			=>$params['content'],
-            'is_overt'         =>$params['is_overt'],
-            'reprint_url'      =>$params['reprint_url']
-    	];
+    public function saveArticle($id,$data,$saveMode){
+        if($saveMode == 'articleSave'){
+            unset($data['content']);
+        }
 
-        $data['status'] = ($isDraft === true) ? 0 : 2;//  2:自动审核   1:等待审核
+        $data['updated_time'] = date('Y-m-d H:i:s');
+        if(empty($id)){
+            $data['created_time'] = date('Y-m-d H:i:s');
+            $data['status']       = ($saveMode == 'articleSave') ? 0 : 1;
+            if($res = self::create($data)){
+                return [true,$res->id];
+            }else{
+                return [false,null];
+            }
+        }
 
-    	if($id == 0){
-    		$data['created_time'] = date('Y-m-d H:i:s');
-    		$data['updated_time'] = date('Y-m-d H:i:s');
-			$isTrue  = self::create($data);
-			if($isTrue){
-	    		return [true,'文章添加完成',null];
-	    	}else{
-				return [false,'文章添加失败'];
-	    	}
-    	}else{
-    		$data['updated_time'] = date('Y-m-d H:i:s');
-    		$isTrue  = self::where('id', $id)->where('uid',$params['uid'])->update($data);
+        $info = self::where('id',$id)->first();
+        if(!$info){
+            return [false,null];
+        }
 
-    		if($isTrue !== false){
-	    		return [true,'文章编辑完成',null];
-	    	}else{
-				return [false,'文章编辑失败',null];
-	    	}
-    	}
+        if($info->status == 0){
+            $data['status'] = ($saveMode == 'articleSave') ? 0 : 1;
+        }
+
+        if(!self::where('id',$id)->update($data)){
+            return [false,null];
+        }
+
+        return [true,$id];
     }
 
     /**
@@ -101,16 +90,15 @@ class Article extends Model
         }
 
         $total = $obj->count('id');
-        $rows = $obj2->select(['id','title','tag','describe','imgs','visits','created_time','status'])
+        $rows = $obj2->select(['id','title','tag','describe','img','visits','created_time','status'])
             ->orderBy('status', 'asc')->orderBy('created_time', 'desc')
             ->offset((($page-1)*$page_size))->limit($page_size)->get();
 
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
-                $rows[$k]['imgs']    = json_decode($row['imgs']);
                 $rows[$k]['tag']     = explode(',',$row['tag']);
-                $rows[$k]['status']  = ($row['status'] == 0) ? '草稿文' : ($row['status'] ==1?'审核中':'已发布') ;
+                $rows[$k]['status']  = ($row['status'] == 0) ? '草稿文' :'已发布';
             }
         }
 
@@ -121,8 +109,8 @@ class Article extends Model
      * 获取站内文章列表
      */
     public function getArticle($page,$page_size,$searchParams=[]){
-        $obj  = self::where('status',2);
-        $obj2 = self::where('status',2);
+        $obj  = self::where('status',1);
+        $obj2 = self::where('status',1);
 
         if(count($searchParams) > 0){
             if(isset($searchParams['cid']) && !empty($searchParams['cid'])){
@@ -132,7 +120,7 @@ class Article extends Model
         }
 
         $total = $obj->count('id');
-        $rows = $obj2->select(['id','title','tag','describe','imgs','visits','created_time'])
+        $rows = $obj2->select(['id','title','tag','describe','img','visits','created_time'])
             ->orderBy('created_time','desc')
             ->offset((($page-1)*$page_size))->limit($page_size)
             ->get();
@@ -140,7 +128,6 @@ class Article extends Model
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
-                $rows[$k]['imgs'] = json_decode($row['imgs']);
                 $rows[$k]['tag']  = explode(',',$row['tag']);
             }
         }
@@ -161,7 +148,7 @@ class Article extends Model
      */
     public function getTags(){
         $tmp = [];
-        $rows = self::where('status',2)->select('tag')->get()->toArray();
+        $rows = self::where('status',1)->select('tag')->get()->toArray();
         if(!$rows){
             return [];
         }
@@ -186,6 +173,6 @@ class Article extends Model
      * 获取点击排行榜列表
      */
     public function getRankingList(){
-        return self::where('status',2)->orderBy('visits','desc')->limit(6)->select('id','title')->get()->toArray();
+        return self::where('status',1)->orderBy('visits','desc')->limit(6)->select('id','title')->get()->toArray();
     }
 }

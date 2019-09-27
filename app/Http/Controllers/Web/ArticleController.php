@@ -7,7 +7,9 @@ use App\Model\Article;
 use App\Model\Category;
 use App\Model\Comment;
 use Illuminate\Support\Facades\DB;
-class ArticleController extends BaseController
+use Validator;
+
+class ArticleController extends CController
 {
     public function category($cid,Category $category){
 
@@ -70,45 +72,36 @@ class ArticleController extends BaseController
         $page       = (int)$request->get('page', 1);
         $page_size  = (int)$request->get('page_size', 15);
         $cid  = (int)$request->get('cid', 0);
-        return $this->returnAjax($article->getArticle($page,$page_size,['cid'=>$cid]));
+        return $this->ajaxSuccess('success',$article->getArticle($page,$page_size,['cid'=>$cid]));
     }
 
-    public function create(Request $request){
+    public function create(Request $request,Article $article){
+
+        $id 	    = $request->input('id', 0);
+        $category 	= $request->input('cid', 0);
     	$title 		= $request->input('title', '');
     	$describe 	= $request->input('describe', '');
-    	$category 	= $request->input('category', '');
-    	$tag 		= $request->input('tag', '');
-    	$imgs 		= $request->input('imgs', []);
-    	$content 	= $request->input('content', '');
-        $url 	    = $request->input('url', '');
+    	$tag 		= $request->input('tags', '');
+    	$img 		= $request->input('img', '');
+    	$markdownContent= $request->input('markdownContent', '');
+    	$htmlContent 	= $request->input('htmlContent', '');
+        $url 	    = $request->input('link', '');
+        $saveMode 	    = $request->input('saveMode', '');
 
-        $isOriginal = $request->input('isOriginal');
-        $isOvert 	 = $request->input('isOvert');
-        $isDraft    =$request->input('isDraft');
 
-        if(empty($title) || empty($category) || empty($content)){
-            return $this->returnAjax([],'参数不符合规范',301);
-        }else if($isOriginal == 'false' && empty($url)){
-            return $this->returnAjax([],'文章转载原文链接不能为空',302);
-        }
+        [$isTrue,$aid] = $article->saveArticle($id,[
+            'category_id'=>$category,
+            'uid'=>$this->uid(),
+            'title'=>$title,
+            'tag'=>$tag,
+            'describe'=>$describe,
+            'img'=>$img,
+            'content'=>htmlspecialchars($htmlContent),
+            'markdown_content'=>htmlspecialchars($markdownContent),
+            'reprint_url'=>$url
+        ],$saveMode);
 
-        list($isTrue,$msg,$data) = (new Article())->saveArticle([
-            'category_id'       =>$category,
-            'uid'               =>$this->uInfo('id'),
-            'title'             =>htmlspecialchars($title),
-            'tag'               =>htmlspecialchars($tag),
-            'describe'          =>htmlspecialchars($describe),
-            'imgs'              =>array_slice(array_unique(array_merge($imgs,app('help')->getTtmlImgs($content))),0,3),
-            'content'           =>htmlspecialchars($content),
-            'is_overt'          =>($isOvert == 'true') ? 1 : 2,
-            'reprint_url'       =>($isOriginal == 'true') ? '':$url,
-        ],$isDraft == 'false'? false : true,(int)$request->input('id', 0));
-
-        if($isTrue){
-            return $this->returnAjax([],$msg,200);
-        }else{
-            return $this->returnAjax([],$msg,305);
-        }
+        return $isTrue ? $this->ajaxSuccess('success',['id'=>$aid]) : $this->ajaxError('fail');
     }
 
     /**
@@ -150,25 +143,33 @@ class ArticleController extends BaseController
         $content = $request->input('content','');
 
         if(empty($aid) || empty($content)){
-            return $this->returnAjax([],'参数不符合规范',301);
+            return $this->ajaxParamError();
         }
 
-        $isTrue = $comment->addComment($this->uInfo('id'),['aid'=>$aid,'pid'=>$cid,'content'=>$content]);
-
-        if($isTrue){
-            return $this->returnAjax([],'评论成功',200);
-        }
-
-        return $this->returnAjax([],'评论失败',305);
+        $isTrue = $comment->addComment($this->uid(),['aid'=>$aid,'pid'=>$cid,'content'=>$content]);
+        return $isTrue ? $this->ajaxSuccess('评论成功') : $this->ajaxError('评论失败');
     }
 
     public function getCommentList(Request $request,Comment $comment){
         $aid = $request->get('aid',0);
 
         if(empty($aid)){
-            return $this->returnAjax([],'参数不符合规范',301);
+            return $this->ajaxParamError();
         }
 
-        return $this->returnAjax($comment->getCommentList($aid,1,100000));
+        return $this->ajaxSuccess('success',$comment->getCommentList($aid,1,100000));
+    }
+
+    public function editorMd(Request $request){
+        $aid = $request->input('aid',0);
+
+        $info = Article::where('id',$aid)->where('uid',$this->uid())->first();
+
+        $rows = Category::select('id','name')->get()->toArray();
+
+        return view('web.article.editor-article',[
+            'categoryInfos'=>$rows,
+            'info'=>$info
+        ]);
     }
 }

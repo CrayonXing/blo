@@ -13,7 +13,7 @@ use App\Helpers\SigninCalendar;
 use App\Model\SigninRecord;
 
 
-class UserController extends BaseController
+class UserController extends CController
 {
 
     public function index(){
@@ -50,7 +50,7 @@ class UserController extends BaseController
             $imgs[] = asset("static/sys-head/{$file}");
         }
         
-        return view('web.user.user-datum',['uinfo'=>$this->uInfo(),'imgs'=>$imgs]);
+        return view('web.user.user-datum',['uinfo'=>$this->getUser(true),'imgs'=>$imgs]);
     }
 
 
@@ -65,16 +65,15 @@ class UserController extends BaseController
         $newpwd2   = $request->input('newpwd2','');
 
         if(empty($oldpwd) || empty($newpwd) || empty($newpwd2)){
-			return $this->returnAjax([],'参数不符合规范',301);
+			return $this->ajaxParamError();
         }else if(!preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/',$newpwd)){
-        	return $this->returnAjax([],'新密码格式错误',301);
+        	return $this->ajaxParamError('新密码格式错误...');
         }else if($newpwd !== $newpwd2){
-			return $this->returnAjax([],'确认密码填写错误',301);
+			return $this->ajaxParamError('确认密码填写错误');
         }
 
-    	list($isOk,$msg,$code) = User::chnagePwd($this->uInfo('id'),$oldpwd,$newpwd);
-
-    	return $this->returnAjax([],$msg,$code);
+    	list($isOk,$msg,$code) = User::chnagePwd($this->uid(),$oldpwd,$newpwd);
+        return $this->ajaxReturn($code,$msg);
     }
 
     /**
@@ -87,29 +86,10 @@ class UserController extends BaseController
         $page       = (int)$request->get('page', 1);
         $page_size  = (int)$request->get('page_size', 15);
         $category   = $request->get('category', '');
-        return $this->returnAjax($article->getUserArticle(20,$page,$page_size,['category'=>$category]));
-    }
 
-    /**
-     * 编辑文章
-     * @param Request $request
-     * @param Article $article
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function articleEdit(Request $request,Article $article,Category $category){
-        $aid = (int)$request->get('aid',0);
 
-        $info = $article->getEditArticle($aid,$this->uInfo('id'));
 
-        $data = [];
-        if($categoryList = $category->select(['id','pid','sort','name'])->orderBy('pid','asc')->orderBy('sort','asc')->get()){
-            $data = $categoryList->toArray();
-        }
-
-        $tree = Tree::instance();
-        $tree->init($data, 'pid');
-
-        return view('web.user.article-edit',['info'=>$info,'category_tree'=>$tree->getTreeList($tree->getTreeArray(0), 'name')]);
+        return $this->ajaxSuccess('success',$article->getUserArticle(20,$page,$page_size,['category'=>$category]));
     }
 
     /**
@@ -123,12 +103,12 @@ class UserController extends BaseController
         $tags     = $request->input('tags','');
         $head     = $request->input('head','');
 
-        $isTrue = User::where('id',$this->uInfo('id'))->update(['nickname'=>$nickname,'motto'=>$motto,'tags'=>$tags,'head'=>$head]);
+        $isTrue = User::where('id',$this->uid())->update(['nickname'=>$nickname,'motto'=>$motto,'tags'=>$tags,'head'=>$head]);
         if($isTrue !== false){
-            return $this->returnAjax([],'资料修改成功');
+            return $this->ajaxSuccess('资料修改成功');
         }
 
-        return $this->returnAjax([],'资料修改失败',305);
+        return $this->ajaxError('资料修改失败');
     }
 
 
@@ -140,6 +120,6 @@ class UserController extends BaseController
         $data = base64_decode($img);
         $path = '100001/'.date('ymd').'/'.uniqid().'.jpeg';
         \Storage::disk('public')->put($path, $data);
-        return $this->rJson(200,'上传成功',['url'=>asset("storage/{$path}")]);
+        return $this->ajaxSuccess('上传成功',['url'=>asset("storage/{$path}")]);
     }
 }

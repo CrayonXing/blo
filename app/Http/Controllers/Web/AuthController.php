@@ -5,28 +5,19 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Web\BaseController;
+use App\Http\Controllers\Web\CController;
 use App\User;
 
-class AuthController extends BaseController
+class AuthController extends CController
 {
     
 	public function login(Request $request){
 		$isTrue = Auth::guard('web')->attempt(['mobile'=>$request->input('mobile',''),'password'=>$request->input('pwd','')],true);
-
         if($isTrue){
-            return response()->json([
-                'code' => 200,
-                'msg' => '登录成功...',
-                'data' => []
-            ]);
+            return $this->ajaxSuccess('登录成功...');
         }
 
-        return response()->json([
-            'code' => 402,
-            'msg' => '账号密码错误',
-            'data' => []
-        ]);
+        return $this->ajaxReturn(402,'账号密码错误...');
 	}
 
     public function register(Request $request){
@@ -35,21 +26,20 @@ class AuthController extends BaseController
         $password   = $request->input('pwd','');
 
         if(empty($mobile) || empty($smscode) || empty($password) || !preg_match('/^[1][3,4,5,7,8][0-9]{9}$/',$mobile) || !preg_match('/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/',$password)){
-            return response()->json(['code' => 301,'msg' => '参数不符合规范...','data' => []]);
+            return $this->ajaxParamError();
         }else if($smscode != '090827'){
-            return response()->json(['code' => 302,'msg' => '验证码错误','data' => []]);
+            return $this->ajaxReturn(302,'验证码错误...');
         }
 
         try {
             $isTrue = User::create(['mobile' => $mobile,'password' => bcrypt($password),'created_at'=>date('Y-m-d H:i:s')]);
-
             if($isTrue){
-                return response()->json(['code' => 200,'msg' => '账号注册成功','data' => []]);
+                return $this->ajaxSuccess('账号注册成功...');
             }else{
-                return response()->json(['code' => 305,'msg' => '手机号已被他人使用','data' => []]);
+                return $this->ajaxError('手机号已被他人使用...');
             }
         } catch (\Exception $e) {
-            return response()->json(['code' => 305,'msg' => '手机号已被他人使用','data' => []]);
+            return $this->ajaxError('手机号已被他人使用...');
         }
     }
 
@@ -60,8 +50,7 @@ class AuthController extends BaseController
      */
     public function logout()
     {
-        Auth::guard('web')->logout();
-
+        $this->guard()->logout();
         return redirect('/');
     }
 }
