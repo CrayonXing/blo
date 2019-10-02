@@ -60,12 +60,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
 
-        'checkLogin' => \App\Http\Middleware\CheckLogin::class,
-        'admin.auth' => \App\Http\Middleware\AdminAuth::class,
-        'admin.rbac' => \App\Http\Middleware\AdminRbac::class,
+        'web.auth' => \App\Http\Middleware\WebAuth::class,
     ];
 
     /**

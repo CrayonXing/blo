@@ -1,15 +1,15 @@
     @if(auth('web')->check())
-        <a href="/article/editor-md" class="add-article"><i class="am-icon-plus"></i> 编辑文章</a>
+        <a href="/article/markdown-editor" class="add-article"><i class="am-icon-plus"></i> 编辑文章</a>
     @endif
 
     <div class="about" >
-      <div class="avatar"> <img src="/web/images/touxiao.jpg" alt=""> </div>
+      <div class="avatar"> <img src="images/touxiao.jpg" alt=""> </div>
       <p class="abname">YuanDong | 3年 <i class="iconfont iconyanjing_bi"></i></p>
       <p class="abposition">PHP开发工程师</p>
       <div class="abtext"> 生活需要梦想、需要坚持。只有不断提高自我，才会得到想要的生活... </div>
     </div>
 
-    @if($tagCloudArr = app('help')->getTags())
+    @if($tagCloudArr = app('service.help')->getTags())
         <div class="cloud">
             <h2 class="hometitle">热门标签</h2>
             <ul>
@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    @if($rankingList = app('help')->getRankingList())
+    @if($rankingList = app('service.help')->getRankingList())
         <div class="paihang">
             <h2 class="hometitle">点击排行</h2>
             <ul>

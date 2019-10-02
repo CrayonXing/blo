@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Helpers\ServiceHelp;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('service.help',function(){
+            return new ServiceHelp;
+        });
     }
 }

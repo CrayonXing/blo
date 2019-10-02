@@ -1,9 +1,7 @@
 <?php
-
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -36,9 +34,13 @@ class User extends Authenticatable
     public $timestamps = false;
 
     /**
-     * 修改用密码
+     * 修改用密码接口
+     * @param int $uid 用户ID
+     * @param string $old_pwd 旧密码
+     * @param string $new_pwd 新密码
+     * @return array
      */
-    public static function chnagePwd($uid,$old_pwd,$new_pwd){
+    public static function chnagePwd(int $uid,string $old_pwd,string $new_pwd){
         $info = self::find($uid);
         if(!$info){
             return [false,'用户不存在',302];

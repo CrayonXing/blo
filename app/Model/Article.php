@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Facades\Help;
-use phpDocumentor\Reflection\DocBlock\Tags\See;
 
 class Article extends Model
 {
@@ -37,7 +34,15 @@ class Article extends Model
      */
     public $timestamps = false;
 
-    public function saveArticle($id,$data,$saveMode){
+    /**
+     * 编辑文章方法
+     *
+     * @param int $id
+     * @param array $data
+     * @param string $saveMode
+     * @return array
+     */
+    public function saveArticle(int $id,array $data,string $saveMode){
         if($saveMode == 'articleSave'){
             unset($data['content']);
         }
@@ -71,29 +76,26 @@ class Article extends Model
 
     /**
      * 获取用户发布文章列表
-     * @param $uid
-     * @param $page
-     * @param $page_size
-     * @param array $searchParams
+     *
+     * @param int $uid 用户ID
+     * @param int $page 分页数
+     * @param int $page_size 分页大小
+     * @param array $searchParams 额外查询参数
      * @return mixed
      */
-    public function getUserArticle($uid,$page,$page_size,$searchParams=[]){
-
-        $obj = Article::where('uid',$uid);
-        $obj2 = Article::where('uid',$uid);
+    public function getUserArticle(int $uid,int $page,int $page_size,$searchParams=[]){
+        $countSqlObj = Article::where('uid',$uid);
+        $rowsSqlObj  = Article::where('uid',$uid);
 
         if(count($searchParams) > 0){
             if(isset($searchParams['category']) && !empty($searchParams['category']) && $searchParams['category'] != 'all'){
-                $obj->where('category_id',$searchParams['category']);
-                $obj2->where('category_id',$searchParams['category']);
+                $countSqlObj->where('category_id',$searchParams['category']);
+                $rowsSqlObj->where('category_id',$searchParams['category']);
             }
         }
 
-        $total = $obj->count('id');
-        $rows = $obj2->select(['id','title','tag','describe','img','visits','created_time','status'])
-            ->orderBy('status', 'asc')->orderBy('created_time', 'desc')
-            ->offset((($page-1)*$page_size))->limit($page_size)->get();
-
+        $total = $countSqlObj->count('id');
+        $rows = $rowsSqlObj->select(['id','title','tag','describe','img','visits','created_time','status'])->orderBy('status', 'asc')->orderBy('created_time', 'desc')->forPage($page,$page_size)->get();
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
@@ -102,29 +104,30 @@ class Article extends Model
             }
         }
 
-        return Help::packData($rows,$total,$page,$page_size,$searchParams);
+        return packData($rows,$total,$page,$page_size,$searchParams);
     }
 
     /**
      * 获取站内文章列表
+     *
+     * @param $page
+     * @param $page_size
+     * @param array $searchParams
+     * @return mixed
      */
     public function getArticle($page,$page_size,$searchParams=[]){
-        $obj  = self::where('status',1);
-        $obj2 = self::where('status',1);
+        $countSqlObj  = self::where('status',1);
+        $rowsSqlObj = self::where('status',1);
 
         if(count($searchParams) > 0){
             if(isset($searchParams['cid']) && !empty($searchParams['cid'])){
-                $obj->where('category_id',$searchParams['cid']);
-                $obj2->where('category_id',$searchParams['cid']);
+                $countSqlObj->where('category_id',$searchParams['cid']);
+                $rowsSqlObj->where('category_id',$searchParams['cid']);
             }
         }
 
-        $total = $obj->count('id');
-        $rows = $obj2->select(['id','title','tag','describe','img','visits','created_time'])
-            ->orderBy('created_time','desc')
-            ->offset((($page-1)*$page_size))->limit($page_size)
-            ->get();
-
+        $total = $countSqlObj->count('id');
+        $rows = $rowsSqlObj->select(['id','title','tag','describe','img','visits','created_time'])->orderBy('created_time','desc')->forPage($page,$page_size)->get();
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
@@ -132,18 +135,12 @@ class Article extends Model
             }
         }
 
-        return Help::packData($rows,$total,$page,$page_size);
-    }
-
-    public function getEditArticle($aid,$uid){
-
-        $info = self::where('id',$aid)->where('uid',$uid)->first();
-
-        return $info ?$info->toArray():null;
+        return packData($rows,$total,$page,$page_size);
     }
 
     /**
      * 获取标签云列表
+     *
      * @return array
      */
     public function getTags(){
@@ -171,6 +168,8 @@ class Article extends Model
 
     /**
      * 获取点击排行榜列表
+     *
+     * @return mixed
      */
     public function getRankingList(){
         return self::where('status',1)->orderBy('visits','desc')->limit(6)->select('id','title')->get()->toArray();

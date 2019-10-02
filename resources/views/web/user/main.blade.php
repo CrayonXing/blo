@@ -27,7 +27,7 @@
             <div class="web-main-content" style="padding: 10px;">
                   <div style="width: 100%;min-height: 100px;border-radius: 5px;box-shadow: -4px 0px 45px -11px #fe8074;" >
                         <div style="float: left;width: 150px;height: 100%;padding: 15px 5px 5px 0px;text-align: center">
-                              <img src="/web/images/touxiao.jpg" style="width:70px;height: 70px;border-radius: 50% 50%;margin-left: 39px;">
+                              <img src="images/touxiao.jpg" style="width:70px;height: 70px;border-radius: 50% 50%;margin-left: 39px;">
                               <p style="padding-left: 5px;color: #9ddbf7;font-weight: 500;cursor: pointer;"><i class="iconfont icon-editor"></i>
                                     <a href="/user-datum" style="color: #9ddbf7;">编辑资料</a></p>
                         </div>

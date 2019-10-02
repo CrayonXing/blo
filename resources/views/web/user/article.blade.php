@@ -1,8 +1,6 @@
 @extends('web.layouts.blog-layout')
 
 @section('content')
-
-
 <article>
       @include('web.layouts.web-main-left')
 
@@ -76,7 +74,7 @@
 
                   <span class="list-footer-right">
                       <a href="/article/details/aid/@{{v.id}}">阅读原文</a>
-                      <a href="/article/editor-md?aid=@{{v.id}}">编辑原文</a>
+                      <a href="/article/markdown-editor?aid=@{{v.id}}">编辑原文</a>
                   </span>
               </div>
 
