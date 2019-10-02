@@ -2,8 +2,6 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Facades\Help;
-
 class Category extends Model
 {
 

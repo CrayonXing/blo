@@ -1,7 +1,7 @@
 @extends('web.layouts.blog-layout')
 
 @push('css')
-    <link href="/web/css/article-detail.css" rel="stylesheet">
+    <link href="css/article-detail.css" rel="stylesheet">
     <link href="/plugin/Spop/spop.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 @endpush
@@ -171,7 +171,7 @@
     @{{/if}}
 </script>
 <script src="/plugin/template-web.js"></script>
-<script src="/plugin/Spop/spop.min.js"></script>
+<script src="/plugin/spop/spop.min.js"></script>
 <script type="text/javascript">
     const  aid = '{{$info['id']}}';
     const commentObj = {
@@ -233,20 +233,22 @@
     commentObj.loadCommentData();
 </script>
 <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad()
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+
     setTimeout(function(){
         $('code').removeClass('xml');
-    },500)
+    },500);
+    
     setTimeout(function(){
         $('code').removeClass('xml');
-    },1000)
+    },1000);
     setTimeout(function(){
         $('code').removeClass('xml');
-    },1500)
+    },1500);
     setTimeout(function(){
         $('code').removeClass('xml');
-    },2000)
+    },2000);
 </script>
 <script>
 

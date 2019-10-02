@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('service.help',function(){
+            return new ServiceHelp;
+        });
     }
 }

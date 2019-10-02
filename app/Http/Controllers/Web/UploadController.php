@@ -1,16 +1,18 @@
 <?php
-
-
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 
-
+/**
+ * 上传文件控制器
+ * Class UploadController
+ * @package App\Http\Controllers\Web
+ */
 class UploadController extends CController
 {
 
     /**
-     * 文章图片上传接口
+     * Editor.md 图片上传接口
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */

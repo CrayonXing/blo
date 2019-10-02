@@ -9,13 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
 <link href="/plugin/amazeui/css/amazeui.css" rel="stylesheet">
-<link href="/web/css/base.css" rel="stylesheet">
-<link href="/web/css/header-nav.css" rel="stylesheet">
-<link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
 <link href="/plugin/animate.min.css" rel="stylesheet">
-<link href="/web/css/login.css" rel="stylesheet">
+<link href="/static/web/css/base.css" rel="stylesheet">
+<link href="/static/web/css/header-nav.css" rel="stylesheet">
+<link href="/static/web/css/login.css" rel="stylesheet">
+<link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
 @stack('css')
-</head>
+</head>static
 <body>
 	@section('header')
 		<header id="blog-header" >
@@ -28,7 +28,7 @@
 						<ul >
 							<li @if(request()->path() == '/') class="blog-header-nav-current" @endif><a href="/"   >首页</a></li>
 
-                            @if($webNav = app('help')->getNav())
+                            @if($webNav = app('service.help')->getNav())
                                 @foreach($webNav as $firstNav)
                                     <li @if(request()->fullUrl() == url("/article/category/{$firstNav['id']}")) class="blog-header-nav-current" @endif >
                                         <a href="/article/category/{{$firstNav['id']}}" >{{$firstNav['name']}}</a>
@@ -148,7 +148,7 @@
 		</ul>
 	</div>
 
-	<script src="/web/js/jquery-2.1.1.min.js"></script>
+	<script src="/static/web/js/jquery-2.1.1.min.js"></script>
 	<script>
 		$.ajaxSetup({
 			headers: {
@@ -158,8 +158,6 @@
 	</script>
 	<script src="/plugin/functions.js"></script>
 	<script type="text/javascript">
-
-
 		$(window).scroll(function(){//bug
 	        var _top= $(window).scrollTop();
 	        if(_top > 200){
@@ -168,12 +166,11 @@
                 $("#web-to-top").hide();
             }
 	    });
-
 	    $("#web-to-top").click(function(){
 			$('html,body').animate({scrollTop: 0},300);
 	    });
 	</script>
-	<script src="/web/js/login-box.js"></script>
+	<script src="/static/web/js/login-box.js"></script>
 	@stack('scripts')
 </body>
 </html>

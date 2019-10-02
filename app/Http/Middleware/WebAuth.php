@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckLogin
+class WebAuth
 {
     /**
      * Handle an incoming request.
@@ -15,8 +14,6 @@ class CheckLogin
      */
     public function handle($request, Closure $next,$guard = null)
     {
-
-
         if(!auth('web')->check()){
             if($request->ajax()){
                 return response()->json(['code' => 401,'msg' => '请登录后再进行操作!']);

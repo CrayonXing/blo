@@ -139,3 +139,17 @@ input[type='text']:focus{
 #fr-choice-category:hover .category-box{
     display: block;
 }
+
+
+#uplod-mask-box{
+    position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color:rgb(103,100,100,.8);z-index: 9999999999999;display: none;
+}
+
+#uplod-mask-tips{
+    width: 300px;height: 50px;background-color: #d7d7d7;margin-left: calc(50% - 150px);margin-top: 250px;line-height: 50px;text-align: center;color: green;
+}
+
+
+#container-editormd textarea{
+    display:none !important;
+}
