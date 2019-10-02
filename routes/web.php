@@ -48,8 +48,6 @@ Route::group(['middleware' => ['web.auth']],function (){
     Route::post('/signin','UserController@userSign');
 });
 
-
-
 /**
  * 上传文件控制器路由分组
  */
