@@ -18,7 +18,7 @@
                <i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...
           </div>
       </div>
-      <div class="sidebar" >
+      <div class="sidebar" id="test-sidebar" >
             @include('web.article.sidebar')
         </div>
       </div>
@@ -30,4 +30,15 @@
 <script src="/plugin/template-web.js"></script>
 @include('web.template.tpl-blog-list')
 <script type="text/javascript" src="/static/web/js/page/index-page.js"></script>
+<script type="text/javascript">
+    let sidebarHeight  = $('#test-sidebar').height();
+    $(window).scroll(function(event){
+        var oTop = document.body.scrollTop==0?document.documentElement.scrollTop:document.body.scrollTop;
+        if(oTop > sidebarHeight){
+
+        }else{
+
+        }
+    });
+</script>
 @endpush
