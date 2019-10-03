@@ -22,6 +22,7 @@
     font-size: 24px;
     text-align: center;
     line-height: 50px;
+    display: none;
 }
 
 
@@ -114,7 +115,7 @@
     width: 100px;height: 100%;top: -17px;right: 0;background:#defff9;position: absolute;text-align: center;line-height: 30px;color: #a2a2f7;cursor: pointer;
 }
 .login-box-body-pos-smscode{
-    width: 100px;height: 100%;top: -17px;right: 0;background:#e5f7f4;position: absolute;text-align: center;line-height: 30px;color: #a2a2f7;cursor: pointer;
+    width: 100px;height: 100%;top: -20px;right: 0;background:#e5f7f4;position: absolute;text-align: center;line-height: 30px;color: #a2a2f7;cursor: pointer;
 }
 
 .login-box-body-pos-eye{

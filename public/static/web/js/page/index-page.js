@@ -1,16 +1,19 @@
 new Swiper('.swiper-container', {
-    pagination: {
-        el: '.swiper-pagination',
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
-    autoplay: {
-        delay: 6000
-    },
+    parallax: true,
+    speed: 600,
 });
+
 
 var o = {
     pagingShow:function(type){
         if(type == 0){
-            $('#blog-list-paging').html('<i class="iconfont icon-xia"></i> 加载下一页 ').css('color','rgb(128, 120, 120)');
+            $('#blog-list-paging').html('<i class="iconfont icon-xia"></i> 加载更多... ').css('color','rgb(128, 120, 120)');
         }else if(type == 1){
             $('#blog-list-paging').html('<i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...').css('color','rgb(128, 120, 120)');
         }else{
@@ -64,3 +67,7 @@ setTimeout(function(){
 $('#blog-list-paging').on('click',function(){
     o.loadListData();
 });
+
+$(function () {
+    $('html,body').animate({ scrollTop: 0 }, 700);
+})

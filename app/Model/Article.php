@@ -3,6 +3,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Str;
+
 class Article extends Model
 {
 
@@ -25,7 +27,7 @@ class Article extends Model
      *
      * @var array
      */
-    protected $fillable = ['category_id','uid','title','tag','describe','img','content','markdown_content','status','created_time','updated_time','reprint_url'];
+    protected $fillable = ['category_id','uid','title','tag','describe','img','content','markdown_content','status','created_time','updated_time','reprint_url','short_code'];
 
     /**
      * 表明模型是否应该被打上时间戳
@@ -49,9 +51,12 @@ class Article extends Model
 
         $data['updated_time'] = date('Y-m-d H:i:s');
         if(empty($id)){
+
             $data['created_time'] = date('Y-m-d H:i:s');
             $data['status']       = ($saveMode == 'articleSave') ? 0 : 1;
             if($res = self::create($data)){
+                $res->short_code = Str::lower(inviteCode($res->id).Str::random(6));
+                $res->save();
                 return [true,$res->id];
             }else{
                 return [false,null];
@@ -95,7 +100,7 @@ class Article extends Model
         }
 
         $total = $countSqlObj->count('id');
-        $rows = $rowsSqlObj->select(['id','title','tag','describe','img','visits','created_time','status'])->orderBy('status', 'asc')->orderBy('created_time', 'desc')->forPage($page,$page_size)->get();
+        $rows = $rowsSqlObj->select(['id','short_code','title','tag','describe','img','visits','created_time','status'])->orderBy('status', 'asc')->orderBy('created_time', 'desc')->forPage($page,$page_size)->get();
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
@@ -127,7 +132,7 @@ class Article extends Model
         }
 
         $total = $countSqlObj->count('id');
-        $rows = $rowsSqlObj->select(['id','title','tag','describe','img','visits','created_time'])->orderBy('created_time','desc')->forPage($page,$page_size)->get();
+        $rows = $rowsSqlObj->select(['short_code','title','tag','describe','img','visits','created_time'])->orderBy('created_time','desc')->forPage($page,$page_size)->get();
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
@@ -172,6 +177,6 @@ class Article extends Model
      * @return mixed
      */
     public function getRankingList(){
-        return self::where('status',1)->orderBy('visits','desc')->limit(6)->select('id','title')->get()->toArray();
+        return self::where('status',1)->orderBy('visits','desc')->limit(6)->select('short_code','title')->get()->toArray();
     }
 }

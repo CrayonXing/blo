@@ -2,10 +2,9 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 <meta charset="utf-8">
-<title>New博客</title>
+<title>{{config('conf.projectName','未定义系统名')}}</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="keywords" content="New博客,PHP博客" />
-<meta name="description" content="New博客" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="applicable-device" content="pc">
 <link href="/plugin/amazeui/css/amazeui.css" rel="stylesheet">
@@ -21,7 +20,7 @@
 		<header id="blog-header" >
 			<div class="blog-header-main" >
 				<div class="blog-header-main-left" >
-					<a href="/" class="logo-href">New博客</a>
+					<a href="/" class="logo-href">{{config('conf.projectName','未定义系统名')}}</a>
 				</div>
 				<div class="blog-header-main-right" >
 					<div class="blog-header-nav">
@@ -67,8 +66,8 @@
     @yield('content')
 
     @section('footer')
-	    <footer style="padding: 0;height: 40px;line-height: 40px;">
-		  <p style="margin: 0">© 2018 - 2019 New博客</p>
+	    <footer style="padding: 0;height: 40px;line-height: 40px;width: 100%;">
+		  <p style="margin: 0">© 2018 - 2019 {{config('conf.projectName','未定义系统名')}}</p>
 		</footer>
 	@show
 
@@ -88,7 +87,7 @@
 					<div class="login-box-body-from">
 						<div class="login-box-error" ></div>
 
-						<form onsubmit="return false;" >
+						<form onsubmit="return false;" autocomplete="off" >
 						  <fieldset style="display: none" >
 							    <div style="border-bottom: 1px solid #f1e4e4;">
 							      	<input type="text" class="login-box-body-from-input"  id="loginbox-login-mobile"   placeholder="手机号/用户名" >
@@ -104,7 +103,7 @@
 						  </fieldset>
 						  <fieldset style="display: none">
 							    <div style="border-bottom: 1px solid #f1e4e4;">
-							      	<input type="text" class="login-box-body-from-input"  placeholder="登录时使用的手机号" id="loginbox-reg-mobile">
+							      	<input type="text" class="login-box-body-from-input"  placeholder="手机号账号注册" id="loginbox-reg-mobile">
 							    </div>
 
 							    <!-- <div style="border-bottom: 1px solid #f1e4e4;margin-top: 30px;position: relative;">

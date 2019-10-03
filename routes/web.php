@@ -24,6 +24,9 @@ Route::group(['middleware' => []],function (){
 Route::group(['middleware' => []],function (){
     Route::get('/article/category/{cid}','ArticleController@category');
     Route::get('/article/details/aid/{aid}','ArticleController@details');
+    Route::get('/p/{aid}','ArticleController@details');
+
+
     Route::get('/article/get-comment-list','ArticleController@getCommentList');
     Route::get('/article/search','ArticleController@getArticleList');
 

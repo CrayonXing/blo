@@ -15,7 +15,8 @@ class UserController extends CController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
-    	return view('web.user.main');
+        $user = $this->getUser(true);
+    	return view('web.user.main',['userInfo'=>$user]);
     }
 
     /**

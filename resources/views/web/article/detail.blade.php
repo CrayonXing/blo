@@ -1,7 +1,7 @@
 @extends('web.layouts.blog-layout')
 
 @push('css')
-    <link href="css/article-detail.css" rel="stylesheet">
+    <link href="/static/web/css/article-detail.css" rel="stylesheet">
     <link href="/plugin/Spop/spop.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 @endpush
@@ -55,29 +55,30 @@
         <div class="blog-info-nextpage">
 
             @if($piece['previous'])
-                <p><span>上一篇 </span> &nbsp; <a href="/article/details/aid/{{$piece['previous']['id']}}" class="detail-href-hover">{{$piece['previous']['title']}}</a></p>
+                <p><span>上一篇 </span> &nbsp; <a href="/p/{{$piece['previous']['short_code']}}" class="detail-href-hover">{{$piece['previous']['title']}}</a></p>
             @endif
 
             @if($piece['next'])
-                <p><span>下一篇 </span> &nbsp; <a href="/article/details/aid/{{$piece['next']['id']}}" class="detail-href-hover">{{$piece['next']['title']}}</a></p>
+                <p><span>下一篇 </span> &nbsp; <a href="/p/{{$piece['next']['short_code']}}" class="detail-href-hover">{{$piece['next']['title']}}</a></p>
             @endif
 
         </div>
         @endif
 
-        <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
+
 
           @if($relevant)
+              <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
               <div class="blog-info-relevant">
                   <p class="blog-info-relevant-title">
                       <b>推荐文章</b>
-                      <em style="">{{count($relevant)}}</em>
+                      (<em style="">{{count($relevant)}}</em>)
                   </p>
                   <div class="blog-info-relevant-content">
                       <ul>
 
                           @foreach($relevant as $rel)
-                              <li> <a href="/article/details/aid/{{$rel->id}}" class="detail-href-hover">{{$rel->title}}</a></li>
+                              <li> <a href="/p/{{$rel['short_code']}}" class="detail-href-hover">{{$rel['title']}}</a></li>
                           @endforeach
 
                       </ul>
@@ -88,7 +89,7 @@
 
         <div class="blog-info-comment">
             <p class="blog-info-comment-title">
-               <b>热门评论</b> <em class="comment-create-header-comment-num" >0</em>
+               <b>热门评论</b> (<em class="comment-create-header-comment-num" >0</em>)
             </p>
 
             <div class="blog-info-comment-container">
@@ -153,11 +154,11 @@
                                         <span>@{{twoList.date}}</span>
                                     </p>
                                     <p class="sub-comment-list-text">@{{twoList.content}}</p>
-                                    {{--<p class="sub-comment-list-column" >--}}
-                                        {{--<span><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>--}}
-                                        {{--<span><i class="iconfont icon-dianzan21" ></i>点赞(@{{twoList.like}})</span>--}}
-                                        {{--<span><i class="iconfont icon-buoumaotubiao48" ></i>回复(@{{twoList.answer_num}})</span>--}}
-                                    {{--</p>--}}
+                                    <p class="sub-comment-list-column" >
+                                        <span><i class="iconfont icon-pinglun3-copy" ></i>回复Ta</span>
+                                        <span><i class="iconfont icon-dianzan21" ></i>点赞(@{{twoList.like}})</span>
+                                        <span><i class="iconfont icon-buoumaotubiao48" ></i>回复(@{{twoList.answer_num}})</span>
+                                    </p>
                                 </div>
                                 <div class="clear"></div>
                             </div>

@@ -33,7 +33,7 @@
     var o = {
         pagingShow:function(type){
             if(type == 0){
-                $('#blog-list-paging').html('<i class="iconfont icon-xia"></i> 加载下一页 ');
+                $('#blog-list-paging').html('<i class="iconfont icon-xia"></i> 加载更多... ');
             }else if(type == 1){
                 $('#blog-list-paging').html('<i class="am-icon-spinner am-icon-pulse"></i> 数据加载中... ');
             }else{

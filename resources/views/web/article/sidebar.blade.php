@@ -3,7 +3,7 @@
     @endif
 
     <div class="about" >
-      <div class="avatar"> <img src="images/touxiao.jpg" alt=""> </div>
+      <div class="avatar"> <img src="/static/web/images/touxiao.jpg" alt=""> </div>
       <p class="abname">YuanDong | 3年 <i class="iconfont iconyanjing_bi"></i></p>
       <p class="abposition">PHP开发工程师</p>
       <div class="abtext"> 生活需要梦想、需要坚持。只有不断提高自我，才会得到想要的生活... </div>
@@ -14,7 +14,7 @@
             <h2 class="hometitle">热门标签</h2>
             <ul>
                 @foreach($tagCloudArr as $tag=>$num)
-                    <a href="/">{{$tag}}</a>
+                    <a href="javascript:void(0)">{{$tag}}</a>
                 @endforeach
             </ul>
         </div>
@@ -26,7 +26,7 @@
             <ul>
                 @foreach($rankingList as $rankingRow)
                     <li>
-                        <a href="/article/details/aid/{{$rankingRow['id']}}" target="_blank">{{$rankingRow['title']}}</a>
+                        <a href="/p/{{$rankingRow['short_code']}}" target="_blank">{{$rankingRow['title']}}</a>
                     </li>
                 @endforeach
             </ul>

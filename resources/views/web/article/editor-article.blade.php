@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/plugin/editor-md/css/editormd.css" />
     <link rel="stylesheet" href="/plugin/tagsInput/jquery.tagsinput-revisited.css"/>
-    <link rel="stylesheet" href="css/markdown-edit-page.css"/>
+    <link rel="stylesheet" href="/static/web/css/markdown-edit-page.css"/>
 </head>
 <body>
 <div >
@@ -65,7 +65,7 @@
     </div>
 
     <div id="container-editormd">
-        <textarea >{{@$info->markdown_content}}</textarea>
+        <textarea style="display: none" >{{@$info->markdown_content}}</textarea>
     </div>
 </div>
 

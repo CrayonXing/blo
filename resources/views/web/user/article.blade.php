@@ -46,7 +46,7 @@
   <script id="tpl-bloglist-user" type="text/html">
       @{{each rows as v index}}
           <div class="web-main-article-list animated @{{if index%2 }} fadeInLeft @{{ else}} fadeInRight @{{/if}}" style="position: relative"  >
-              <h6><a href="/article/details/aid/@{{v.id}}">@{{v.title}}</a></h6>
+              <h6><a href="/p/@{{v.short_code}}" target="_blank">@{{v.title}}</a></h6>
 
               @{{if v.describe }}
                   <p>@{{v.describe}}</p>
@@ -73,8 +73,8 @@
                     </span>
 
                   <span class="list-footer-right">
-                      <a href="/article/details/aid/@{{v.id}}">阅读原文</a>
-                      <a href="/article/markdown-editor?aid=@{{v.id}}">编辑原文</a>
+                      <a href="/p/@{{v.short_code}}" target="_blank">阅读原文</a>
+                      <a href="/article/markdown-editor?aid=@{{v.id}}">编辑文章</a>
                   </span>
               </div>
 
@@ -91,7 +91,7 @@
       var o = {
           pagingShow:function(type){
               if(type == 0){
-                  $('.web-main-article-loading').html('<i class="iconfont icon-xia"></i> 加载下一页 ').css('color','rgb(128, 120, 120)');
+                  $('.web-main-article-loading').html('<i class="iconfont icon-xia"></i> 加载更多... ').css('color','rgb(128, 120, 120)');
               }else if(type == 1){
                   $('.web-main-article-loading').html('<i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...').css('color','#fc9d9a');
               }else{

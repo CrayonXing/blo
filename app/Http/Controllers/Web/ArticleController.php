@@ -26,15 +26,15 @@ class ArticleController extends CController
      * @param int $aid            文章ID
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function details(int $aid){
+    public function details($short_code){
         $piece = ['previous'=>[],'next'=>[]];
         $relevant = [];
 
-        if($info = Article::where('id',$aid)->first()){
+        if($info = Article::where('short_code',$short_code)->first()){
             $info = $info->toArray();
             $info['tag'] = explode(',',$info['tag']);
-            $previous  = Article::where('id','<',$aid)->orderBy('id','desc')->select('id','title')->first();
-            $next      = Article::where('id','>',$aid)->select('id','title')->first();
+            $previous  = Article::where('id','<',$info['id'])->orderBy('id','desc')->select('short_code','title')->first();
+            $next      = Article::where('id','>',$info['id'])->select('short_code','title')->first();
 
             if($previous){
                 $piece['previous']  = $previous->toArray();
@@ -44,18 +44,14 @@ class ArticleController extends CController
                 $piece['next']      = $next->toArray();
             }
 
-            $obj = Article::where('id', '<>', $aid);
+            $obj = Article::where('id', '<>', $info['id']);
             foreach ($info['tag'] as $tag){
                 $tag = addslashes($tag);
                 $obj->where('tag', 'like', "%{$tag}%");
             }
 
-            $relevant = $obj->select('id','title')->limit(5)->get();
-            if($relevant){
-                $relevant = $relevant->toArray();
-            }
-
-            Article::where('id',$aid)->increment('visits');
+            $relevant = $obj->select('short_code','title')->limit(5)->get()->toArray();
+            Article::where('id',$info['id'])->increment('visits');
         }
 
         return view('web.article.detail',['info'=>$info,'piece'=>$piece,'relevant'=>$relevant]);
@@ -71,7 +67,7 @@ class ArticleController extends CController
     public function getArticleList(Request $request,Article $article){
         $page = (int)$request->get('page', 1);
         $cid  = (int)$request->get('cid', 0);
-        return $this->ajaxSuccess('success',$article->getArticle($page,15,['cid'=>$cid]));
+        return $this->ajaxSuccess('success',$article->getArticle($page,12,['cid'=>$cid]));
     }
 
     /**
@@ -93,13 +89,13 @@ class ArticleController extends CController
         }
 
         if(!empty($data['tags']) && $tags = array_filter(explode(',',$data['tags']))){
-            if($tags > 3){
+            if(count($tags) > 3){
                 return $this->ajaxParamError('文章标签数量不能超载过3个...');
             }
             $data['tags'] = implode(',',$tags);
         }
 
-        if(empty($data['img']) && $img = app('service.help')->getTtmlImgs()){
+        if(empty($data['img']) && $img = app('service.help')->getTtmlImgs($data['htmlContent'])){
             $data['img'] = $img[0];
         }
 
