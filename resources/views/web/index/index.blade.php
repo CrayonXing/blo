@@ -30,15 +30,4 @@
 <script src="/plugin/template-web.js"></script>
 @include('web.template.tpl-blog-list')
 <script type="text/javascript" src="/static/web/js/page/index-page.js"></script>
-<script type="text/javascript">
-    let sidebarHeight  = $('#test-sidebar').height();
-    $(window).scroll(function(event){
-        var oTop = document.body.scrollTop==0?document.documentElement.scrollTop:document.body.scrollTop;
-        if(oTop > sidebarHeight){
-
-        }else{
-
-        }
-    });
-</script>
 @endpush
