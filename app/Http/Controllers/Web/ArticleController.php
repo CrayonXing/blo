@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Web;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Model\Article;
 use App\Model\Category;
@@ -29,9 +30,9 @@ class ArticleController extends CController
     public function details($short_code){
         $piece = ['previous'=>[],'next'=>[]];
         $relevant = [];
-
-        if($info = Article::where('short_code',$short_code)->first()){
+        if($info = Article::select(['id','short_code','category_id','uid','title','tag','describe','content','visits','reprint_url','created_time'])->where('short_code',$short_code)->first()){
             $info = $info->toArray();
+            $info['author'] = User::where('id',$info['uid'])->value('nickname');
             $info['tag'] = explode(',',$info['tag']);
             $previous  = Article::where('id','<',$info['id'])->orderBy('id','desc')->select('short_code','title')->first();
             $next      = Article::where('id','>',$info['id'])->select('short_code','title')->first();

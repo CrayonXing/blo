@@ -18,7 +18,7 @@
                   <span class="am-badge am-badge-success" style="background-color: #d6b8b7">原创</span>
               @endif
 
-              <span class="au01"><i class="iconfont icon-yonghu"></i> 嘿！boy</span>
+              <span class="au01"><i class="iconfont icon-yonghu"></i> {{$info['author']}}</span>
               <span class="au02"><i class="iconfont icon-rili" style="font-size: 12px;"></i> <?php echo date('Y-m-d',strtotime($info['created_time'])) ?></span>
               <span class="au03"><i class="iconfont icon-liulan"></i> 浏览量({{$info['visits']}})</span>
           </div>
