@@ -47,6 +47,7 @@ class UploadController extends CController
             return $this->ajaxReturn(305, '不支持此类文件上传');
         }
 
+        //上传文件
         $path = Storage::disk('public')->put(date('Ymd'), $file);
         if($path){
             $data['success'] = 1;

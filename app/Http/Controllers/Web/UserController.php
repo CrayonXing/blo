@@ -70,7 +70,8 @@ class UserController extends CController
 			return $this->ajaxParamError('确认密码填写错误');
         }
 
-    	list($isOk,$msg,$code) = User::chnagePwd($this->uid(),$data['oldpwd'],$data['newpwd']);
+    	[$isOk,$msg,$code] = User::chnagePwd($this->uid(),$data['oldpwd'],$data['newpwd']);
+
         return $this->ajaxReturn($code,$msg);
     }
 
@@ -84,6 +85,7 @@ class UserController extends CController
     public function getUserArticleList(Request $request,Article $article){
         $page       = $request->get('page', 1);
         $category   = $request->get('category', '');
+
         return $this->ajaxSuccess('success',$article->getUserArticle($this->uid(),$page,15,['category'=>$category]));
     }
 
@@ -96,10 +98,7 @@ class UserController extends CController
     public function datumEdit(Request $request){
         $data = $request->only(['nickname','motto','tags','head']);
         $isTrue = User::where('id',$this->uid())->update($data);
-        if($isTrue !== false){
-            return $this->ajaxSuccess('资料修改成功');
-        }
 
-        return $this->ajaxError('资料修改失败');
+        return $isTrue ? $this->ajaxSuccess('资料修改成功') : $this->ajaxError('资料修改失败');
     }
 }

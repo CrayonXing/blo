@@ -24,7 +24,7 @@ class ArticleController extends CController
     /**
      * 文章详情页
      *
-     * @param int $aid            文章ID
+     * @param $short_code 文章短码
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function details($short_code){

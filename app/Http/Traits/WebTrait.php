@@ -1,6 +1,10 @@
 <?php
 namespace App\Http\Traits;
 
+/**
+ * 控制器 Trait 方法类
+ * @package App\Http\Traits
+ */
 trait WebTrait
 {
     /**
@@ -50,6 +54,12 @@ trait WebTrait
     }
 
 
+    /**
+     * 接口请求参数验证错误
+     *
+     * @param string $msg
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function ajaxParamError($msg = '请求参数错误')
     {
         return $this->ajaxReturn(301, $msg, []);
