@@ -14,8 +14,6 @@
             .user-info-table tr em{
                   color:#ed8282;font-size: 16px;
             }
-
-            /*box-shadow: 17px 12px 20px 5px #fff2f1;*/
       </style>
 
       @include('web.layouts.web-main-left')
@@ -95,12 +93,6 @@
                                     <td width="300">
                                           <span>被评论 :</span>
                                           <span><em>50</em> 次</span>
-                                    </td>
-                              </tr>
-                              <tr >
-                                    <td width="300">
-                                          <span>累计签到 :</span>
-                                          <span><em>50</em> 次 <a href="/user-article" style="color: #9ddbf7">查看</a></span>
                                     </td>
                               </tr>
                         </table>

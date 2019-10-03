@@ -2,9 +2,11 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * 上传文件控制器
+ *
  * Class UploadController
  * @package App\Http\Controllers\Web
  */
@@ -12,7 +14,8 @@ class UploadController extends CController
 {
 
     /**
-     * Editor.md 图片上传接口
+     * 图片上传接口
+     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -28,26 +31,27 @@ class UploadController extends CController
             return response()->json($data);
         }
 
-        $file = $request->file('editormd-image-file');
-        if(!$file){
-            $file = $request->file('file-img');
+        $files = $request->only(['editormd-image-file','file-img']);
+        if(empty($files)){
+            $data['message'] = '获取上传文件信息失败...';
+            return response()->json($data);
         }
 
+        $file = $request->file(key($files));
         if (!$file->isValid()) {
             $data['message'] = '上传文件验证错误...';
             return response()->json($data);
         }
 
-        $ext = $file->getClientOriginalExtension();     // 扩展名
-        $realPath = $file->getRealPath();   //临时文件的绝对路径
+        if (!in_array($file->getClientOriginalExtension(), ['jpg', 'png', 'jpeg', 'gif'])) {
+            return $this->ajaxReturn(305, '不支持此类文件上传');
+        }
 
-        // 上传文件
-        $filename = '001/'.date('Ymd').'/'. md5(date('His').uniqid()) . '.' . $ext;
-        $bool = \Storage::disk('uploads')->put($filename, file_get_contents($realPath));
-        if($bool){
+        $path = Storage::disk('public')->put(date('Ymd'), $file);
+        if($path){
             $data['success'] = 1;
             $data['message'] = '上传文件成功...';
-            $data['url'] = url("/uploads/{$filename}");
+            $data['url']     = "/storage/{$path}";
         }else{
             $data['message'] = '上传文件失败...';
         }

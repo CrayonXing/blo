@@ -4,8 +4,8 @@
   
 <article>
   <h1 class="t_nav">
-    <span style="float: left;">导航栏：首页 > 分类列表 > {{ $category }} </span>
-    <span style="float: right;">不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span>
+    <span class="t_nav_left" >首页 > 分类 > {{ $category }} </span>
+    <span class="t_nav_right" id="nav-slogan">不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span>
   </h1>
 
   <div class="blogs">

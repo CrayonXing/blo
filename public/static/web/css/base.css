@@ -22,6 +22,24 @@ footer a { color: #a5a4a4 }
 h1.t_nav span { float: right; color: #999 }
 h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: normal; line-height: 40px; width: 100%; overflow: hidden }
 h1.t_nav a {color: #999;}
+
+.t_nav .t_nav_left{
+	float: left;
+}
+
+.t_nav .t_nav_right{
+	float: right;
+}
+
+#nav-slogan{animation:slogan 10s linear 0s infinite;font-size:14px;}
+@keyframes slogan{
+	0% {color:#999;}
+	25%{color:#999;}
+	50%{color:#fc9d9a;}
+	100% {color: #da8380;}
+}
+
+
 .n1 { background: #5EA51B; }
 .n2 { background: #8BBF5D; }
 .litle { font-size: 20px; margin: 20px 0 0 0; border-bottom: #d6d5d5 1px solid; padding-bottom: 5px; padding: 10px 0 10px 100px; color: #000; background: url(../images/jdbg.png) no-repeat left center; }
@@ -107,9 +125,10 @@ h3.blogtitle { line-height: 30px; height: 30px; margin: 10px 0; }
 .cloud ul a:nth-child(8n-2) { background: #EDC951 }
 .cloud ul a:nth-child(8n-1) { background: #C8C8A9 }
 .cloud ul a:nth-child(8n) { background: #83AF9B }
-.cloud ul a:first-child { background: #036564 }
+.cloud ul a:first-child { background: #44e2e1}
 .cloud ul a:last-child { background: #3299BB }
-.cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
+.cloud ul a:hover { border-radius: 0; text-shadow: #3f3f3f 1px 1px 1px }
+
 .hometitle { padding: 0 10px; line-height: 50px; height: 50px; font-size: 16px; border-bottom: 1px solid #e5e5e5; color: #cbcbcb; position: relative }
 .hometitle:after { content: ''; position: absolute; height: 2px; width: 0; right: inherit; top: inherit; left: 0; bottom: -1px; background: #FC9D9A; transition: 2s ease all; }
 .hometitle:hover:after { width: 100%; transition: 2s ease all; }
