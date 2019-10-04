@@ -96,7 +96,7 @@ class ArticleController extends CController
             $data['tags'] = implode(',',$tags);
         }
 
-        if(empty($data['img']) && $img = app('service.help')->getTtmlImgs($data['htmlContent'])){
+        if(empty($data['img']) && $img = getTtmlImgs($data['htmlContent'])){
             $data['img'] = $img[0];
         }
 
