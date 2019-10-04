@@ -70,4 +70,4 @@ $('#blog-list-paging').on('click',function(){
 
 $(function () {
     $('html,body').animate({ scrollTop: 0 }, 700);
-})
+});
