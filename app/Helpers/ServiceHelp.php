@@ -1,6 +1,10 @@
 <?php
 namespace App\Helpers;
 
+use App\Model\Article;
+use App\Model\Category;
+use Illuminate\Support\Facades\Cache;
+
 class ServiceHelp
 {
     /**
@@ -8,7 +12,15 @@ class ServiceHelp
      * @return array
      */
     public function getTags(){
-        return (new \App\Model\Article())->getTags();
+        $cacheKey = 'article_tags_cache';
+        $data = Cache::get($cacheKey, null);
+        if($data == null){
+            $data = (new Article())->getTags();
+            $minutes = $data ? 60*2 : rand(1,5) ;
+            Cache::put($cacheKey,$data,$minutes);
+        }
+
+        return $data;
     }
 
     /**
@@ -16,7 +28,15 @@ class ServiceHelp
      * @return mixed
      */
     public function getRankingList(){
-        return (new \App\Model\Article())->getRankingList();
+        $cacheKey = 'article_ranking_list_cache';
+        $data = Cache::get($cacheKey, null);
+        if($data == null){
+            $data = (new Article())->getRankingList();
+            $minutes = $data ? 60*3 : rand(1,5) ;
+            Cache::put($cacheKey,$data,$minutes);
+        }
+
+        return $data;
     }
 
     /**
@@ -24,7 +44,15 @@ class ServiceHelp
      * @return array
      */
     public function getNav(){
-        return (new \App\Model\Category())->getNav();
+        $cacheKey = 'article_nav_cache';
+        $data = Cache::get($cacheKey, null);
+        if($data == null){
+            $data = (new Category())->getNav();
+            $minutes = $data ? 60*6 : rand(1,5) ;
+            Cache::put($cacheKey,$data,$minutes);
+        }
+
+        return $data;
     }
 
      /**
