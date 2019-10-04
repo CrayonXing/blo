@@ -69,7 +69,7 @@
                           }else{
                               o.pagingShow(2);
                           }
-                      };
+                      }
                   },
                   error:function(){
                     o.pagingShow(0);

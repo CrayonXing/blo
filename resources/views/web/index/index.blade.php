@@ -9,8 +9,9 @@
       <div class="blogs">
           <div class="swiper-container cus-swiper-container" >
               <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img src="/static/web/images/background/as135s1f5a15f51s51fa351351safsf.jpg" /></div>
                   <div class="swiper-slide"><img src="/static/web/images/background/a1bf0590d6002d63f4f183e7cff1b24.jpg" /></div>
-                  <div class="swiper-slide"><img src="/static/web/images/background/ansjknfajsnfajsnnakj.jpeg"  /></div>
+                  <div class="swiper-slide"><img src="/static/web/images/background/bs135s1f5a15f51s51fa351351safsf.jpg"  /></div>
               </div>
               <div class="swiper-button-prev swiper-button-white"></div>
               <div class="swiper-button-next swiper-button-white"></div>
