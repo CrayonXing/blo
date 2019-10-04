@@ -1,12 +1,14 @@
 new Swiper('.swiper-container', {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
+    pagination: {
+        el: '.swiper-pagination',
+    },
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
     parallax: true,
     speed: 600,
+    hashNavigation: true,
 });
 
 
