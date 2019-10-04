@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Web;
 use App\User;
 use Illuminate\Http\Request;
 use App\Model\Article;
-use App\Model\Category;
-use App\Model\Comment;
+use App\Model\ArticleCategory;
+use App\Model\ArticleComment;
 
 class ArticleController extends CController
 {
@@ -17,7 +17,7 @@ class ArticleController extends CController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function category($cid){
-        $category_name = Category::where('id',$cid)->value('name');
+        $category_name = ArticleCategory::where('id',$cid)->value('name');
         return view('web.article.list',['cid'=>$cid,'category'=>$category_name]);
     }
 
@@ -68,7 +68,7 @@ class ArticleController extends CController
     public function getArticleList(Request $request,Article $article){
         $page = (int)$request->get('page', 1);
         $cid  = (int)$request->get('cid', 0);
-        return $this->ajaxSuccess('success',$article->getArticle($page,12,['cid'=>$cid]));
+        return $this->ajaxSuccess('success',$article->getArticle($page,16,['cid'=>$cid]));
     }
 
     /**
@@ -119,10 +119,10 @@ class ArticleController extends CController
      * 文章评论接口
      *
      * @param Request $request
-     * @param Comment $comment
+     * @param ArticleComment $comment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function comment(Request $request,Comment $comment){
+    public function comment(Request $request, ArticleComment $comment){
         $aid = $request->input('aid',0);
         $cid = $request->input('cid',0);
         $content = $request->input('content','');
@@ -139,10 +139,10 @@ class ArticleController extends CController
      * 获取评论列表接口
      *
      * @param Request $request
-     * @param Comment $comment
+     * @param ArticleComment $comment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCommentList(Request $request,Comment $comment){
+    public function getCommentList(Request $request, ArticleComment $comment){
         $aid = $request->get('aid',0);
 
         if(empty($aid)){
@@ -161,7 +161,7 @@ class ArticleController extends CController
     public function markdownEditorPage(Request $request){
         $aid = $request->input('aid',0);
         $info = Article::where('id',$aid)->where('uid',$this->uid())->first();
-        $rows = Category::select('id','name')->get()->toArray();
+        $rows = ArticleCategory::select('id','name')->get()->toArray();
 
         return view('web.article.editor-article',[
             'categoryInfos'=>$rows,

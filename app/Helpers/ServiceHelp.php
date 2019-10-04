@@ -2,7 +2,7 @@
 namespace App\Helpers;
 
 use App\Model\Article;
-use App\Model\Category;
+use App\Model\ArticleCategory;
 use Illuminate\Support\Facades\Cache;
 
 class ServiceHelp
@@ -47,7 +47,7 @@ class ServiceHelp
         $cacheKey = 'article_nav_cache';
         $data = Cache::get($cacheKey, null);
         if($data == null){
-            $data = (new Category())->getNav();
+            $data = (new ArticleCategory())->getNav();
             $minutes = $data ? 60*6 : rand(1,5) ;
             Cache::put($cacheKey,$data,$minutes);
         }

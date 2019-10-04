@@ -17,7 +17,7 @@ var o = {
         if(type == 0){
             $('#blog-list-paging').html('<i class="iconfont icon-xia"></i> 加载更多... ').css('color','rgb(128, 120, 120)');
         }else if(type == 1){
-            $('#blog-list-paging').html('<i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...').css('color','rgb(128, 120, 120)');
+            $('#blog-list-paging').html('<i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...').css('color','#fc9d9a');
         }else{
             $('#blog-list-paging').html('已加载全部').css('color','#ccc');
         }

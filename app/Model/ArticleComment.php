@@ -4,7 +4,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Comment extends Model
+class ArticleComment extends Model
 {
 
     /**
@@ -12,7 +12,7 @@ class Comment extends Model
      *
      * @var string
      */
-    protected $table = 'comment';
+    protected $table = 'article_comment';
 
     /**
      * 不能被批量赋值的属性
@@ -44,10 +44,10 @@ class Comment extends Model
      * @return mixed
      */
     public function getCommentList($oid,$page,$page_size){
-        $rows = self::select(['users.nickname','users.head','comment.content','comment.created_time as date','comment.pid','comment.id','comment.uid'])
-            ->leftJoin('users', 'users.id', '=', 'comment.uid')
-            ->where('comment.oid',$oid)
-            ->orderBy('comment.created_time','desc')
+        $rows = self::select(['users.nickname','users.head','article_comment.content','article_comment.created_time as date','article_comment.pid','article_comment.id','article_comment.uid'])
+            ->leftJoin('users', 'users.id', '=', 'article_comment.uid')
+            ->where('article_comment.oid',$oid)
+            ->orderBy('article_comment.created_time','desc')
             ->get();
 
         if(!$rows){

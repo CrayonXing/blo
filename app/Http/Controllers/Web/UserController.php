@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\Article;
-use App\Model\Category;
+use App\Model\ArticleCategory;
 
 class UserController extends CController
 {
@@ -22,10 +22,10 @@ class UserController extends CController
     /**
      * 用户文章管理列表
      *
-     * @param Category $category
+     * @param ArticleCategory $category
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function article(Category $category){
+    public function article(ArticleCategory $category){
         $data = [];
         if($categoryList = $category->select(['id','pid','sort','name'])->orderBy('pid','asc')->orderBy('sort','asc')->get()){
             $data = $categoryList->toArray();

@@ -67,7 +67,7 @@
 
     @section('footer')
 	    <footer class="blog-footer">
-		  <p>© 2018-2019 Powered By {{config('conf.projectName','未定义系统名')}}</p>
+		  <p>© 2018-2019 Powered By <a href="/">{{config('conf.projectName','未定义系统名')}}</a></p>
 		</footer>
 	@show
 

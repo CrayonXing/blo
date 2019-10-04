@@ -19,7 +19,7 @@
           </div>
           <div id="blog-list-container"></div>
           <div id="blog-list-paging">
-               <i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...
+               <i class="am-icon-spinner am-icon-pulse" ></i> 数据加载中...
           </div>
       </div>
       <div class="sidebar" >

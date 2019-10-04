@@ -45,7 +45,7 @@
 
   <script id="tpl-bloglist-user" type="text/html">
       @{{each rows as v index}}
-          <div class="web-main-article-list animated @{{if index%2 }} fadeInLeft @{{ else}} fadeInRight @{{/if}}" style="position: relative"  >
+          <div class="web-main-article-list animated fadeIn" style="position: relative"  >
               <h6><a href="/p/@{{v.short_code}}" target="_blank">@{{v.title}}</a></h6>
 
               @{{if v.describe }}

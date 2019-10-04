@@ -1241,6 +1241,7 @@ h3.blogtitle {
     padding-top: 15px;
     cursor: pointer;
     font-weight: 400;
+    color: #fc9d9a;
 }
 
 .blogpic {
@@ -1312,6 +1313,10 @@ body::-webkit-scrollbar-track {
 
 .blog-footer p{
     margin: 0
+}
+
+.blog-footer p a:hover{
+    color: #fc9d9a !important;
 }
 
 /*主页css*/

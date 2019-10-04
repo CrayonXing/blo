@@ -2,7 +2,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-class Category extends Model
+class ArticleCategory extends Model
 {
 
     /**
@@ -10,7 +10,7 @@ class Category extends Model
      *
      * @var string
      */
-    protected $table = 'category';
+    protected $table = 'article_category';
 
     /**
      * 不能被批量赋值的属性
