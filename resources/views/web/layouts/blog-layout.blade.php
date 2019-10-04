@@ -14,7 +14,7 @@
 <link href="/static/web/css/login.css" rel="stylesheet">
 <link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
 @stack('css')
-</head>static
+</head>
 <body>
 	@section('header')
 		<header id="blog-header" >

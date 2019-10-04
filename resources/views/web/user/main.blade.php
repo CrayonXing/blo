@@ -99,8 +99,6 @@
                   </div>
 
                   <p style="margin-top: 50px;border-bottom: 1px solid #ccc;padding-bottom: 15px;font-size: 20px;color: #fc9d9a">最新消息</p>
-
-
             </div>
       </div>
 </article>

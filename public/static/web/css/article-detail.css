@@ -239,3 +239,8 @@ pre {
 #comment-create-btn:hover{
     color: white !important;
 }
+
+
+.sidebar{
+    margin-top: 20px;padding-bottom: 20px;
+}

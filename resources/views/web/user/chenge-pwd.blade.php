@@ -52,8 +52,7 @@
 
 @push('scripts')
   	<script type="text/javascript">
-
-  		var changPwdObj = {
+  		let changPwdObj = {
   			loading:false,
   			showError(text){
   				$('#fr-changepwd-error').text(text).fadeIn().delay(3000).fadeOut();
@@ -84,9 +83,9 @@
 	                    },
 	                    success: function (res) {
 	                        if(res.code == 200){
-	                            $('#fr-changepwd-oldpwd').val(''),
-				  				$('#fr-changepwd-newpwd').val(''),
-				  				$('#fr-changepwd-newpwd2').val('')
+							    $('#fr-changepwd-oldpwd').val('');
+				  				$('#fr-changepwd-newpwd').val('');
+				  				$('#fr-changepwd-newpwd2').val('');
 	                        }
 
                             changPwdObj.showError(res.msg);

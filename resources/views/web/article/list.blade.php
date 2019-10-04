@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="sidebar" style="margin-top: 20px;padding-bottom: 20px;">
+  <div class="sidebar sidebar-padding" >
     @include('web.article.sidebar')
   </div>
 </article>
@@ -29,7 +29,7 @@
 @include('web.template.tpl-blog-list')
 
 <script type="text/javascript">
-    const  category = {{$cid}};
+    const  category = "{{$cid}}";
     var o = {
         pagingShow:function(type){
             if(type == 0){

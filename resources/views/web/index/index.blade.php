@@ -1,16 +1,19 @@
 ﻿@extends('web.layouts.blog-layout')
 
-@section('content')
+@push('css')
     <link rel="stylesheet" href="/plugin/swiper/swiper.min.css">
+@endpush
+
+@section('content')
     <article>
-      <div class="blogs" style="min-height: 850px;">
-          <div class="swiper-container" style="margin-top: -15px;margin-bottom: 10px;height: 400px;">
+      <div class="blogs">
+          <div class="swiper-container cus-swiper-container" >
               <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img src="/static/web/images/background/a1bf0590d6002d63f4f183e7cff1b24.jpg" style="width: 100%;height: 100%" /></div>
-                  <div class="swiper-slide"><img src="/static/web/images/background/ansjknfajsnfajsnnakj.jpeg" style="width: 100%;height: 100%" /></div>
+                  <div class="swiper-slide"><img src="/static/web/images/background/a1bf0590d6002d63f4f183e7cff1b24.jpg" /></div>
+                  <div class="swiper-slide"><img src="/static/web/images/background/ansjknfajsnfajsnnakj.jpeg"  /></div>
               </div>
-              <div class="swiper-button-prev swiper-button-white"></div><!--左箭头。如果放置在swiper-container外面，需要自定义样式。-->
-              <div class="swiper-button-next swiper-button-white"></div><!--右箭头。如果放置在swiper-container外面，需要自定义样式。-->
+              <div class="swiper-button-prev swiper-button-white"></div>
+              <div class="swiper-button-next swiper-button-white"></div>
               <div class="swiper-pagination"></div>
           </div>
           <div id="blog-list-container"></div>
@@ -18,7 +21,7 @@
                <i class="am-icon-spinner am-icon-pulse"></i> 数据加载中...
           </div>
       </div>
-      <div class="sidebar" id="test-sidebar" >
+      <div class="sidebar" >
             @include('web.article.sidebar')
         </div>
       </div>

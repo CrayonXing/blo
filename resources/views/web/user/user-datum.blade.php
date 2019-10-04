@@ -67,8 +67,7 @@
     <script type="text/javascript" src="/plugin/tagsInput/jquery.tagsinput-revisited.js"></script>
     <script type="text/javascript">
         $('#fr-userdatum-tags').tagsInput();
-
-        var o = {
+        let o = {
             isSubmit:false,
             getData(){
                 return {

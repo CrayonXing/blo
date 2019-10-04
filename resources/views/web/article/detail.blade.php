@@ -2,14 +2,13 @@
 
 @push('css')
     <link href="/static/web/css/article-detail.css" rel="stylesheet">
-    <link href="/plugin/Spop/spop.min.css" rel="stylesheet">
+    <link href="/plugin/spop/spop.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 @endpush
 
 @section('content')
 <article>
-      <h1 class="t_nav"><span style="float: left;">导航栏：<a href="/">首页</a> > 文章详情 > {{$info['title']}}</span></h1>
-
+      <h1 class="t_nav"><span style="float: left;"><a href="/">首页</a> > 文章详情 > {{$info['title']}}</span></h1>
       <div class="infos">
         <div class="newsview">
           <h3 class="news_title">{{$info['title']}}</h3>
@@ -17,21 +16,20 @@
               @if(empty($info['describe']))
                   <span class="am-badge am-badge-success" style="background-color: #d6b8b7">原创</span>
               @endif
-
               <span class="au01"><i class="iconfont icon-yonghu"></i> {{$info['author']}}</span>
               <span class="au02"><i class="iconfont icon-rili" style="font-size: 12px;"></i> <?php echo date('Y-m-d',strtotime($info['created_time'])) ?></span>
               <span class="au03"><i class="iconfont icon-liulan"></i> 浏览量({{$info['visits']}})</span>
           </div>
 
+          @if($info['tag'])
           <div class="tags">
-            @if($info['tag'])
               @foreach ($info['tag'] as $tag)
                   @if(!empty($tag))
-                          <a href="" target="_blank">{{$tag}}</a>
+                      <a href="javascript:void(0)" target="_blank">{{$tag}}</a>
                   @endif
               @endforeach
-            @endif
           </div>
+          @endif
 
           @if($info['describe'])
             <div class="news_about">
@@ -44,16 +42,15 @@
               <?php echo htmlspecialchars_decode($info['content']);?>
           </div>
 
-            @if($info['reprint_url'])
-                <div class="news_infos-reprint">
-                    <p><i class="iconfont icon-wenzhangzhuanzai" ></i> 文章转载自 @link <a href="{{$info['reprint_url']}}" target="_blank" >{{$info['reprint_url']}}</a></p>
-                </div>
-            @endif
+          @if($info['reprint_url'])
+          <div class="news_infos-reprint">
+            <p><i class="iconfont icon-wenzhangzhuanzai" ></i> 文章转载自 @link <a href="{{$info['reprint_url']}}" target="_blank" >{{$info['reprint_url']}}</a></p>
+          </div>
+          @endif
         </div>
 
         @if($piece['previous'] || $piece['next'])
         <div class="blog-info-nextpage">
-
             @if($piece['previous'])
                 <p><span>上一篇 </span> &nbsp; <a href="/p/{{$piece['previous']['short_code']}}" class="detail-href-hover">{{$piece['previous']['title']}}</a></p>
             @endif
@@ -61,37 +58,28 @@
             @if($piece['next'])
                 <p><span>下一篇 </span> &nbsp; <a href="/p/{{$piece['next']['short_code']}}" class="detail-href-hover">{{$piece['next']['title']}}</a></p>
             @endif
-
         </div>
         @endif
 
-
-
-          @if($relevant)
-              <hr data-am-widget="divider" style="" class="am-divider am-divider-dashed" />
-              <div class="blog-info-relevant">
-                  <p class="blog-info-relevant-title">
-                      <b>推荐文章</b>
-                      (<em style="">{{count($relevant)}}</em>)
-                  </p>
-                  <div class="blog-info-relevant-content">
-                      <ul>
-
-                          @foreach($relevant as $rel)
-                              <li> <a href="/p/{{$rel['short_code']}}" class="detail-href-hover">{{$rel['title']}}</a></li>
-                          @endforeach
-
-                      </ul>
-                  </div>
+        @if($relevant)
+          <div class="blog-info-relevant">
+              <p class="blog-info-relevant-title">
+                  <b>推荐文章</b>(<em style="">{{count($relevant)}}</em>)
+              </p>
+              <div class="blog-info-relevant-content">
+                  <ul>
+                      @foreach($relevant as $rel)
+                          <li> <a href="/p/{{$rel['short_code']}}" class="detail-href-hover">{{$rel['title']}}</a></li>
+                      @endforeach
+                  </ul>
               </div>
-          @endif
-
+          </div>
+        @endif
 
         <div class="blog-info-comment">
             <p class="blog-info-comment-title">
                <b>热门评论</b> (<em class="comment-create-header-comment-num" >0</em>)
             </p>
-
             <div class="blog-info-comment-container">
                 <div class="comment-create">
                       <p class="comment-create-header">
@@ -105,18 +93,16 @@
                           <span  class="am-btn am-btn-sm"  style="width: 84px;"  id="comment-create-btn" onclick="commentObj.submit()">发布评论</span>
                       </div>
                 </div>
-
                 <div class="comment-list-container" ></div>
             </div>
         </div>
       </div>
 
-      <div class="sidebar" style="margin-top: 20px;padding-bottom: 20px;">
+      <div class="sidebar">
             @include('web.article.sidebar')
       </div>
 </article>
 @endsection
-
 
 @push('scripts')
 <script type="text/html" id="tpl-blog-comment-list">
@@ -171,8 +157,8 @@
         @{{/each}}
     @{{/if}}
 </script>
-<script src="/plugin/template-web.js"></script>
-<script src="/plugin/spop/spop.min.js"></script>
+<script type="text/javascript" src="/plugin/template-web.js"></script>
+<script type="text/javascript" src="/plugin/spop/spop.min.js"></script>
 <script type="text/javascript">
     const  aid = '{{$info['id']}}';
     const commentObj = {
@@ -233,25 +219,13 @@
 
     commentObj.loadCommentData();
 </script>
-<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
 <script type="text/javascript">
     hljs.initHighlightingOnLoad();
-
-    setTimeout(function(){
-        $('code').removeClass('xml');
-    },500);
-    
-    setTimeout(function(){
-        $('code').removeClass('xml');
-    },1000);
-    setTimeout(function(){
-        $('code').removeClass('xml');
-    },1500);
-    setTimeout(function(){
-        $('code').removeClass('xml');
-    },2000);
-</script>
-<script>
-
+    for (let i=1;i<5;i++){
+        setTimeout(function(){
+            $('code').removeClass('xml');
+        },i*500);
+    }
 </script>
 @endpush
