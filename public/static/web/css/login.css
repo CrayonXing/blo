@@ -134,3 +134,10 @@
     font-size: 17px;
     line-height: 50px;
 }
+
+.login-box-close{
+    position: absolute;top:0;right: -30px;
+}
+.login-box-close i{
+    color: #fff;font-size: 25px;cursor: pointer;
+}

@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-<meta charset="utf-8">
-<title>{{config('conf.projectName','未定义系统名')}}</title>
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<meta name="keywords" content="New博客,PHP博客" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="applicable-device" content="pc">
-<link href="/plugin/amazeui/css/amazeui.css" rel="stylesheet">
-<link href="/plugin/animate.min.css" rel="stylesheet">
-<link href="/static/web/css/base.css" rel="stylesheet">
-<link href="/static/web/css/header-nav.css" rel="stylesheet">
-<link href="/static/web/css/login.css" rel="stylesheet">
-<link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
-@stack('css')
+	<meta charset="utf-8">
+	<title>{{config('conf.projectName','未定义系统名')}}</title>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="keywords" content="New博客,PHP博客" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="applicable-device" content="pc">
+	<link href="/plugin/amazeui/css/amazeui.css" rel="stylesheet">
+	<link href="/plugin/animate.min.css" rel="stylesheet">
+	<link href="/static/web/css/base.css" rel="stylesheet">
+	<link href="/static/web/css/header-nav.css" rel="stylesheet">
+	<link href="/static/web/css/login.css" rel="stylesheet">
+	<link href="//at.alicdn.com/t/font_1038155_y21f5gmrj6r.css" rel="stylesheet">
+	@stack('css')
 </head>
 <body>
 	@section('header')
@@ -66,8 +66,8 @@
     @yield('content')
 
     @section('footer')
-	    <footer style="padding: 0;height: 40px;line-height: 40px;width: 100%;">
-		  <p style="margin: 0">© 2018 - 2019 {{config('conf.projectName','未定义系统名')}}</p>
+	    <footer class="blog-footer">
+		  <p>© 2015-2019 Powered By {{config('conf.projectName','未定义系统名')}}</p>
 		</footer>
 	@show
 
@@ -133,8 +133,8 @@
 					</div>
 				</div>
 
-				<div class="login-box-close" style="position: absolute;top:0;right: -30px;">
-					<i class="iconfont icon-guanbi" style="color: #fff;font-size: 25px;cursor: pointer;" onclick="userLogin.hideBox()"></i>
+				<div class="login-box-close" >
+					<i class="iconfont icon-guanbi" onclick="userLogin.hideBox()"></i>
 				</div>
 			</div>
 	</div>
@@ -147,15 +147,16 @@
 		</ul>
 	</div>
 
-	<script src="/static/web/js/jquery-2.1.1.min.js"></script>
-	<script>
+	<script type="text/javascript" src="/static/web/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
 		$.ajaxSetup({
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
 		});
 	</script>
-	<script src="/plugin/functions.js"></script>
+	<script type="text/javascript" src="/plugin/functions.js"></script>
+	<script type="text/javascript" src="/static/web/js/login-box.js"></script>
 	<script type="text/javascript">
 		$(window).scroll(function(){//bug
 	        var _top= $(window).scrollTop();
@@ -169,7 +170,6 @@
 			$('html,body').animate({scrollTop: 0},300);
 	    });
 	</script>
-	<script src="/static/web/js/login-box.js"></script>
 	@stack('scripts')
 </body>
 </html>

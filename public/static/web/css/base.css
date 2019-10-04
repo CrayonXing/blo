@@ -1304,3 +1304,11 @@ body::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
     background: #ccc;
 }
+
+.blog-footer{
+    padding: 0;height: 40px;line-height: 40px;width: 100%;
+}
+
+.blog-footer p{
+    margin: 0
+}
