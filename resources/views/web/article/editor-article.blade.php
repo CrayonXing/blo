@@ -67,7 +67,7 @@
 </div>
 
 <div id="container-editormd">
-    <textarea style="display: none" >{{@$info->markdown_content}}</textarea>
+    <textarea style="display: none" ><?php echo @htmlspecialchars_decode($info->markdown_content);?></textarea>
 </div>
 
 <div id="uplod-mask-box"><div  id="uplod-mask-tips">图片上传中,请耐心等待...</div></div>

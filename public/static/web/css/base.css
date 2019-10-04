@@ -61,8 +61,8 @@ header {
 
 footer {
     width: 100%;
-    background: #333;
-    color: #a5a4a4;
+    background: #06060b;
+    color: #60606d;
     text-align: center;
     padding: 20px 0;
 }
@@ -826,6 +826,7 @@ h3.blogtitle {
 .news_infos {
     line-height: 24px;
     text-align: justify;
+    margin-top: 20px;
 }
 
 .news_infos p {
