@@ -766,6 +766,7 @@ h3.blogtitle {
     font-weight: normal;
     padding: 20px 0;
     color: #333;
+    margin-bottom: 0;
 }
 
 .news_author {
