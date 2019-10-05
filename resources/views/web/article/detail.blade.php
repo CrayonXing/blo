@@ -13,8 +13,8 @@
         <div class="newsview">
           <h3 class="news_title">{{$info['title']}}</h3>
           <div class="news_author">
-              @if(empty($info['describe']))
-                  <span class="am-badge am-badge-success" style="background-color: #d6b8b7">原创</span>
+              @if(empty($info['reprint_url']))
+                  <span class="am-badge am-badge-success" style="background-color: #d6b8b7;border-radius: 0">原创</span>
               @endif
               <span class="au01"><i class="iconfont icon-yonghu"></i> {{$info['author']}}</span>
               <span class="au02"><i class="iconfont icon-rili" style="font-size: 12px;"></i> <?php echo date('Y-m-d',strtotime($info['created_time'])) ?></span>
