@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Model\User;
 use App\Model\Article;
 use App\Model\ArticleCategory;
 

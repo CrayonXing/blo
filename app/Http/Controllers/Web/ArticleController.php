@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers\Web;
 
-use App\User;
 use Illuminate\Http\Request;
+use App\Model\User;
 use App\Model\Article;
 use App\Model\ArticleCategory;
 use App\Model\ArticleComment;
