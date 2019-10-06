@@ -1,5 +1,5 @@
     @if(auth('web')->check())
-        <a href="/article/markdown-editor" class="add-article"><i class="am-icon-plus"></i> 编辑文章</a>
+        <a href="/article/markdown-editor" target="_blank" class="add-article"><i class="am-icon-plus"></i> 编辑文章</a>
     @endif
 
     <div class="about" >
