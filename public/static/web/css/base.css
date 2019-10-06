@@ -841,6 +841,17 @@ h3.blogtitle {
     margin: 10px auto;
 }
 
+.news_infos a{
+    color: #5eb0da !important;
+}
+
+.news_infos h2{
+    border-bottom: 1px solid #eee;padding-bottom: 0.3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
 .news_pl {
     margin: 10px 0;
     width: 100%;
