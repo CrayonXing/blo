@@ -149,3 +149,39 @@ input[type='text']:focus{
     width: 300px;height: 50px;background-color: #d7d7d7;margin-left: calc(50% - 150px);margin-top: 250px;line-height: 50px;text-align: center;color: green;
 }
 
+
+#editormd-error-box{
+    position: fixed;
+    width: 400px;
+    height: 40px;
+    border: 1px solid #5d5d5d;
+    border-radius: 3px;
+    z-index: 9999999999;
+    background-color: #403a3a;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 3px 5px 3px 8px;
+    color: #cccccc;
+    box-shadow: 1px 2px 14px 0px #514747;
+    display: none;
+}
+
+#editormd-error-box p{
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+}
+
+.editormd-error-green{
+    color: green !important;
+}
+
+.editormd-error-red{
+    color: #993232 !important;
+}
+
+.bg-huibai{
+background-color: #3c3c3c !important;
+}

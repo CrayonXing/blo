@@ -37,5 +37,6 @@
       <h2 class="hometitle">友情链接</h2>
       <ul>
             <li><a href="https://laravel.sh-jinger.com" target="_blank" >流星博客</a></li>
+            <li><a href="https://learnku.com/docs/laravel/5.7" target="_blank" >Laravel 5.7 中文文档</a></li>
       </ul>
     </div>

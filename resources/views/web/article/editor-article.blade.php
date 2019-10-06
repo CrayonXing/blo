@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/plugin/editor-md/css/editormd.css" />
     <link rel="stylesheet" href="/plugin/tagsInput/jquery.tagsinput-revisited.css"/>
     <link rel="stylesheet" href="/static/web/css/markdown-edit-page.css"/>
+    <link href="//at.alicdn.com/t/font_1038155_bvfj232ori.css" rel="stylesheet">
+    <link href="/plugin/animate.min.css" rel="stylesheet">
 </head>
 <body >
 
@@ -71,6 +73,13 @@
 </div>
 
 <div id="uplod-mask-box"><div  id="uplod-mask-tips">图片上传中,请耐心等待...</div></div>
+
+<div id="editormd-error-box" class="animated editormd-error-green">
+    <p>
+        <i class="iconfont icon-iconfontzhizuobiaozhun023132" ></i>
+        <span class="editormd-error-tip"></span>
+    </p>
+</div>
 
 <script type="text/javascript" src="/static/web/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/plugin/editor-md/editormd.min.js"></script>
