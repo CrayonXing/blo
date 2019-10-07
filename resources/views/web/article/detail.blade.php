@@ -217,6 +217,8 @@
         commentObj.data.cid = 0;
     });
 
+    $('.news_infos a').attr('target','_blank');
+
     commentObj.loadCommentData();
 </script>
 <script type="text/javascript" src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
