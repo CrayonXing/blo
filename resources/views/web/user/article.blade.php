@@ -53,7 +53,7 @@
               @{{/if}}
 
               <div class="web-main-article-list-footer">
-                  @{{if v.tag }}
+                  @{{if v.tag.length > 0 }}
                     <span class="list-footer-left">
                       <i class="iconfont icon-icontag" ></i>
                         <span style="display: inline-block">

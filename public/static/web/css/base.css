@@ -852,6 +852,13 @@ h3.blogtitle {
     border-bottom: 1px solid #eee;
 }
 
+.news_infos blockquote {
+    padding: 8px;
+    font-family:none;
+    background-color: #f5f8fc;
+    color: #8796a8;
+}
+
 .news_pl {
     margin: 10px 0;
     width: 100%;

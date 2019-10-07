@@ -103,7 +103,7 @@ class Article extends Model
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
-                $rows[$k]['tag']     = explode(',',$row['tag']);
+                $rows[$k]['tag']     = array_filter(explode(',',$row['tag']));
                 $rows[$k]['status']  = ($row['status'] == 0) ? '草稿文' :'已发布';
             }
         }
@@ -135,7 +135,7 @@ class Article extends Model
         if($rows){
             $rows = $rows->toArray();
             foreach($rows as $k=>$row){
-                $rows[$k]['tag']  = explode(',',$row['tag']);
+                $rows[$k]['tag']  = array_filter(explode(',',$row['tag']));
             }
         }
 

@@ -18,14 +18,17 @@
           @{{/if}}
 
           <div class="autor">
-            <span class="lm">
-              @{{each v.tag as tag index2}}
-                <a href="/"  target="_blank" class="classname">
-                   @{{tag}}
-                </a>
-              @{{/each}}
-              
-            </span>
+              @{{if v.tag.length > 0 }}
+              <span class="lm">
+                  @{{each v.tag as tag index2}}
+                    <a href="/"  target="_blank" class="classname">
+                       @{{tag}}
+                    </a>
+                  @{{/each}}
+              </span>
+              @{{/if}}
+
+
             <span class="dtime">@{{v.created_time}}</span>
             <span class="viewnum">浏览（<a>@{{v.visits}}</a>）</span>
             <span class="readmore"><a href="/p/@{{v.short_code}}"  target="_blank">阅读原文...</a></span>
